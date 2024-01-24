@@ -6,11 +6,11 @@ import re
 
 class FileConverter:
     """
-    Converts a CSV file to a Pandas DataFrame.
+    It's designed to convert igc data that has been converted to CSV via KML using https://igc2kml.com/ and https://products.aspose.app/gis/conversion/kml-to-csv. The CSV data must be converted to Excel first, which is a manual process.
 
     To run this script, use Jupyter Notebook and copy the following code:
 
-    Converter = FileConverter("path/to/input/file.xlsx", "path/to/output/file.csv")
+    Converter = FileConverter("/Users/nicolas/Downloads/test.xlsx", "/Users/nicolas/Downloads/test.csv")
     Converter.processCSV()
     """
 
@@ -60,7 +60,15 @@ class FileConverter:
         df = df[df["altitudeMode"] != "clampToGround"]
 
         # SPLIT 'name' COLUMN INTO MULTIPLE COLUMNS and reorder columns
-        df[["timestamp", "altitude", "horizontal", "vertical", "distance"]] = df[
+        df[
+            [
+                "timestamp",
+                "altitude",
+                "horizontal",
+                "vertical",
+                "distance",
+            ]
+        ] = df[
             "name"
         ].str.split(expand=True)
         df = df[
@@ -81,6 +89,28 @@ class FileConverter:
         df = df.drop("WKT", axis=1)
         df = df.drop("coordinates_b", axis=1)
 
+        # REMOVE UNITS FROM altitude, horizontal, vertical, and distance COLUMNS
+
+        df["altitude"] = (
+            df["altitude"].str.replace(r"[m]", "", regex=True).astype(float).round(2)
+        )
+        df["horizontal"] = (
+            df["horizontal"]
+            .str.replace(r"[kmh]", "", regex=True)
+            .astype(float)
+            .round(2)
+        )
+        df["vertical"] = (
+            df["vertical"].str.replace(r"[m/s]", "", regex=True).astype(float).round(2)
+        )
+        df["distance"] = (
+            df["distance"].str.replace(r"[km]", "", regex=True).astype(float).round(2)
+        )
+
+        # CONVERT HORIZONTAL SPEED TO METERS PER SECOND
+
+        df["horizontal"] = (df["horizontal"] / 3.6).round(2)
+
         # EXTRACT COORDINATES FROM 'coordinates_a' COLUMN
         df["coordinates_a"] = df["coordinates_a"].astype(str)
         coordinates_a = df["coordinates_a"].str.split(" ", expand=True)
@@ -93,8 +123,18 @@ class FileConverter:
         df["latitude"] = df["latitude"].str.replace(r"[\[\]',]", "", regex=True)
 
         # EXPORT DATAFRAME TO CSV
+
+        custom_headers = [
+            "timestamp [UTC]",
+            "relative altitude [m]",
+            "horizontal velocity [m/s]",
+            "vertical velocity [m/s]",
+            "distance to takeoff [km]",
+            "longitude",
+            "latitude",
+        ]
+        df.to_csv(self.output_file, index=False, header=custom_headers)
         print(df)
-        df.to_csv(self.output_file, index=False)
 
 
 # %%
