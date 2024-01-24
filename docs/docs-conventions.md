@@ -97,4 +97,4 @@ These naming conventions have been written by ChatGPT on 01/24/2024.
 
 ---
 
-_© 2023, [Nicolas Huber](https://nicolas-huber.ch). All rights reserved._
+_© 2024, [Nicolas Huber](https://nicolas-huber.ch). All rights reserved._

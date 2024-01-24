@@ -46,7 +46,7 @@ Please find naming conventions for this project linked here: [click](/docs/docs-
 
 ### Contributing
 
-At this time, the `gpx-analyzer` project is not open for community contributions. The development is currently handled exclusively by Nicolas Huber. Your interest is appreciated and this section will be updated if the policy changes in the future.
+At this time, the `flight-analyzer` project is not open for community contributions. The development is currently handled exclusively by Nicolas Huber. Your interest is appreciated and this section will be updated if the policy changes in the future.
 
 ### Changelog
 
@@ -60,4 +60,4 @@ The author is not responsible for any damage caused by the use of the software.
 
 ---
 
-_© 2023, [Nicolas Huber](https://nicolas-huber.ch). All rights reserved._
+_© 2024, [Nicolas Huber](https://nicolas-huber.ch). All rights reserved._
