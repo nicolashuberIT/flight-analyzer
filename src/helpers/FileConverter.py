@@ -6,7 +6,7 @@ import re
 
 class FileConverter:
     """
-    It's designed to convert igc data that has been converted to CSV via KML using https://igc2kml.com/ and https://products.aspose.app/gis/conversion/kml-to-csv. The CSV data must be converted to Excel first, which is a manual process.
+    It's designed to convert igc data that has been converted to CSV via KML using https://igc2kml.com/ and https://products.aspose.app/gis/conversion/kml-to-csv. The CSV data must be converted to Excel first in order to be used in this program, which is a manual process.
 
     To run this script, use Jupyter Notebook and copy the following code:
 
