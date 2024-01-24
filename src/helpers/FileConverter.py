@@ -83,14 +83,13 @@ class FileConverter:
         ]
 
         # EXTRACT DATA FROM 'WKT' COLUMN
-        df["WKT"] = df["WKT"].astype(str)  # Ensure 'WKT' is treated as a string
+        df["WKT"] = df["WKT"].astype(str)
         coordinates_raw = df.apply(self.extract_coordinates_raw, axis=1)
         df = pd.concat([df, coordinates_raw], axis=1)
         df = df.drop("WKT", axis=1)
         df = df.drop("coordinates_b", axis=1)
 
         # REMOVE UNITS FROM altitude, horizontal, vertical, and distance COLUMNS
-
         df["altitude"] = (
             df["altitude"].str.replace(r"[m]", "", regex=True).astype(float).round(2)
         )
@@ -108,7 +107,6 @@ class FileConverter:
         )
 
         # CONVERT HORIZONTAL SPEED TO METERS PER SECOND
-
         df["horizontal"] = (df["horizontal"] / 3.6).round(2)
 
         # EXTRACT COORDINATES FROM 'coordinates_a' COLUMN
@@ -123,7 +121,6 @@ class FileConverter:
         df["latitude"] = df["latitude"].str.replace(r"[\[\]',]", "", regex=True)
 
         # EXPORT DATAFRAME TO CSV
-
         custom_headers = [
             "timestamp [UTC]",
             "relative altitude [m]",

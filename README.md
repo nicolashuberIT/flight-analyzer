@@ -1,4 +1,4 @@
-# gpx-analyzer
+# flight-analyzer
  
 Badges
 
@@ -37,7 +37,7 @@ Basic usage
 The application is structured as follows:
 
 ```txt
-gpx-analyzer
+flight-analyzer
 ```
 
 ### Conventions
