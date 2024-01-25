@@ -1,5 +1,6 @@
 # %%
 
+from typing import List, Tuple
 import pandas as pd
 import re
 
@@ -14,7 +15,7 @@ class FileConverter:
     Converter.processCSV()
     """
 
-    def __init__(self, excel_file, output_file):
+    def __init__(self, excel_file: str, output_file: str) -> None:
         """
         Initializes the FileConverter class.
 
@@ -25,10 +26,10 @@ class FileConverter:
         Returns:
         - None
         """
-        self.excel_file = excel_file
-        self.output_file = output_file
+        self.excel_file: str = excel_file
+        self.output_file: str = output_file
 
-    def extract_coordinates_raw(self, row):
+    def extract_coordinates_raw(self, row: pd.Series) -> pd.Series:
         """
         Extracts the coordinates from the 'WKT' column of the DataFrame.
 
@@ -38,13 +39,15 @@ class FileConverter:
         Returns:
         - A Pandas Series containing the coordinates
         """
-        line_string = row["WKT"]
-        match = re.search(r"\(([^)]+)", line_string)
-        coordinates_str = match.group(1)
-        coordinates = [pair.split()[:2] for pair in coordinates_str.split(",")]
+        line_string: str = row["WKT"]
+        match: re.Match = re.search(r"\(([^)]+)", line_string)
+        coordinates_str: str = match.group(1)
+        coordinates: List[Tuple[str, str]] = [
+            tuple(pair.split()[:2]) for pair in coordinates_str.split(",")
+        ]
         return pd.Series(coordinates, index=["coordinates_a", "coordinates_b"])
 
-    def processCSV(self):
+    def processCSV(self) -> None:
         """
         Converts the CSV file to a Pandas DataFrame, cleans up the data, and exports the DataFrame to a CSV file.
 
@@ -54,37 +57,20 @@ class FileConverter:
         Returns:
         - None
         """
-        df = pd.read_excel(self.excel_file)
+        df: pd.DataFrame = pd.read_excel(self.excel_file)
 
         # FILTER DATAFRAME
         df = df[df["altitudeMode"] != "clampToGround"]
 
         # SPLIT 'name' COLUMN INTO MULTIPLE COLUMNS and reorder columns
-        df[
-            [
-                "timestamp",
-                "altitude",
-                "horizontal",
-                "vertical",
-                "distance",
-            ]
-        ] = df[
+        df[["timestamp", "altitude", "horizontal", "vertical", "distance"]] = df[
             "name"
         ].str.split(expand=True)
-        df = df[
-            [
-                "timestamp",
-                "altitude",
-                "horizontal",
-                "vertical",
-                "distance",
-                "WKT",
-            ]
-        ]
+        df = df[["timestamp", "altitude", "horizontal", "vertical", "distance", "WKT"]]
 
         # EXTRACT DATA FROM 'WKT' COLUMN
         df["WKT"] = df["WKT"].astype(str)
-        coordinates_raw = df.apply(self.extract_coordinates_raw, axis=1)
+        coordinates_raw: pd.DataFrame = df.apply(self.extract_coordinates_raw, axis=1)
         df = pd.concat([df, coordinates_raw], axis=1)
         df = df.drop("WKT", axis=1)
         df = df.drop("coordinates_b", axis=1)
@@ -111,7 +97,7 @@ class FileConverter:
 
         # EXTRACT COORDINATES FROM 'coordinates_a' COLUMN
         df["coordinates_a"] = df["coordinates_a"].astype(str)
-        coordinates_a = df["coordinates_a"].str.split(" ", expand=True)
+        coordinates_a: pd.DataFrame = df["coordinates_a"].str.split(" ", expand=True)
         df["longitude"] = coordinates_a[0]
         df["latitude"] = coordinates_a[1]
         df = df.drop("coordinates_a", axis=1)
@@ -121,7 +107,7 @@ class FileConverter:
         df["latitude"] = df["latitude"].str.replace(r"[\[\]',]", "", regex=True)
 
         # EXPORT DATAFRAME TO CSV
-        custom_headers = [
+        custom_headers: List[str] = [
             "timestamp [UTC]",
             "relative altitude [m]",
             "horizontal velocity [m/s]",
