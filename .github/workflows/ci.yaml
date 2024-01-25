@@ -19,6 +19,7 @@ jobs:
     name: Test
     runs-on: ${{ matrix.os }}
     
+    # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
     if: contains(github.event.head_commit.message, 'dev') || contains(github.event.before, 'dev')
 
     steps:
