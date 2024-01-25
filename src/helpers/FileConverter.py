@@ -195,7 +195,11 @@ class FileConverter:
         df["horizontal"] = (df["horizontal"] / 3.6).round(2)
         return df
 
-    def export_to_csv(self, df: pd.DataFrame, custom_headers: List[str]) -> None:
+    def export_to_csv(
+        self, df: pd.DataFrame, custom_headers: List[str]
+    ) -> (
+        None
+    ):  # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
         """
         Exports the DataFrame to a CSV file with custom headers.
 
@@ -209,7 +213,11 @@ class FileConverter:
         df.to_csv(self.output_file, index=False, header=custom_headers)
         print(df)
 
-    def processCSV(self) -> None:
+    def processCSV(
+        self,
+    ) -> (
+        None
+    ):  # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
         """
         Converts the CSV file to a Pandas DataFrame, cleans up the data, and exports the DataFrame to a CSV file.
 

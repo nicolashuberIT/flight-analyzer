@@ -4,6 +4,7 @@ import os
 import pandas as pd
 from typing import List
 
+# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from src.helpers.FileConverter import FileConverter
@@ -46,6 +47,7 @@ def test_init(converter) -> None:
     )
 
 
+# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
 def test_read_excel_file(converter) -> None:
     """
     Tests the read_excel_file method.
@@ -78,6 +80,7 @@ def test_filter_dataframe(converter) -> None:
     ].empty, "The DataFrame is not filtered correctly."
 
 
+# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
 def test_split_and_reorder_columns(converter) -> None:
     """
     Tests the split_and_reorder_columns method. Are the columns split and reordered correctly?
@@ -101,6 +104,7 @@ def test_split_and_reorder_columns(converter) -> None:
     ], "The columns are not split and reordered correctly."
 
 
+# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
 def test_remove_static_speeds(converter) -> None:
     """
     Tests the remove_static_speeds method. Are static  horizontal speeds removed?
@@ -120,6 +124,7 @@ def test_remove_static_speeds(converter) -> None:
     ].empty, "The static horizontal speeds are not removed."
 
 
+# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
 def test_extract_coordinates(converter) -> None:
     """
     Tests the extract_coordinates method. Are the coordinates extracted correctly?
@@ -138,6 +143,7 @@ def test_extract_coordinates(converter) -> None:
     assert "coordinates_a" in df.columns, "The coordinates are not extracted correctly."
 
 
+# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
 def test_extract_coordinates_a(converter) -> None:
     """
     Tests the extract_coordinates_a method. Are the coordinates extracted correctly?
@@ -162,6 +168,7 @@ def test_extract_coordinates_a(converter) -> None:
     ), "The coordinates are not extracted correctly to the latitude row."
 
 
+# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
 def test_clean_up_coordinates(converter) -> None:
     """
     Tests the clean_up_coordinates method. Are the coordinates cleaned up correctly?
@@ -187,6 +194,7 @@ def test_clean_up_coordinates(converter) -> None:
     ), "The latitude is not cleaned up correctly."
 
 
+# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
 def test_remove_units(converter) -> None:
     """
     Tests the remove_units method. Are the units removed correctly?
@@ -215,6 +223,7 @@ def test_remove_units(converter) -> None:
     assert isinstance(df["distance"].iloc[0], float), "The distance is not a float."
 
 
+# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
 def test_convert_horizontal_speed(converter: FileConverter) -> None:
     df = converter.read_excel_file()
     df = converter.filter_dataframe(df)
@@ -231,6 +240,7 @@ def test_convert_horizontal_speed(converter: FileConverter) -> None:
     ), "The horizontal speed is not converted correctly."
 
 
+# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
 def test_export_to_csv(converter: FileConverter) -> None:
     """
     Tests the export_to_csv method. Is the DataFrame exported to a CSV file correctly?

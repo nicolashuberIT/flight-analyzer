@@ -1,5 +1,7 @@
 # Python Naming Conventions
 
+[README](/README.md) > Python Naming Conventions
+
 ## Modules
 - Module names should be short, lowercase, and descriptive.
 - Avoid using underscores in module names.
@@ -93,7 +95,7 @@
 
 ## Reference
 
-These naming conventions have been written by ChatGPT on 01/24/2024.
+This document **Python Naming Conventions** has been written by ChatGPT and verified by Nicolas Huber on 01/24/2024.
 
 ---
 
