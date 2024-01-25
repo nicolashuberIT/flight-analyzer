@@ -7,7 +7,7 @@ import pandas as pd
 
 class FileConverter:
     """
-    It's designed to convert igc data that has been converted to CSV via KML. The program is designed to be used with the manually cleaned up output of the following websites:
+    It's designed to convert igc data that has been converted to CSV via KML. The program is designed to be used with the processed output of the following websites:
 
     Sources:
     - https://igc2kml.com/
@@ -195,11 +195,8 @@ class FileConverter:
         df["horizontal"] = (df["horizontal"] / 3.6).round(2)
         return df
 
-    def export_to_csv(
-        self, df: pd.DataFrame, custom_headers: List[str]
-    ) -> (
-        None
-    ):  # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
+    # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
+    def export_to_csv(self, df: pd.DataFrame, custom_headers: List[str]) -> None:
         """
         Exports the DataFrame to a CSV file with custom headers.
 

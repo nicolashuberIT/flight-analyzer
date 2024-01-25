@@ -6,7 +6,7 @@ import pandas as pd
 
 # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from helpers.file_convertor import FileConverter
+from src.helpers.file_convertor import FileConverter
 
 
 @pytest.fixture()
