@@ -270,5 +270,5 @@ def test_export_to_csv(converter: FileConverter) -> None:
     ]
     converter.export_to_csv(df, custom_headers)
     assert os.path.exists(
-        "tests/assets/FileConverter/test_output.csv"
+        converter.output_file
     ), "The CSV file is not exported correctly."
