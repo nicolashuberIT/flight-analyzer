@@ -1,2 +1,4 @@
 .python-version
 /assets/test-files
+__pycache__
+.pytest_cache
