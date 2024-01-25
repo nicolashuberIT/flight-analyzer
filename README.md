@@ -1,10 +1,7 @@
 # flight-analyzer
  
 [![nicolashuberIT - flight-analyzer](https://img.shields.io/static/v1?label=nicolashuberIT&message=flight-analyzer&color=blue&logo=github)](https://github.com/nicolashuberIT/flight-analyzer "Go to GitHub repo")
-[![stars - flight-analyzer](https://img.shields.io/github/stars/nicolashuberIT/flight-analyzer?style=social)](https://github.com/nicolashuberIT/flight-analyzer)
-[![forks - flight-analyzer](https://img.shields.io/github/forks/nicolashuberIT/flight-analyzer?style=social)](https://github.com/nicolashuberIT/flight-analyzer)
-[![GitHub tag](https://img.shields.io/github/tag/nicolashuberIT/flight-analyzer?include_prereleases=&sort=semver&color=blue)](https://github.com/nicolashuberIT/flight-analyzer/releases/)
-[![issues - flight-analyzer](https://img.shields.io/github/issues/nicolashuberIT/flight-analyzer)](https://github.com/nicolashuberIT/flight-analyzer/issues)
+[![automated testing](https://github.com/nicolashuberIT/flight-analyzer/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/nicolashuberIT/flight-analyzer/actions/workflows/ci.yaml)
 [![License](https://img.shields.io/badge/License-INDIVIDUAL-blue)](#license)
 
 ## Abstract
