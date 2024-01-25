@@ -7,7 +7,11 @@ import re
 
 class FileConverter:
     """
-    It's designed to convert igc data that has been converted to CSV via KML using https://igc2kml.com/ and https://products.aspose.app/gis/conversion/kml-to-csv. The CSV data must be converted to Excel first in order to be used in this program, which is a manual process.
+    It's designed to convert igc data that has been converted to CSV via KML. The program is designed to be used with the manually cleaned up output of the following websites:
+
+    Sources:
+    - https://igc2kml.com/
+    - https://products.aspose.app/gis/conversion/kml-to-csv
 
     To run this script, use Jupyter Notebook and copy the following code:
 
@@ -29,6 +33,59 @@ class FileConverter:
         self.excel_file: str = excel_file
         self.output_file: str = output_file
 
+    def read_excel_file(self) -> pd.DataFrame:
+        """
+        Reads the Excel file and returns a Pandas DataFrame.
+
+        Parameters:
+        - None
+
+        Returns:
+        - A Pandas DataFrame
+        """
+        return pd.read_excel(self.excel_file)
+
+    def filter_dataframe(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Filters the DataFrame by removing rows with 'altitudeMode' equal to 'clampToGround'.
+
+        Parameters:
+        - df: the DataFrame to be filtered
+
+        Returns:
+        - A filtered DataFrame
+        """
+        return df[df["altitudeMode"] != "clampToGround"]
+
+    def split_and_reorder_columns(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Splits the 'name' column into multiple columns and reorders the columns.
+
+        Parameters:
+        - df: the DataFrame to be filtered
+
+        Returns:
+        - A filtered DataFrame
+        """
+        df[["timestamp", "altitude", "horizontal", "vertical", "distance"]] = df[
+            "name"
+        ].str.split(expand=True)
+        return df[
+            ["timestamp", "altitude", "horizontal", "vertical", "distance", "WKT"]
+        ]
+
+    def remove_static_speeds(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Removes rows with static horizontal speed.
+
+        Parameters:
+        - df: the DataFrame to be filtered
+
+        Returns:
+        - A filtered DataFrame
+        """
+        return df[df["horizontal"] != "0"]
+
     def extract_coordinates_raw(self, row: pd.Series) -> pd.Series:
         """
         Extracts the coordinates from the 'WKT' column of the DataFrame.
@@ -47,35 +104,67 @@ class FileConverter:
         ]
         return pd.Series(coordinates, index=["coordinates_a", "coordinates_b"])
 
-    def processCSV(self) -> None:
+    def extract_coordinates(self, df: pd.DataFrame) -> pd.DataFrame:
         """
-        Converts the CSV file to a Pandas DataFrame, cleans up the data, and exports the DataFrame to a CSV file.
+        Extracts coordinates from the 'WKT' column and adds them to the DataFrame.
 
         Parameters:
-        - None
+        - df: the input DataFrame
 
         Returns:
-        - None
+        - DataFrame with coordinates added
         """
-        df: pd.DataFrame = pd.read_excel(self.excel_file)
-
-        # FILTER DATAFRAME
-        df = df[df["altitudeMode"] != "clampToGround"]
-
-        # SPLIT 'name' COLUMN INTO MULTIPLE COLUMNS and reorder columns
-        df[["timestamp", "altitude", "horizontal", "vertical", "distance"]] = df[
-            "name"
-        ].str.split(expand=True)
-        df = df[["timestamp", "altitude", "horizontal", "vertical", "distance", "WKT"]]
-
-        # EXTRACT DATA FROM 'WKT' COLUMN
         df["WKT"] = df["WKT"].astype(str)
         coordinates_raw: pd.DataFrame = df.apply(self.extract_coordinates_raw, axis=1)
         df = pd.concat([df, coordinates_raw], axis=1)
-        df = df.drop("WKT", axis=1)
-        df = df.drop("coordinates_b", axis=1)
+        df = df.drop(["WKT", "coordinates_b"], axis=1)
+        return df
 
-        # REMOVE UNITS FROM altitude, horizontal, vertical, and distance COLUMNS
+    def extract_coordinates_a(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Extracts coordinates from 'coordinates_a' column and adds 'longitude' and 'latitude' columns.
+
+        Parameters:
+        - df: the input DataFrame
+
+        Returns:
+        - DataFrame with 'longitude' and 'latitude' columns added
+        """
+        df["coordinates_a"] = df["coordinates_a"].astype(str)
+        coordinates_a: pd.DataFrame = df["coordinates_a"].str.split(" ", expand=True)
+        df["longitude"] = coordinates_a[0]
+        df["latitude"] = coordinates_a[1]
+        df = df.drop("coordinates_a", axis=1)
+        return df
+
+    def clean_up_coordinates(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Cleans up 'longitude' and 'latitude' columns by removing unwanted characters.
+
+        Parameters:
+        - df: the input DataFrame
+
+        Returns:
+        - DataFrame with 'longitude' and 'latitude' columns cleaned up
+        """
+        df["longitude"] = (
+            df["longitude"].str.replace(r"[\[\]()',]", "", regex=True).astype(float)
+        )
+        df["latitude"] = (
+            df["latitude"].str.replace(r"[\[\]()',]", "", regex=True).astype(float)
+        )
+        return df
+
+    def remove_units(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Removes the units from the 'altitude', 'horizontal', 'vertical', and 'distance' columns of the DataFrame.
+
+        Parameters:
+        - df: input DataFrame
+
+        Returns:
+        - DataFrame with units removed
+        """
         df["altitude"] = (
             df["altitude"].str.replace(r"[m]", "", regex=True).astype(float).round(2)
         )
@@ -91,20 +180,56 @@ class FileConverter:
         df["distance"] = (
             df["distance"].str.replace(r"[km]", "", regex=True).astype(float).round(2)
         )
+        return df
 
-        # CONVERT HORIZONTAL SPEED TO METERS PER SECOND
+    def convert_horizontal_speed(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Converts horizontal speed to meters per second.
+
+        Parameters:
+        - df: the input DataFrame
+
+        Returns:
+        - DataFrame with horizontal speed converted
+        """
         df["horizontal"] = (df["horizontal"] / 3.6).round(2)
+        return df
 
-        # EXTRACT COORDINATES FROM 'coordinates_a' COLUMN
-        df["coordinates_a"] = df["coordinates_a"].astype(str)
-        coordinates_a: pd.DataFrame = df["coordinates_a"].str.split(" ", expand=True)
-        df["longitude"] = coordinates_a[0]
-        df["latitude"] = coordinates_a[1]
-        df = df.drop("coordinates_a", axis=1)
+    def export_to_csv(self, df: pd.DataFrame, custom_headers: List[str]) -> None:
+        """
+        Exports the DataFrame to a CSV file with custom headers.
 
-        # CLEAN UP COORDINATES
-        df["longitude"] = df["longitude"].str.replace(r"[\[\]',]", "", regex=True)
-        df["latitude"] = df["latitude"].str.replace(r"[\[\]',]", "", regex=True)
+        Parameters:
+        - df: the input DataFrame
+        - custom_headers: a list of custom headers
+
+        Returns:
+        - None
+        """
+        df.to_csv(self.output_file, index=False, header=custom_headers)
+        print(df)
+
+    def processCSV(self) -> None:
+        """
+        Converts the CSV file to a Pandas DataFrame, cleans up the data, and exports the DataFrame to a CSV file.
+
+        Parameters:
+        - None
+
+        Returns:
+        - None
+        """
+        df: pd.DataFrame = self.read_excel_file()
+
+        # Process steps
+        df = self.filter_dataframe(df)
+        df = self.split_and_reorder_columns(df)
+        df = self.remove_static_speeds(df)
+        df = self.extract_coordinates(df)
+        df = self.extract_coordinates_a(df)
+        df = self.remove_units(df)
+        df = self.convert_horizontal_speed(df)
+        df = self.clean_up_coordinates(df)
 
         # EXPORT DATAFRAME TO CSV
         custom_headers: List[str] = [
@@ -116,8 +241,7 @@ class FileConverter:
             "longitude",
             "latitude",
         ]
-        df.to_csv(self.output_file, index=False, header=custom_headers)
-        print(df)
+        self.export_to_csv(df, custom_headers)
 
 
 # %%
