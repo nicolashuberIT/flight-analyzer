@@ -1,13 +1,12 @@
-import pytest
-import sys
 import os
-import pandas as pd
+import sys
 from typing import List
+import pytest
+import pandas as pd
 
 # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-from src.helpers.FileConverter import FileConverter
+from helpers.file_convertor import FileConverter
 
 
 @pytest.fixture()
@@ -48,7 +47,7 @@ def test_init(converter) -> None:
 
 
 # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
-def test_read_excel_file(converter) -> None:
+def test_read_excel_file(converter: FileConverter) -> None:
     """
     Tests the read_excel_file method.
 
@@ -63,7 +62,7 @@ def test_read_excel_file(converter) -> None:
     ), "The returned object is not a Pandas DataFrame."
 
 
-def test_filter_dataframe(converter) -> None:
+def test_filter_dataframe(converter: FileConverter) -> None:
     """
     Tests the filter_dataframe method. Are columns with 'altitudeMode' equal to 'clampToGround' removed?
 
@@ -81,7 +80,7 @@ def test_filter_dataframe(converter) -> None:
 
 
 # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
-def test_split_and_reorder_columns(converter) -> None:
+def test_split_and_reorder_columns(converter: FileConverter) -> None:
     """
     Tests the split_and_reorder_columns method. Are the columns split and reordered correctly?
 
@@ -105,7 +104,7 @@ def test_split_and_reorder_columns(converter) -> None:
 
 
 # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
-def test_remove_static_speeds(converter) -> None:
+def test_remove_static_speeds(converter: FileConverter) -> None:
     """
     Tests the remove_static_speeds method. Are static  horizontal speeds removed?
 
@@ -125,7 +124,7 @@ def test_remove_static_speeds(converter) -> None:
 
 
 # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
-def test_extract_coordinates(converter) -> None:
+def test_extract_coordinates(converter: FileConverter) -> None:
     """
     Tests the extract_coordinates method. Are the coordinates extracted correctly?
 
@@ -144,7 +143,7 @@ def test_extract_coordinates(converter) -> None:
 
 
 # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
-def test_extract_coordinates_a(converter) -> None:
+def test_extract_coordinates_a(converter: FileConverter) -> None:
     """
     Tests the extract_coordinates_a method. Are the coordinates extracted correctly?
 
@@ -169,7 +168,7 @@ def test_extract_coordinates_a(converter) -> None:
 
 
 # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
-def test_clean_up_coordinates(converter) -> None:
+def test_clean_up_coordinates(converter: FileConverter) -> None:
     """
     Tests the clean_up_coordinates method. Are the coordinates cleaned up correctly?
 
@@ -195,7 +194,7 @@ def test_clean_up_coordinates(converter) -> None:
 
 
 # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
-def test_remove_units(converter) -> None:
+def test_remove_units(converter: FileConverter) -> None:
     """
     Tests the remove_units method. Are the units removed correctly?
 

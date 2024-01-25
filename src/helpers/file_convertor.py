@@ -1,8 +1,8 @@
 # %%
 
+import re
 from typing import List, Tuple
 import pandas as pd
-import re
 
 
 class FileConverter:
@@ -16,7 +16,7 @@ class FileConverter:
     To run this script, use Jupyter Notebook and copy the following code:
 
     Converter = FileConverter("/Users/nicolas/Downloads/test.xlsx", "/Users/nicolas/Downloads/test.csv")
-    Converter.processCSV()
+    Converter.process_csv()
     """
 
     def __init__(self, excel_file: str, output_file: str) -> None:
@@ -213,7 +213,7 @@ class FileConverter:
         df.to_csv(self.output_file, index=False, header=custom_headers)
         print(df)
 
-    def processCSV(
+    def process_csv(
         self,
     ) -> (
         None
