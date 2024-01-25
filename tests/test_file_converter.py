@@ -21,8 +21,8 @@ def converter() -> FileConverter:
     - A FileConverter object
     """
     return FileConverter(
-        "tests/assets/FileConverter/test.xlsx",
-        "tests/assets/FileConverter/test_output.csv",
+        "tests/assets/file_converter/test.xlsx",
+        "tests/assets/file_converter/test_output.csv",
     )
 
 
