@@ -4,9 +4,13 @@
 ![automated testing](https://github.com/nicolashuberIT/flight-analyzer/actions/workflows/ci.yaml/badge.svg)
 [![License](https://img.shields.io/badge/License-INDIVIDUAL-blue)](#license)
 
-## Abstract
+## Overview
 
-Abstract
+The `flight-analyzer` program is part of the scientific paper "Fliegen am Limit - Aktive Sicherheit im Gleitschirmsport", that was first published on 10/14/2022 and is being further developped by 03/31/2024 as of the "Schweizer Jugend forscht 2024" initiative. The application is designed to analyze flight data that was recorded by devices such as variometers or other flight trackers commonly used by the paragliding community. The program provides tools to clean up the input data after it has manually been processed using the utilities [IGC2KML (.igc -> .kml)](https://igc2kml.com/) and [KML2CSV (.kml -> .csv)](https://products.aspose.app/gis/conversion/kml-to-csv) as well as Microsoft Excel. It also allows to combine, filter and sort multiple datasets. The main functionality of the tool is the application of a selection of algorithms to filter the flight data. As part of the scientific paper, this tool is designed to deliver a clean dataset that can be used to do optimized analyses and compare them to the first version of this paper, which was published in 2022. Please find a detailed description of the algorithms in the sections below, in the paper itself or in the code.
+
+The original paper (10/24/2022) can be downloaded here: [nicolas-huber.ch/docs](https://nicolas-huber.ch/docs/20221220_maturitaetsarbeit_fliegen-am-limit_public-version_nicolas-huber.pdf).
+
+As soon as the refined version of V1 and the second, new version have been published, the links will be listed here. Until then, please refer to the version linked above.
 
 ---
 
@@ -39,7 +43,7 @@ Make sure to install `Python 3.12.0` on your machine. The code has only been tes
 
 #### Basic Usage
 
-Basic usage
+This section will be added as soon as the development work is completed.
 
 ### Architecture
 
@@ -68,7 +72,7 @@ At this time, the `flight-analyzer` project is not open for community contributi
 
 ### Changelog
 
-- **1.0.0** - Not released yet.
+- **[1.0.0]** - Not released yet.
 
 ---
 

@@ -9,7 +9,7 @@ class FileConverter:
     """
     It's designed to convert igc data that has been converted to CSV via KML. The program is designed to be used with the processed output of the following websites:
 
-    Sources:
+    Utilities:
     - https://igc2kml.com/
     - https://products.aspose.app/gis/conversion/kml-to-csv
 
