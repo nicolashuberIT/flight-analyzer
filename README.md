@@ -23,7 +23,7 @@ If not stated differently, the source code of this project is Nicolas Huber's in
 - For documentation files: _This document { TITLE } has been written by { SOURCE } and verified by Nicolas Huber on { DATE }._
 - For code snippets: _# AI content ({ SOURCE }, { DATE }), verified and adapted by Nicolas Huber._
 
-AI tools are a powerful and valuable addition to improve the development workflow, as long as sources and contents are scientifically listed. Thus, I value it a lot to provide proper listings. I used the following tools: [GitHub Copilot](https://github.com/features/copilot), [ChatGPT](https://chat.openai.com/).
+AI tools are a powerful and valuable addition to improve the development workflow, as long as sources and contents are scientifically listed. Thus, it's valued a lot to provide proper listings. The following tools have been usedgit s: [GitHub Copilot](https://github.com/features/copilot), [ChatGPT](https://chat.openai.com/).
 
 In consideration of the `LICENSE.md`, the licensee, who is considered as such at the point of downloading this application, agrees to respect the terms and conditions. The licensee undertakes to show respect for Nicolas Huber's intellectual property and to use it only in accordance with his instructions.
 
