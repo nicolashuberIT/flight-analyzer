@@ -9,8 +9,11 @@ from scipy.stats import linregress
 class AngleAnalyzer:
     """
     This class analyzes the angles between the points of a flight in order to determine whether they lie on a straight line or not.
+    The process is based on the following steps:
+    - check if the angles exceed a certain threshold
+    - check if linear regression approves the result
 
-    To run this script the example code can be used: src/helpers/execute_angle_analyzer.py
+    To test this script the example code can be used: src/helpers/execute_angle_analyzer.py
     """
 
     def __init__(
@@ -18,7 +21,7 @@ class AngleAnalyzer:
         csv_file: str,
         latest_threshold: int,
         future_threshold: int,
-        angle_threshold: float = 0.00002,
+        angle_threshold: float,
     ) -> None:
         """
         Initializes the AngleAnalyzer class.
@@ -27,6 +30,7 @@ class AngleAnalyzer:
         - csv_file: the path to the CSV file to be analyzed
         - latest_threshold: the number of coordinates to be analyzed in the past
         - future_threshold: the number of coordinates to be analyzed in the future
+        - angle_threshold: the threshold for the angle analysis
 
         Returns:
         - None
@@ -99,20 +103,18 @@ class AngleAnalyzer:
         """
         coordinates = df.values.tolist()
 
-        m_1 = (coordinates[0][6] - coordinates[1][6]) / coordinates[0][5] - coordinates[
-            1
-        ][5]
+        PX_1, PX_2 = coordinates[0][5], coordinates[1][5]
+        PY_1, PY_2 = coordinates[0][6], coordinates[1][6]
+        M_1 = (PY_2 - PY_1) / (PX_2 - PX_1)
 
         for i in range(len(coordinates)):
-            if i == 0 or i == 1:
-                coordinates[i].append(0)
-            elif i >= len(coordinates) - 2:
+            if i == 0 or i == 1 or i >= len(coordinates) - 2:
                 coordinates[i].append(0)
             else:
-                m_2 = (coordinates[i + 2][6] - coordinates[i + 1][6]) / coordinates[
-                    i + 2
-                ][5] - coordinates[i + 1][5]
-                angle = math.atan((m_1 - m_2) / (1 + m_1 * m_2))
+                px_3 = coordinates[i][5]
+                py_3 = coordinates[i][6]
+                m_2 = (PY_1 - py_3) / (PX_1 - px_3)
+                angle = abs(math.degrees(math.atan((M_1 - m_2) / (1 + M_1 * m_2))))
                 coordinates[i].append(angle)
 
         df = pd.DataFrame(
@@ -160,14 +162,7 @@ class AngleAnalyzer:
         else:
             status_average = False
 
-        for i in range(len(angles) - 1):
-            if abs(angles[i]) > abs(angles[i + 1]):
-                status_increase = False
-                break
-            else:
-                status_increase = True
-
-        if status_average and status_increase:
+        if status_average:
             return True
         else:
             return False
@@ -215,13 +210,13 @@ class AngleAnalyzer:
             and status_angle_future
             and status_regression_future
         ):
-            return True, "Gerade"
+            return True, "Gerade", 0
         elif status_angle_past and status_regression_past:
-            return False, "Endpunkt einer geraden Linie"
+            return False, "Endpunkt einer geraden Linie", 1
         elif status_angle_future and status_regression_future:
-            return False, "Startpunkt einer geraden Linie"
+            return False, "Startpunkt einer geraden Linie", 2
         else:
-            return False, "Kurve / Überschneidungspunkt"
+            return False, "Kurve / Überschneidungspunkt", 3
 
     def visualize_points_2d(
         self, df: pd.DataFrame, relative: int = 0, linear: bool = False, title: str = ""
@@ -233,6 +228,7 @@ class AngleAnalyzer:
         - df: the DataFrame containing the coordinates
         - relative: the index of the point to be highlighted
         - linear: whether to draw a linear regression or not
+        - title: the title of the plot
 
         Returns:
         - None
@@ -268,7 +264,7 @@ class AngleAnalyzer:
                 verticalalignment="top",
             )
         plt.xlabel("Längengrad")
-        plt.ylabel("Latitude")
+        plt.ylabel("Breitengrad")
         if relative != 0:
             plt.title("Punktvariation")
         else:
@@ -282,6 +278,7 @@ class AngleAnalyzer:
 
         Parameters:
         - df: the DataFrame containing the coordinates
+        - relative: the index of the point to be highlighted
 
         Returns:
         - None
@@ -328,6 +325,8 @@ class AngleAnalyzer:
         Returns:
         - None
         """
+        len_past_angles = len(past_angles)
+        past_angles.drop(past_angles.index[-1], inplace=True)
         fig = plt.figure(figsize=(12, 6))
         fig.set_facecolor("#F2F2F2")
         plt.plot(
@@ -337,7 +336,7 @@ class AngleAnalyzer:
             label="Vergangene Winkel",
         )
         future_angles.index = range(
-            len(past_angles), len(past_angles) + len(future_angles)
+            len_past_angles, len_past_angles + len(future_angles)
         )
         plt.plot(
             future_angles.index,
@@ -346,7 +345,7 @@ class AngleAnalyzer:
             label="Zukünftige Winkel",
         )
         plt.axvline(
-            x=len(past_angles), color="blue", linestyle="--", label="Analysepunkt"
+            x=len_past_angles, color="blue", linestyle="--", label="Analysepunkt"
         )
         plt.xlabel("Index [n]")
         plt.ylabel("Winkel [°]")

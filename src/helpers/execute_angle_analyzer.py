@@ -10,12 +10,16 @@ sys.path.append(src_directory)
 import algorithms.angle_analyzer as angle_analyzer
 import constants as constants
 
-index = 1300  # 200 expects linear, 230 expects end of straight line, 270 expects curve, 400 expects overlap, 1400 expects straight line, 1300 expects end of curve
+# 200 expects linear, 230 expects end of straight line, 270 expects curve, 400 expects overlap, 1400 expects straight line, 1320 expects end of curve
+index = 1320
 
 print("\n<------- START: INITIALISATION PROCESS------> \n")
 
 Analyzer = angle_analyzer.AngleAnalyzer(
-    "/Users/nicolas/Downloads/test.csv", 30, 30, constants.ANGLE_THRESHOLD
+    "/Users/nicolas/Downloads/test.csv",
+    constants.ANGLE_PAST_THRESHOLD,
+    constants.ANGLE_FUTURE_THRESHOLD,
+    constants.ANGLE_THRESHOLD,
 )
 
 print(
@@ -136,11 +140,11 @@ print(
 print("\n<------- END: ANALYSIS ------>")
 print("<------- START: SYSTEM INFO ------>\n")
 
-print(f"@ Version {constants.VERSION}°")
-print(f"@ Author {constants.AUTHOR}°")
-print(f"@ Author Email {constants.AUTHOR_EMAIL}°")
-print(f"@ Author URL {constants.AUTHOR_URL}°")
-print(f"@ GitHub URL {constants.GITHUB_URL}°")
+print(f"@ Version {constants.VERSION}")
+print(f"@ Author {constants.AUTHOR}")
+print(f"@ Author Email {constants.AUTHOR_EMAIL}")
+print(f"@ Author URL {constants.AUTHOR_URL}")
+print(f"@ GitHub URL {constants.GITHUB_URL}")
 
 print("\n<------- END: SYSTEM INFO ------>")
 print("Process finished with exit code 0")

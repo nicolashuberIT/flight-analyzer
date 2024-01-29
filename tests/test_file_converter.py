@@ -26,7 +26,7 @@ def converter() -> FileConverter:
     )
 
 
-def test_init(converter) -> None:
+def test_init(converter: FileConverter) -> None:
     """
     Tests the __init__ method.
 
