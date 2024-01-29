@@ -155,9 +155,19 @@ class AngleAnalyzer:
         angles = angles["angle"].tolist()
         average = sum(angles) / len(angles)
 
-        print(average)
-
         if abs(average) < self.angle_threshold:
+            status_average = True
+        else:
+            status_average = False
+
+        for i in range(len(angles) - 1):
+            if abs(angles[i]) > abs(angles[i + 1]):
+                status_increase = False
+                break
+            else:
+                status_increase = True
+
+        if status_average and status_increase:
             return True
         else:
             return False
@@ -207,9 +217,9 @@ class AngleAnalyzer:
         ):
             return True, "Gerade"
         elif status_angle_past and status_regression_past:
-            return True, "Endpunkt einer geraden Linie"
+            return False, "Endpunkt einer geraden Linie"
         elif status_angle_future and status_regression_future:
-            return True, "Startpunkt einer geraden Linie"
+            return False, "Startpunkt einer geraden Linie"
         else:
             return False, "Kurve / Überschneidungspunkt"
 

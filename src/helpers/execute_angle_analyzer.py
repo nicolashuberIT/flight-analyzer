@@ -10,45 +10,46 @@ sys.path.append(src_directory)
 import algorithms.angle_analyzer as angle_analyzer
 import constants as constants
 
-index = 230  # 200 expects linear, 230 expects end of straight line, 270 expects curve, 400 expects overlap,
-print("Dataset")
+index = 1300  # 200 expects linear, 230 expects end of straight line, 270 expects curve, 400 expects overlap, 1400 expects straight line, 1300 expects end of curve
+
+print("\n<------- START: INITIALISATION PROCESS------> \n")
 
 Analyzer = angle_analyzer.AngleAnalyzer(
     "/Users/nicolas/Downloads/test.csv", 30, 30, constants.ANGLE_THRESHOLD
 )
+
+print(
+    f"The program is ready for execution and will run using the following parameters:"
+)
+print(f"--> Angle Threshold: {constants.ANGLE_THRESHOLD}°")
+
+print("\n<------- END: INITIALISATION PROCESS ------>")
+print("<------- START: IMPORTING DATA ------>\n")
+
 data = Analyzer.read_csv_file()
 print("lenght: " + str(len(data)))
 print()
 print(data)
 
-print()
-print(
-    "-------------------------------------------------------------------------------------------------"
-)
-print("Past Coordinates")
+print("\n<------- END: IMPORTING DATA ------>")
+print("<------- START: ANALYZING COORDINATES ------>\n")
 
+print("Past Coordinates")
 latest_coordinates = Analyzer.extract_latest_coordinates(data, index)
 print("lenght: " + str(len(latest_coordinates)))
 print()
 print(latest_coordinates)
 
 print()
-print(
-    "-------------------------------------------------------------------------------------------------"
-)
-print("Future Coordinates")
 
+print("Future Coordinates")
 future_coordinates = Analyzer.extract_future_coordinates(data, index)
 print("lenght: " + str(len(future_coordinates)))
 print()
 print(future_coordinates)
 
-print()
-print(
-    "-------------------------------------------------------------------------------------------------"
-)
-print("Calculated Angles")
-print()
+print("\n<------- END: ANALYZING COORDINATES ------>")
+print("<------- START: CALCULATING ANGLES ------>\n")
 
 angles_past = Analyzer.cut_zero_angles(Analyzer.calculate_angles(latest_coordinates))
 angles_future = Analyzer.cut_zero_angles(Analyzer.calculate_angles(future_coordinates))
@@ -58,29 +59,24 @@ print("lenght: " + str(len(angles_past)))
 print()
 print(angles_past)
 
+print()
+
 print("Future Angles")
 print("lenght: " + str(len(angles_future)))
 print()
 print(angles_future)
 
-print()
-print(
-    "-------------------------------------------------------------------------------------------------"
-)
-print("Graphs")
-print()
+print("\n<------- END: CALCULATING ANGLES ------>")
+print("<------- START: VISUALIZATION ------>\n")
+
 
 Analyzer.visualize_points_colored(data, index)
 Analyzer.visualize_points_2d(latest_coordinates, 0, True, "Vergangenheit")
 Analyzer.visualize_points_2d(future_coordinates, 0, True, "Zukunft")
 Analyzer.visualize_angles(angles_past, angles_future)
 
-print()
-print(
-    "-------------------------------------------------------------------------------------------------"
-)
-print("Log")
-print()
+print("\n<------- END: VISUALIZATION ------>")
+print("<------- START: ANALYSIS ------>\n")
 
 status_angle_past = Analyzer.analyze_angles(angles_past)
 status_angle_future = Analyzer.analyze_angles(angles_future)
@@ -137,4 +133,15 @@ print(
     )
 )
 
+print("\n<------- END: ANALYSIS ------>")
+print("<------- START: SYSTEM INFO ------>\n")
+
+print(f"@ Version {constants.VERSION}°")
+print(f"@ Author {constants.AUTHOR}°")
+print(f"@ Author Email {constants.AUTHOR_EMAIL}°")
+print(f"@ Author URL {constants.AUTHOR_URL}°")
+print(f"@ GitHub URL {constants.GITHUB_URL}°")
+
+print("\n<------- END: SYSTEM INFO ------>")
+print("Process finished with exit code 0")
 # %%
