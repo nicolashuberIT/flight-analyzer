@@ -12,6 +12,6 @@ GITHUB_ACTIONS_URL = "https://github.com/nicolashuberIT/flight-analyzer/actions"
 
 # algorithms
 
-ANGLE_THRESHOLD = 0.1
+ANGLE_THRESHOLD = 0.00002
 DIFFERENTIAL_THRESHOLD_PERCENTAGE = 0.01
 FRAC_THRESHOLD_PERCENTAGE = 0.01

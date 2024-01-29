@@ -3,60 +3,22 @@
 import pandas as pd
 import math
 import matplotlib.pyplot as plt
+from scipy.stats import linregress
 
 
 class AngleAnalyzer:
     """
     This class analyzes the angles between the points of a flight in order to determine whether they lie on a straight line or not.
 
-    To run this script, use Jupyter Notebook and copy the following code:
-
-    index = 200 # 200 expects true, 270 expects false
-    print("Dataset")
-
-    Analyzer = AngleAnalyzer("/Users/nicolas/Downloads/test.csv", 30, 15)
-    data = Analyzer.read_csv_file()
-    print("lenght: " + str(len(data)))
-    print()
-    print(data)
-
-    print()
-    print("-------------------------------------------------------------------------------------------------")
-    print("Filtered Dataset")
-
-    latest_coordinates = Analyzer.extract_latest_coordinates(data, index)
-    print("lenght: " + str(len(latest_coordinates)))
-    print()
-    print(latest_coordinates)
-
-    print()
-    print("-------------------------------------------------------------------------------------------------")
-    print("Calculated Angles")
-    print()
-
-    angles = Analyzer.cut_zero_angles(Analyzer.calculate_angles(latest_coordinates))
-    print(angles)
-
-    print()
-    print("-------------------------------------------------------------------------------------------------")
-    print("Graphs")
-    print()
-
-    Analyzer.visualize_points(data, index)
-    Analyzer.visualize_points(latest_coordinates)
-    Analyzer.visualize_angles(angles)
-
-    print()
-    print("-------------------------------------------------------------------------------------------------")
-    print("Log")
-    print()
-
-    status = Analyzer.analyze_point(angles)
-    Analyzer.print_report(status)
+    To run this script the example code can be used: src/helpers/execute_angle_analyzer.py
     """
 
     def __init__(
-        self, csv_file: str, latest_threshold: int, future_threshold: int
+        self,
+        csv_file: str,
+        latest_threshold: int,
+        future_threshold: int,
+        angle_threshold: float = 0.00002,
     ) -> None:
         """
         Initializes the AngleAnalyzer class.
@@ -72,6 +34,7 @@ class AngleAnalyzer:
         self.csv_file: str = csv_file
         self.latest_threshold: int = latest_threshold
         self.future_threshold: int = future_threshold
+        self.angle_threshold: float = angle_threshold
 
     def read_csv_file(self) -> pd.DataFrame:
         """
@@ -122,7 +85,7 @@ class AngleAnalyzer:
         if i + self.future_threshold >= len(df):
             return df.iloc[i:]
         else:
-            return df.iloc[i : i + self.future_threshold + 1]
+            return df.iloc[i : i + self.future_threshold]
 
     def calculate_angles(self, df: pd.DataFrame) -> pd.DataFrame:
         """
@@ -165,7 +128,6 @@ class AngleAnalyzer:
                 "angle",
             ],
         )
-
         return df
 
     def cut_zero_angles(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -180,9 +142,9 @@ class AngleAnalyzer:
         """
         return df[df["angle"] != 0]
 
-    def analyze_point(self, angles: pd.DataFrame) -> bool:
+    def analyze_angles(self, angles: pd.DataFrame) -> bool:
         """
-        Analyzes a point of a flight to determine whether it lies on a straight line or not.
+        Analyzes a point of a flight to determine whether it lies on a straight line or not, based on angle.
 
         Parameters:
         - df: the DataFrame containing the angles
@@ -193,26 +155,118 @@ class AngleAnalyzer:
         angles = angles["angle"].tolist()
         average = sum(angles) / len(angles)
 
-        if abs(average) > 0.00002:
+        print(average)
+
+        if abs(average) < self.angle_threshold:
             return True
         else:
             return False
 
-    def print_report(self, status: bool) -> None:
+    def analyze_linear_regression(self, df: pd.DataFrame) -> tuple:
         """
-        Prints a report of the analysis.
+        Analyzes a point of a flight to determine whether it lies on a straight line or not, based on linear regression.
 
         Parameters:
-        - df: the DataFrame containing the angles
+        - df: the DataFrame containing the coordinates
+
+        Returns:
+        - tuple containing the status of the analysis, the slope, the intercept, the r-value, the p-value and the standard error
+        """
+        slope, intercept, r_value, p_value, std_err = linregress(
+            df["longitude"], df["latitude"]
+        )
+        if abs(r_value) > 0.9:
+            status = True
+        else:
+            status = False
+
+        return status, slope, intercept, r_value, p_value, std_err
+
+    def analyze_data(
+        self,
+        status_angle_past: bool,
+        status_regression_past: bool,
+        status_angle_future: bool,
+        status_regression_future: bool,
+    ) -> tuple:
+        """
+        Analyzes the data of a flight to determine whether it lies on a straight line or not.
+
+        Parameters:
+        - status_angle: the status of the angle analysis
+        - status_regression: the status of the linear regression analysis
+
+        Returns:
+        - True if the point lies on a straight line, False otherwise
+        """
+        if (
+            status_angle_past
+            and status_regression_past
+            and status_angle_future
+            and status_regression_future
+        ):
+            return True, "Gerade"
+        elif status_angle_past and status_regression_past:
+            return True, "Endpunkt einer geraden Linie"
+        elif status_angle_future and status_regression_future:
+            return True, "Startpunkt einer geraden Linie"
+        else:
+            return False, "Kurve / Überschneidungspunkt"
+
+    def visualize_points_2d(
+        self, df: pd.DataFrame, relative: int = 0, linear: bool = False, title: str = ""
+    ) -> None:
+        """
+        Visualizes the points of a flight on a map.
+
+        Parameters:
+        - df: the DataFrame containing the coordinates
+        - relative: the index of the point to be highlighted
+        - linear: whether to draw a linear regression or not
 
         Returns:
         - None
         """
-        print("Report:")
-        print("-------")
-        print("The flight is straight: " + str(status))
+        fig = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+        plt.scatter(df["longitude"], df["latitude"], s=1)
+        if relative != 0:
+            plt.plot(
+                df["longitude"].iloc[relative],
+                df["latitude"].iloc[relative],
+                "bo",
+            )
+            plt.annotate(
+                "Analysepunkt",
+                (df["longitude"].iloc[relative], df["latitude"].iloc[relative]),
+                textcoords="offset points",
+                xytext=(0, 10),
+                ha="center",
+            )
+        # AI content (GitHub Copilot, 01/29/2024), verified and adapted by Nicolas Huber.
+        if linear:
+            slope, intercept, r_value, p_value, std_err = linregress(
+                df["longitude"], df["latitude"]
+            )
+            abline_values = [slope * i + intercept for i in df["longitude"]]
+            plt.plot(df["longitude"], abline_values, "grey")
+            plt.text(
+                0.05,
+                0.95,
+                f"Steigung: {slope:.2f}\nOrdinatenabschnitt: {intercept:.2f}\nR-Quadrat: {r_value**2:.2f}\np-Wert: {p_value:.2f}\nStandardfehler: {std_err:.2f}",
+                transform=plt.gca().transAxes,
+                verticalalignment="top",
+            )
+        plt.xlabel("Längengrad")
+        plt.ylabel("Latitude")
+        if relative != 0:
+            plt.title("Punktvariation")
+        else:
+            plt.title(f"Punktvariation mit linearer Regression ({title})")
+        plt.show()
 
-    def visualize_points(self, df: pd.DataFrame, relative=0) -> None:
+    # AI content (GitHub Copilot, 01/29/2024), verified and adapted by Nicolas Huber.
+    def visualize_points_colored(self, df: pd.DataFrame, relative=0) -> None:
         """
         Visualizes the points of a flight on a map.
 
@@ -222,39 +276,72 @@ class AngleAnalyzer:
         Returns:
         - None
         """
-        plt.scatter(df["longitude"], df["latitude"], s=1)
+        fig = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+        scatter = plt.scatter(
+            df["longitude"],
+            df["latitude"],
+            c=df["relative altitude [m]"],
+            s=1,
+            cmap="jet",
+        )
+        plt.colorbar(scatter, label="Relative Höhe [m]")
         if relative != 0:
-            plt.plot(
+            plt.scatter(
                 df["longitude"].iloc[relative],
                 df["latitude"].iloc[relative],
-                "bo",
+                c="b",
+                marker="o",
             )
             plt.annotate(
-                "Relative",
+                "Analysepunkt",
                 (df["longitude"].iloc[relative], df["latitude"].iloc[relative]),
                 textcoords="offset points",
                 xytext=(0, 10),
                 ha="center",
             )
-        plt.xlabel("Longitude")
-        plt.ylabel("Latitude")
-        plt.title("Point variation in dataset")
+        plt.xlabel("Längengrad")
+        plt.ylabel("Breitengrad")
+        plt.title("Punktvariation mit relativer Höhe")
         plt.show()
 
-    def visualize_angles(self, df: pd.DataFrame) -> None:
+    def visualize_angles(
+        self, past_angles: pd.DataFrame, future_angles: pd.DataFrame
+    ) -> None:
         """
         Visualizes the angles of a flight on a map.
 
         Parameters:
-        - df: the DataFrame containing the angles
+        - past_angles: the DataFrame containing the past angles
+        - future_angles: the DataFrame containing the future angles
 
         Returns:
         - None
         """
-        plt.plot(df["angle"])
+        fig = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+        plt.plot(
+            past_angles.index,
+            past_angles["angle"],
+            color="green",
+            label="Vergangene Winkel",
+        )
+        future_angles.index = range(
+            len(past_angles), len(past_angles) + len(future_angles)
+        )
+        plt.plot(
+            future_angles.index,
+            future_angles["angle"],
+            color="red",
+            label="Zukünftige Winkel",
+        )
+        plt.axvline(
+            x=len(past_angles), color="blue", linestyle="--", label="Analysepunkt"
+        )
         plt.xlabel("Index [n]")
-        plt.ylabel("Angle [°]")
-        plt.title("Angle variation in dataset")
+        plt.ylabel("Winkel [°]")
+        plt.title("Winkelvariation")
+        plt.legend(loc="upper right")
         plt.show()
 
 
