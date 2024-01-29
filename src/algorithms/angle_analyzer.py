@@ -111,11 +111,14 @@ class AngleAnalyzer:
             if i == 0 or i == 1 or i >= len(coordinates) - 2:
                 coordinates[i].append(0)
             else:
-                px_3 = coordinates[i][5]
-                py_3 = coordinates[i][6]
-                m_2 = (PY_1 - py_3) / (PX_1 - px_3)
-                angle = abs(math.degrees(math.atan((M_1 - m_2) / (1 + M_1 * m_2))))
-                coordinates[i].append(angle)
+                try:
+                    px_3 = coordinates[i][5]
+                    py_3 = coordinates[i][6]
+                    m_2 = (PY_1 - py_3) / (PX_1 - px_3)
+                    angle = abs(math.degrees(math.atan((M_1 - m_2) / (1 + M_1 * m_2))))
+                    coordinates[i].append(angle)
+                except ZeroDivisionError:
+                    coordinates[i].append(0)
 
         df = pd.DataFrame(
             coordinates,
