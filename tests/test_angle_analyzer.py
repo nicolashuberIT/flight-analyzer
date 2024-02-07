@@ -304,3 +304,34 @@ def test_analyze_linear_regression(analyzer: AngleAnalyzer) -> None:
     assert (
         status_end_curve[0] == False
     ), "The status of the end of curve is not correct."
+
+
+def test_analyze_data(analyzer: AngleAnalyzer) -> None:
+    """
+    Tests the analyze_data method.
+
+    Parameters:
+    - analyzer: the AngleAnalyzer object to be tested
+
+    Returns:
+    - None
+    """
+    data = analyzer.read_csv_file()
+    latest_coordinates = analyzer.extract_latest_coordinates(data, INDEX_STRAIGHT_LINE)
+    future_coordinates = analyzer.extract_future_coordinates(data, INDEX_STRAIGHT_LINE)
+    angles_past = analyzer.cut_zero_angles(
+        analyzer.calculate_angles(latest_coordinates)
+    )
+    angles_future = analyzer.cut_zero_angles(
+        analyzer.calculate_angles(future_coordinates)
+    )
+    status_angle_past = analyzer.analyze_angles(angles_past)
+    status_angle_future = analyzer.analyze_angles(angles_future)
+    status_regression_past = analyzer.analyze_linear_regression(angles_past)
+    status_regression_future = analyzer.analyze_linear_regression(angles_future)
+    assert analyzer.analyze_data(
+        status_angle_past,
+        status_regression_past,
+        status_angle_future,
+        status_regression_future,
+    ) == (True, "Gerade", 0), "The status of the analysis is not correct."
