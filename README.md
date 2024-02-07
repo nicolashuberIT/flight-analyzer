@@ -35,7 +35,9 @@ Thanks for noticing!
 
 ### Introduction
 
-Detailed descriptions can be found in docstrings and comments within the source code of this project. Please find listed below some important aspects to get started.
+The goal of the `flight-analyzer` application is to automatically manipulate large datasets, which contain the track logs of paragliding flights. The program evaluates for each point of the flight if it is on a straight line or not. An executed example for an individual point can be found [here](https://github.com/nicolashuberIT/flight-analyzer/blob/main/src/executor/execute_angle_analyzer.ipynb). The program will output a new dataset containing an index for each point. This allows further analysis and the filtering by position of the point. In addition, the tool offers some helpers such as data visualizers or data animators. 
+
+Detailed descriptions can be found in docstrings and comments within the source code of this project. Please find listed below some important aspects to get started. 
 
 ### Getting started
 
