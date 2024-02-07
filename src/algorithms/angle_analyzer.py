@@ -3,6 +3,7 @@
 import pandas as pd
 import math
 from scipy.stats import linregress
+from typing import List, Tuple
 
 
 class AngleAnalyzer:
@@ -100,7 +101,7 @@ class AngleAnalyzer:
         Returns:
         - A DataFrame containing the angles between the points of a flight
         """
-        coordinates = df.values.tolist()
+        coordinates: List[List[float]] = df.values.tolist()
 
         PX_1, PX_2 = coordinates[0][5], coordinates[1][5]
         PY_1, PY_2 = coordinates[0][6], coordinates[1][6]
@@ -156,8 +157,8 @@ class AngleAnalyzer:
         Returns:
         - True if the point lies on a straight line, False otherwise
         """
-        angles = angles["angle"].tolist()
-        average = sum(angles) / len(angles)
+        angles_list: List[float] = angles["angle"].tolist()
+        average = sum(angles_list) / len(angles_list)
 
         if abs(average) < self.angle_threshold:
             status_average = True
@@ -169,7 +170,9 @@ class AngleAnalyzer:
         else:
             return False
 
-    def analyze_linear_regression(self, df: pd.DataFrame) -> tuple:
+    def analyze_linear_regression(
+        self, df: pd.DataFrame
+    ) -> Tuple[bool, float, float, float, float, float]:
         """
         Analyzes a point of a flight to determine whether it lies on a straight line or not, based on linear regression.
 
@@ -195,7 +198,7 @@ class AngleAnalyzer:
         status_regression_past: bool,
         status_angle_future: bool,
         status_regression_future: bool,
-    ) -> tuple:
+    ) -> Tuple[bool, str, int]:
         """
         Analyzes the data of a flight to determine whether it lies on a straight line or not.
 
@@ -215,10 +218,6 @@ class AngleAnalyzer:
             return True, "Gerade", 0
         elif status_angle_past and status_regression_past:
             return False, "Endpunkt einer geraden Linie", 1
-        elif status_angle_future and status_regression_future:
-            return False, "Startpunkt einer geraden Linie", 2
-        else:
-            return False, "Kurve / Überschneidungspunkt", 3
 
 
 # %%
