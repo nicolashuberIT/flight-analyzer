@@ -55,11 +55,15 @@ flight-analyzer
 |-- assets/
 |-- docs/
 |-- src/
+|-- |-- algorithms/
+|-- |-- executor/
 |-- |-- helpers/
+|-- |-- constants.py
 |-- tests/
 |-- main.py
 |-- LICENSE.md
 |-- README.md
+|-- requirements.txt
 ```
 
 ### Conventions
