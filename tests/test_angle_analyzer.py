@@ -306,6 +306,7 @@ def test_analyze_linear_regression(analyzer: AngleAnalyzer) -> None:
     ), "The status of the end of curve is not correct."
 
 
+# AI content (GitHub Copilot, 02/07/2024), verified and adapted by Nicolas Huber.
 def test_analyze_data(analyzer: AngleAnalyzer) -> None:
     """
     Tests the analyze_data method.
