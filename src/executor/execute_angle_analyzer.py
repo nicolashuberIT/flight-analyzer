@@ -2,9 +2,11 @@
 
 import os
 import sys
+import pandas as pd
+from typing import Tuple
 
 # AI content (GitHub Copilot, 01/29/2024), verified and adapted by Nicolas Huber.
-src_directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+src_directory: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 sys.path.append(src_directory)
 
 import algorithms.angle_analyzer as angle_analyzer
@@ -12,17 +14,17 @@ import helpers.data_visualizer as data_visualizer
 import constants as constants
 
 # 200 expects linear, 230 expects end of straight line, 270 expects curve, 400 expects overlap, 1400 expects straight line, 1320 expects end of curve
-index = 1320
+index: int = 1320
 
 print("\n<------- START: INITIALISATION PROCESS------> \n")
 
-Analyzer = angle_analyzer.AngleAnalyzer(
+Analyzer: angle_analyzer.AngleAnalyzer = angle_analyzer.AngleAnalyzer(
     "/Users/nicolas/Downloads/test.csv",
     constants.ANGLE_PAST_THRESHOLD,
     constants.ANGLE_FUTURE_THRESHOLD,
     constants.ANGLE_THRESHOLD,
 )
-Visualizer = data_visualizer.DataVisualizer()
+Visualizer: data_visualizer.DataVisualizer = data_visualizer.DataVisualizer()
 
 print(
     f"The program is ready for execution and will run using the following parameters:"
@@ -32,7 +34,7 @@ print(f"--> Angle Threshold: {constants.ANGLE_THRESHOLD}°")
 print("\n<------- END: INITIALISATION PROCESS ------>")
 print("<------- START: IMPORTING DATA ------>\n")
 
-data = Analyzer.read_csv_file()
+data: pd.DataFrame = Analyzer.read_csv_file()
 print("lenght: " + str(len(data)))
 print()
 print(data)
@@ -41,7 +43,7 @@ print("\n<------- END: IMPORTING DATA ------>")
 print("<------- START: ANALYZING COORDINATES ------>\n")
 
 print("Past Coordinates")
-latest_coordinates = Analyzer.extract_latest_coordinates(data, index)
+latest_coordinates: pd.DataFrame = Analyzer.extract_latest_coordinates(data, index)
 print("--> lenght: " + str(len(latest_coordinates)))
 print()
 print(latest_coordinates)
@@ -49,7 +51,7 @@ print(latest_coordinates)
 print()
 
 print("Future Coordinates")
-future_coordinates = Analyzer.extract_future_coordinates(data, index)
+future_coordinates: pd.DataFrame = Analyzer.extract_future_coordinates(data, index)
 print("--> lenght: " + str(len(future_coordinates)))
 print()
 print(future_coordinates)
@@ -57,8 +59,12 @@ print(future_coordinates)
 print("\n<------- END: ANALYZING COORDINATES ------>")
 print("<------- START: CALCULATING ANGLES ------>\n")
 
-angles_past = Analyzer.cut_zero_angles(Analyzer.calculate_angles(latest_coordinates))
-angles_future = Analyzer.cut_zero_angles(Analyzer.calculate_angles(future_coordinates))
+angles_past: pd.DataFrame = Analyzer.cut_zero_angles(
+    Analyzer.calculate_angles(latest_coordinates)
+)
+angles_future: pd.DataFrame = Analyzer.cut_zero_angles(
+    Analyzer.calculate_angles(future_coordinates)
+)
 
 print("Past Angles")
 print("--> lenght: " + str(len(angles_past)))
@@ -84,8 +90,8 @@ Visualizer.visualize_angles(angles_past, angles_future)
 print("\n<------- END: VISUALIZATION ------>")
 print("<------- START: ANALYSIS ------>\n")
 
-status_angle_past = Analyzer.analyze_angles(angles_past)
-status_angle_future = Analyzer.analyze_angles(angles_future)
+status_angle_past: bool = Analyzer.analyze_angles(angles_past)
+status_angle_future: bool = Analyzer.analyze_angles(angles_future)
 (
     status_regression_past,
     slope_past,
