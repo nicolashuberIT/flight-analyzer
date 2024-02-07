@@ -8,6 +8,7 @@ src_directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 sys.path.append(src_directory)
 
 import algorithms.angle_analyzer as angle_analyzer
+import helpers.data_visualizer as data_visualizer
 import constants as constants
 
 # 200 expects linear, 230 expects end of straight line, 270 expects curve, 400 expects overlap, 1400 expects straight line, 1320 expects end of curve
@@ -21,6 +22,7 @@ Analyzer = angle_analyzer.AngleAnalyzer(
     constants.ANGLE_FUTURE_THRESHOLD,
     constants.ANGLE_THRESHOLD,
 )
+Visualizer = data_visualizer.DataVisualizer()
 
 print(
     f"The program is ready for execution and will run using the following parameters:"
@@ -74,10 +76,10 @@ print("\n<------- END: CALCULATING ANGLES ------>")
 print("<------- START: VISUALIZATION ------>\n")
 
 
-Analyzer.visualize_points_colored(data, index)
-Analyzer.visualize_points_2d(latest_coordinates, 0, True, "Vergangenheit")
-Analyzer.visualize_points_2d(future_coordinates, 0, True, "Zukunft")
-Analyzer.visualize_angles(angles_past, angles_future)
+Visualizer.visualize_points_colored(data, index)
+Visualizer.visualize_points_2d(latest_coordinates, 0, True, "Vergangenheit")
+Visualizer.visualize_points_2d(future_coordinates, 0, True, "Zukunft")
+Visualizer.visualize_angles(angles_past, angles_future)
 
 print("\n<------- END: VISUALIZATION ------>")
 print("<------- START: ANALYSIS ------>\n")
