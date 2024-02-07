@@ -10,7 +10,7 @@ The `flight-analyzer` program is part of the scientific paper "Fliegen am Limit 
 
 The original paper (10/24/2022) can be downloaded here: [nicolas-huber.ch/docs](https://nicolas-huber.ch/docs/20221220_maturitaetsarbeit_fliegen-am-limit_public-version_nicolas-huber.pdf).
 
-As soon as the refined version of V1 and the second, new version have been published, the links will be listed here. Until then, please refer to the version linked above.
+As soon as the refined version of V1 has been published, the links will be listed here. Until then, please refer to the version linked above.
 
 ---
 
