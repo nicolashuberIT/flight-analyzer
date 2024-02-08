@@ -84,6 +84,9 @@ class DataAnalyzer:
                 "status",
                 "position_str",
                 "position_int",
+                "average_r_value",
+                "average_p_value",
+                "average_std_err",
             ]
         )
 
@@ -102,12 +105,22 @@ class DataAnalyzer:
 
             status_angle_past: bool = AngleAnalyzer.analyze_angles(angles_past)
             status_angle_future: bool = AngleAnalyzer.analyze_angles(angles_future)
-            status_regression_past = AngleAnalyzer.analyze_linear_regression(
-                latest_coordinates
-            )
-            status_regression_future = AngleAnalyzer.analyze_linear_regression(
-                future_coordinates
-            )
+            (
+                status_regression_past,
+                slope_past,
+                intercept_past,
+                r_value_past,
+                p_value_past,
+                std_err_past,
+            ) = AngleAnalyzer.analyze_linear_regression(latest_coordinates)
+            (
+                status_regression_future,
+                slope_future,
+                intercept_future,
+                r_value_future,
+                p_value_future,
+                std_err_future,
+            ) = AngleAnalyzer.analyze_linear_regression(future_coordinates)
 
             status: Tuple[bool, str, int] = AngleAnalyzer.analyze_data(
                 status_angle_past,
@@ -134,6 +147,15 @@ class DataAnalyzer:
             data_processed.loc[i, "status"] = status[0]
             data_processed.loc[i, "position_str"] = status[1]
             data_processed.loc[i, "position_int"] = status[2]
+            data_processed.loc[i, "average_r_value"] = (
+                r_value_past + r_value_future
+            ) / 2
+            data_processed.loc[i, "average_p_value"] = (
+                p_value_past + p_value_future
+            ) / 2
+            data_processed.loc[i, "average_std_err"] = (
+                std_err_past + std_err_future
+            ) / 2
 
         return data_processed
 

@@ -156,7 +156,7 @@ class DataVisualizer:
         - None
         """
 
-        colors = ["green", "yellow", "orange", "red"]
+        colors = ["green", "purple"]
         custom_cmap = ListedColormap(colors)
 
         fig = plt.figure(figsize=(12, 6))
@@ -182,24 +182,6 @@ class DataVisualizer:
                     markerfacecolor="green",
                     markersize=10,
                     label="Punkt auf einer Geraden",
-                ),
-                plt.Line2D(
-                    [0],
-                    [0],
-                    marker="o",
-                    color="w",
-                    markerfacecolor="orange",
-                    markersize=10,
-                    label="Punkt am Ende einer Geraden",
-                ),
-                plt.Line2D(
-                    [0],
-                    [0],
-                    marker="o",
-                    color="w",
-                    markerfacecolor="red",
-                    markersize=10,
-                    label="Punkt am Anfang einer Geraden",
                 ),
                 plt.Line2D(
                     [0],

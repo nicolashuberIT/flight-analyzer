@@ -14,7 +14,7 @@ GITHUB_ACTIONS_URL: str = "https://github.com/nicolashuberIT/flight-analyzer/act
 
 # algorithms
 
-ANGLE_PAST_THRESHOLD: int = 50
+ANGLE_PAST_THRESHOLD: int = 75
 ANGLE_FUTURE_THRESHOLD: int = 50
 ANGLE_THRESHOLD: int = 20
 LINEAR_REGRESSION_THRESHOLD: float = 0.9
@@ -22,10 +22,4 @@ LINEAR_REGRESSION_THRESHOLD: float = 0.9
 # categories
 
 INDEX_STRAIGHT_LINE: Tuple[bool, str, int] = True, "Straight Line", 0
-INDEX__ENDPOINT_STRAIGHT_LINE: Tuple[bool, str, int] = (
-    False,
-    "Endpoint Straight Line",
-    1,
-)
-INDEX_ENDPOINT_CURVE: Tuple[bool, str, int] = False, "Endpoint Curve", 2
-INDEX_CURVE: Tuple[bool, str, int] = False, "Curve / Overlap / Error", 3
+INDEX_CURVE: Tuple[bool, str, int] = False, "Curve / Overlap / Error", 1
