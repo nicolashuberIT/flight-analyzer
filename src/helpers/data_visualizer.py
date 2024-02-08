@@ -196,3 +196,141 @@ class DataVisualizer:
         )
 
         plt.show()
+
+    # AI content (ChatGPT, 02/08/2024), verified and adapted by Nicolas Huber.
+    def visualize_optimization_linear_regression(self, data: pd.DataFrame) -> None:
+        """
+        Visualizes the optimization process.
+
+        Parameters:
+        - data: the DataFrame containing the optimization results
+
+        Returns:
+        - None
+        """
+        fig = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+        plt.plot(data["score"], data["average_r_value"], label="r_value")
+        plt.plot(data["score"], data["average_p_value"], label="p_value")
+        plt.plot(data["score"], data["average_std_err"], label="sdt_error")
+        plt.xlabel("Score")
+        plt.ylabel("Threashold")
+        plt.title("Optimierung der Thresholds")
+        plt.legend(loc="lower right")
+        plt.show()
+
+    # AI content (ChatGPT, 02/08/2024), verified and adapted by Nicolas Huber.
+    def visualize_optimization_score(self, data: pd.DataFrame) -> None:
+        """
+        Visualizes the optimization process.
+
+        Parameters:
+        - data: the DataFrame containing the optimization results
+
+        Returns:
+        - None
+        """
+        fig = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+        plt.scatter(
+            data["angle_past_threshold"],
+            data["score"],
+            label="past_threshold",
+        )
+        plt.scatter(
+            data["angle_future_threshold"],
+            data["score"],
+            label="future_threshold",
+        )
+        plt.xlabel("Threshold")
+        plt.ylabel("Score")
+        plt.title("Score in Abhängigkeit der Thresholds")
+        plt.legend(loc="lower right")
+        plt.show()
+
+    # AI content (ChatGPT, 02/08/2024), verified and adapted by Nicolas Huber.
+    def visualize_optimization_rvalues(self, data: pd.DataFrame) -> None:
+        """
+        Visualizes the optimization process.
+
+        Parameters:
+        - data: the DataFrame containing the optimization results
+
+        Returns:
+        - None
+        """
+        fig = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+        plt.scatter(
+            data["angle_past_threshold"],
+            data["average_r_value"],
+            label="past_threshold",
+        )
+        plt.scatter(
+            data["angle_future_threshold"],
+            data["average_r_value"],
+            label="future_threshold",
+        )
+        plt.xlabel("Threshold")
+        plt.ylabel("r_value")
+        plt.title("r_value in Abhängigkeit der Thresholds")
+        plt.legend(loc="lower right")
+        plt.show()
+
+    # AI content (ChatGPT, 02/08/2024), verified and adapted by Nicolas Huber.
+    def visualize_optimization_pvalues(self, data: pd.DataFrame) -> None:
+        """
+        Visualizes the optimization process.
+
+        Parameters:
+        - data: the DataFrame containing the optimization results
+
+        Returns:
+        - None
+        """
+        fig = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+        plt.scatter(
+            data["angle_past_threshold"],
+            data["average_p_value"],
+            label="past_threshold",
+        )
+        plt.scatter(
+            data["angle_future_threshold"],
+            data["average_p_value"],
+            label="future_threshold",
+        )
+        plt.xlabel("Threshold")
+        plt.ylabel("p_value")
+        plt.title("p_value in Abhängigkeit der Thresholds")
+        plt.legend(loc="lower right")
+        plt.show()
+
+    # AI content (ChatGPT, 02/08/2024), verified and adapted by Nicolas Huber.
+    def visualize_optimization_stderrs(self, data: pd.DataFrame) -> None:
+        """
+        Visualizes the optimization process.
+
+        Parameters:
+        - data: the DataFrame containing the optimization results
+
+        Returns:
+        - None
+        """
+        fig = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+        plt.scatter(
+            data["angle_past_threshold"],
+            data["average_std_err"],
+            label="past_threshold",
+        )
+        plt.scatter(
+            data["angle_future_threshold"],
+            data["average_std_err"],
+            label="future_threshold",
+        )
+        plt.xlabel("Threshold")
+        plt.ylabel("std_error")
+        plt.title("std_error in Abhängigkeit der Thresholds")
+        plt.legend(loc="lower right")
+        plt.show()

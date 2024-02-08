@@ -159,11 +159,12 @@ class ThresholdOptimizer:
         num_iterations_i = (self.limit - 10) // self.steps
         num_iterations_j = (self.limit - 10) // self.steps
         total_iterations = num_iterations_i * num_iterations_j
+        n = 1
 
         for i in range(10, self.limit, self.steps):
             for j in range(10, self.limit, self.steps):
 
-                print(f"Iteration f = {i}, p = {j} from {total_iterations}:")
+                print(f"Iteration f = {i}, p = {j} - {n} from {total_iterations}:")
                 print("--> Testing thresholds...")
 
                 thresholds: Tuple[int, int] = (i, j)
@@ -179,8 +180,6 @@ class ThresholdOptimizer:
                 print(f"----> AVERAGE_STD_ERR: {result[4]}")
                 print(f"----> SCORE: {result[5]}")
                 print("--> Appending results...")
-                print("--> Preparing next iteration...")
-                print()
 
                 results = pd.concat(
                     [
@@ -199,6 +198,11 @@ class ThresholdOptimizer:
                     ignore_index=True,
                 )
 
+                print("--> Preparing next iteration...")
+                print()
+
+                n += 1
+
         self.future_threshold_optimized = results.loc[
             results["score"].idxmax(), "angle_future_threshold"
         ]
@@ -206,3 +210,18 @@ class ThresholdOptimizer:
             results["score"].idxmax(), "angle_past_threshold"
         ]
         return results
+
+    def export_to_csv(self, results: pd.DataFrame) -> None:
+        """
+        Export the results to a csv file.
+
+        Parameters:
+        - results (pd.DataFrame): The results to be exported.
+
+        Returns:
+        - None.
+        """
+        results.to_csv(
+            f"{os.path.splitext(self.csv_file)[0]}_optimized.csv",
+            index=False,
+        )
