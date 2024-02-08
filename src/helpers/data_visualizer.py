@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.colors import ListedColormap
 from scipy.stats import linregress
 
 
@@ -141,4 +142,75 @@ class DataVisualizer:
         plt.ylabel("Winkel [°]")
         plt.title("Winkelvariation")
         plt.legend(loc="upper right")
+        plt.show()
+
+    # AI content (ChatGPT, 02/08/2024), verified and adapted by Nicolas Huber.
+    def visualize_points_position(self, data: pd.DataFrame) -> None:
+        """
+        Visualizes the position of the points of a flight and colors them by position category.
+
+        Parameters:
+        - data: the DataFrame containing the coordinates and the position category
+
+        Returns:
+        - None
+        """
+
+        colors = ["green", "yellow", "orange", "red"]
+        custom_cmap = ListedColormap(colors)
+
+        fig = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+        plt.scatter(
+            data["longitude"],
+            data["latitude"],
+            c=data["position_int"],
+            cmap=custom_cmap,
+            s=1,
+        )
+        plt.xlabel("Längengrad")
+        plt.ylabel("Breitengrad")
+        plt.title("Punktvariation mit Position und Kategorisierung")
+
+        plt.legend(
+            handles=[
+                plt.Line2D(
+                    [0],
+                    [0],
+                    marker="o",
+                    color="w",
+                    markerfacecolor="green",
+                    markersize=10,
+                    label="Punkt auf einer Geraden",
+                ),
+                plt.Line2D(
+                    [0],
+                    [0],
+                    marker="o",
+                    color="w",
+                    markerfacecolor="orange",
+                    markersize=10,
+                    label="Punkt am Ende einer Geraden",
+                ),
+                plt.Line2D(
+                    [0],
+                    [0],
+                    marker="o",
+                    color="w",
+                    markerfacecolor="red",
+                    markersize=10,
+                    label="Punkt am Anfang einer Geraden",
+                ),
+                plt.Line2D(
+                    [0],
+                    [0],
+                    marker="o",
+                    color="w",
+                    markerfacecolor="purple",
+                    markersize=10,
+                    label="Punkt auf einer Kurve / Überlappung / Fehler",
+                ),
+            ]
+        )
+
         plt.show()
