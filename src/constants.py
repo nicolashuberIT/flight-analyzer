@@ -14,8 +14,8 @@ GITHUB_ACTIONS_URL: str = "https://github.com/nicolashuberIT/flight-analyzer/act
 
 # algorithms
 
-ANGLE_PAST_THRESHOLD: int = 75
-ANGLE_FUTURE_THRESHOLD: int = 50
+ANGLE_PAST_THRESHOLD: int = 70
+ANGLE_FUTURE_THRESHOLD: int = 45
 ANGLE_THRESHOLD: int = 20
 LINEAR_REGRESSION_THRESHOLD: float = 0.9
 
