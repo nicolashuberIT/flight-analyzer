@@ -1,4 +1,4 @@
-timestamp [UTC],relative altitude [m],horizontal velocity[m/s],vertical velocity [m/s],distance to takeoff [km],longitude,latitude
+timestamp [UTC],relative altitude [m],horizontal velocity [m/s],vertical velocity [m/s],distance to takeoff [km],longitude,latitude
 10:54:46,-163.0,15.28,0.0,5.93,9.303066,47.2074
 10:54:47,-164.0,13.89,-1.0,5.93,9.303266,47.207416
 10:54:48,-163.0,12.5,1.0,5.93,9.30345,47.207433

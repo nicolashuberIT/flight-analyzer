@@ -15,8 +15,8 @@ class FileConverter:
 
     To run this script, use Jupyter Notebook and copy the following code:
 
-    input_file: str = "/Users/nicolas/Downloads/data.xlsx"
-    output_file: str = "/Users/nicolas/Downloads/data.csv"
+    input_file: str = "/Users/nicolas/Downloads/data_file_convertor.xlsx"
+    output_file: str = "/Users/nicolas/Downloads/data_file_convertor.csv"
 
     Converter = FileConverter(input_file, output_file)
     Converter.process_csv()

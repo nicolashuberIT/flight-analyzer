@@ -115,7 +115,11 @@ class AngleAnalyzer:
 
         PX_1, PX_2 = coordinates[0][5], coordinates[1][5]
         PY_1, PY_2 = coordinates[0][6], coordinates[1][6]
-        M_1 = (PY_2 - PY_1) / (PX_2 - PX_1)
+
+        try:
+            M_1 = (PY_2 - PY_1) / (PX_2 - PX_1)
+        except ZeroDivisionError:
+            M_1 = 0
 
         for i in range(len(coordinates)):
             if i == 0 or i == 1 or i >= len(coordinates) - 2:

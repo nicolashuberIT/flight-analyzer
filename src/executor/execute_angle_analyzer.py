@@ -19,7 +19,7 @@ index: int = 1200
 print("\n<------- START: INITIALISATION PROCESS------> \n")
 
 Analyzer: angle_analyzer.AngleAnalyzer = angle_analyzer.AngleAnalyzer(
-    "/Users/nicolas/Downloads/test.csv",
+    "/Users/nicolas/Downloads/test_angle_analyzer.csv",
     constants.ANGLE_PAST_THRESHOLD,
     constants.ANGLE_FUTURE_THRESHOLD,
     constants.ANGLE_THRESHOLD,
