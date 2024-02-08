@@ -225,7 +225,7 @@ class AngleAnalyzer:
             and status_angle_future
             and status_regression_future
         ):
-            return constants.INDEX__ENDPOINT_STRAIGHT_LINE
+            return constants.INDEX_STRAIGHT_LINE
         elif (status_angle_past and status_regression_past) and (
             not status_angle_future or not status_regression_future
         ):

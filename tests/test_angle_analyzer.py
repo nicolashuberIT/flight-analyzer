@@ -33,6 +33,7 @@ def analyzer() -> AngleAnalyzer:
         constants.ANGLE_PAST_THRESHOLD,
         constants.ANGLE_FUTURE_THRESHOLD,
         constants.ANGLE_THRESHOLD,
+        constants.LINEAR_REGRESSION_THRESHOLD,
     )
 
 
@@ -330,9 +331,12 @@ def test_analyze_data(analyzer: AngleAnalyzer) -> None:
     status_angle_future = analyzer.analyze_angles(angles_future)
     status_regression_past = analyzer.analyze_linear_regression(angles_past)
     status_regression_future = analyzer.analyze_linear_regression(angles_future)
-    assert analyzer.analyze_data(
-        status_angle_past,
-        status_regression_past,
-        status_angle_future,
-        status_regression_future,
-    ) == (True, "Gerade", 0), "The status of the analysis is not correct."
+    assert (
+        analyzer.analyze_data(
+            status_angle_past,
+            status_regression_past,
+            status_angle_future,
+            status_regression_future,
+        )
+        == constants.INDEX_STRAIGHT_LINE
+    ), "The status of the analysis is not correct."
