@@ -62,7 +62,12 @@ class AngleAnalyzer:
         """
         return pd.read_csv(self.csv_file)
 
-    def extract_latest_coordinates(self, df: pd.DataFrame, i: int) -> pd.DataFrame:
+    def extract_latest_coordinates(
+        self,
+        df: pd.DataFrame,
+        i: int,
+        angle_past_threshold: int = constants.ANGLE_PAST_THRESHOLD,
+    ) -> pd.DataFrame:
         """
         Extract the latest n coordinates at the index i.
 
@@ -77,12 +82,17 @@ class AngleAnalyzer:
         if i < 0 or i >= len(df):
             raise IndexError("Index out of range")
 
-        if i < self.latest_threshold:
+        if i < angle_past_threshold:
             return df.iloc[0 : i + 1]
         else:
-            return df.iloc[i - self.latest_threshold + 1 : i + 1]
+            return df.iloc[i - angle_past_threshold + 1 : i + 1]
 
-    def extract_future_coordinates(self, df: pd.DataFrame, i: int) -> pd.DataFrame:
+    def extract_future_coordinates(
+        self,
+        df: pd.DataFrame,
+        i: int,
+        angle_future_threshold: int = constants.ANGLE_FUTURE_THRESHOLD,
+    ) -> pd.DataFrame:
         """
         Extract the future n coordinates at the index i.
 
@@ -96,10 +106,10 @@ class AngleAnalyzer:
         if i < 0 or i >= len(df):
             raise IndexError("Index out of range")
 
-        if i + self.future_threshold >= len(df):
+        if i + angle_future_threshold >= len(df):
             return df.iloc[i:]
         else:
-            return df.iloc[i : i + self.future_threshold]
+            return df.iloc[i : i + angle_future_threshold]
 
     def calculate_angles(self, df: pd.DataFrame) -> pd.DataFrame:
         """
@@ -172,7 +182,10 @@ class AngleAnalyzer:
         - True if the point lies on a straight line, False otherwise
         """
         angles_list: List[float] = angles["angle"].tolist()
-        average = sum(angles_list) / len(angles_list)
+        try:
+            average = sum(angles_list) / len(angles_list)
+        except ZeroDivisionError:
+            average = 0
 
         if abs(average) < self.angle_threshold:
             status_average = True
@@ -196,13 +209,27 @@ class AngleAnalyzer:
         Returns:
         - tuple containing the status of the analysis, the slope, the intercept, the r-value, the p-value and the standard error
         """
-        slope, intercept, r_value, p_value, std_err = linregress(
-            df["longitude"], df["latitude"]
-        )
-        if abs(r_value) > self.linear_regression_threshold:
-            status = True
-        else:
-            status = False
+        try:
+            slope, intercept, r_value, p_value, std_err = linregress(
+                df["longitude"], df["latitude"]
+            )
+            if abs(r_value) > self.linear_regression_threshold:
+                status = True
+            else:
+                status = False
+        except ValueError as e:
+            if (
+                "Cannot calculate a linear regression if all x values are identical"
+                in str(e)
+            ):
+                status = False
+                slope = 0
+                intercept = 0
+                r_value = 0
+                p_value = 0
+                std_err = 0
+            else:
+                raise e
 
         return status, slope, intercept, r_value, p_value, std_err
 

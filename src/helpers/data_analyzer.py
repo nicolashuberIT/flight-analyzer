@@ -60,7 +60,11 @@ class DataAnalyzer:
         return self.data
 
     def process_data(
-        self, data: pd.DataFrame, AngleAnalyzer: angle_analyzer.AngleAnalyzer
+        self,
+        data: pd.DataFrame,
+        AngleAnalyzer: angle_analyzer.AngleAnalyzer,
+        angle_past_threshold: int = constants.ANGLE_PAST_THRESHOLD,
+        angle_future_threshold: int = constants.ANGLE_FUTURE_THRESHOLD,
     ) -> pd.DataFrame:
         """
         Apply the AngleAnalyzer to every line of the dataset and append three new columns to the dataset: status, position_str, and position_int
@@ -93,8 +97,12 @@ class DataAnalyzer:
         for i in range(
             constants.ANGLE_PAST_THRESHOLD, len(data) - constants.ANGLE_FUTURE_THRESHOLD
         ):
-            latest_coordinates = AngleAnalyzer.extract_latest_coordinates(data, i)
-            future_coordinates = AngleAnalyzer.extract_future_coordinates(data, i)
+            latest_coordinates = AngleAnalyzer.extract_latest_coordinates(
+                data, i, angle_past_threshold
+            )
+            future_coordinates = AngleAnalyzer.extract_future_coordinates(
+                data, i, angle_future_threshold
+            )
 
             angles_past: pd.DataFrame = AngleAnalyzer.cut_zero_angles(
                 AngleAnalyzer.calculate_angles(latest_coordinates)
