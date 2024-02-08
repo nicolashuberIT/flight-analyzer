@@ -216,22 +216,16 @@ class AngleAnalyzer:
             and status_regression_future
         ):
             return True, "Gerade", 0
-        elif (
-            status_angle_past
-            and status_regression_past
-            and not status_angle_future
-            and not status_regression_future
+        elif (status_angle_past and status_regression_past) and (
+            not status_angle_future or not status_regression_future
         ):
             return False, "Endpunkt einer geraden Linie", 1
-        elif (
-            not status_angle_past
-            and not status_regression_past
-            and status_angle_future
-            and status_regression_future
+        elif (not status_angle_past and not status_regression_past) and (
+            status_angle_future and status_regression_future
         ):
             return False, "Startpunkt einer geraden Linie", 2
         else:
-            return False, "Kurve", 3
+            return False, "Kurve oder Überlappung", 3
 
 
 # %%
