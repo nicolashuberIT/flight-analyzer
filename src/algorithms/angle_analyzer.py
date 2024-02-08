@@ -1,9 +1,17 @@
 # %%
 
+import os
+import sys
 import pandas as pd
 import math
 from scipy.stats import linregress
 from typing import List, Tuple
+
+# AI content (GitHub Copilot, 01/29/2024), verified and adapted by Nicolas Huber.
+src_directory: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+sys.path.append(src_directory)
+
+import constants as constants
 
 
 class AngleAnalyzer:
@@ -21,7 +29,8 @@ class AngleAnalyzer:
         csv_file: str,
         latest_threshold: int,
         future_threshold: int,
-        angle_threshold: float,
+        angle_threshold: int,
+        linear_regression_threshold: float,
     ) -> None:
         """
         Initializes the AngleAnalyzer class.
@@ -38,7 +47,8 @@ class AngleAnalyzer:
         self.csv_file: str = csv_file
         self.latest_threshold: int = latest_threshold
         self.future_threshold: int = future_threshold
-        self.angle_threshold: float = angle_threshold
+        self.angle_threshold: int = angle_threshold
+        self.linear_regression_threshold: float = linear_regression_threshold
 
     def read_csv_file(self) -> pd.DataFrame:
         """
@@ -185,7 +195,7 @@ class AngleAnalyzer:
         slope, intercept, r_value, p_value, std_err = linregress(
             df["longitude"], df["latitude"]
         )
-        if abs(r_value) > 0.9:
+        if abs(r_value) > self.linear_regression_threshold:
             status = True
         else:
             status = False
@@ -215,17 +225,17 @@ class AngleAnalyzer:
             and status_angle_future
             and status_regression_future
         ):
-            return True, "Gerade", 0
+            return constants.INDEX__ENDPOINT_STRAIGHT_LINE
         elif (status_angle_past and status_regression_past) and (
             not status_angle_future or not status_regression_future
         ):
-            return False, "Endpunkt einer geraden Linie", 1
+            return constants.INDEX__ENDPOINT_STRAIGHT_LINE
         elif (not status_angle_past and not status_regression_past) and (
             status_angle_future and status_regression_future
         ):
-            return False, "Startpunkt einer geraden Linie", 2
+            return constants.INDEX_ENDPOINT_CURVE
         else:
-            return False, "Kurve oder Überlappung", 3
+            return constants.INDEX_CURVE
 
 
 # %%

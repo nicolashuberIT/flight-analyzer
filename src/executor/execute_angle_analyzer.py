@@ -23,6 +23,7 @@ Analyzer: angle_analyzer.AngleAnalyzer = angle_analyzer.AngleAnalyzer(
     constants.ANGLE_PAST_THRESHOLD,
     constants.ANGLE_FUTURE_THRESHOLD,
     constants.ANGLE_THRESHOLD,
+    constants.LINEAR_REGRESSION_THRESHOLD,
 )
 Visualizer: data_visualizer.DataVisualizer = data_visualizer.DataVisualizer()
 
