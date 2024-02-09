@@ -2,8 +2,11 @@
 
 import os
 import sys
+import time
+import warnings
 import pandas as pd
 from typing import Tuple
+
 
 # AI content (GitHub Copilot, 01/29/2024), verified and adapted by Nicolas Huber.
 src_directory: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
@@ -48,6 +51,7 @@ class ThresholdOptimizer:
         self.sdt_error_weight = sdt_error_weight
         self.limit = limit
         self.steps = steps
+        self.best_scores: pd.DataFrame
         self.future_threshold_optimized: int = 0
         self.past_threshold_optimized: int = 0
 
@@ -145,6 +149,10 @@ class ThresholdOptimizer:
         Returns:
         - pd.DataFrame: DataFrame with optimization data to be analyzed.
         """
+        warnings.simplefilter(
+            action="ignore", category=FutureWarning
+        )  # suppress FutureWarning
+
         results: pd.DataFrame = pd.DataFrame(
             columns=[
                 "angle_past_threshold",
@@ -156,30 +164,29 @@ class ThresholdOptimizer:
             ]
         )
 
+        n = 1
+        start_time = time.time()
         num_iterations_i = (self.limit - 10) // self.steps
         num_iterations_j = (self.limit - 10) // self.steps
         total_iterations = num_iterations_i * num_iterations_j
-        n = 1
+
+        print(f"Total iterations: {total_iterations}")
+        print(
+            f"--> Expected duration: {round(total_iterations * 10, 2)} seconds, {round(total_iterations * 10 / 60, 2)} minutes, {round(total_iterations * 10 / 3600, 2)} hours."
+        )
+        print("--> Testing thresholds...")
 
         for i in range(10, self.limit, self.steps):
             for j in range(10, self.limit, self.steps):
 
-                print(f"Iteration f = {i}, p = {j} - {n} from {total_iterations}:")
-                print("--> Testing thresholds...")
+                print(
+                    f"----> Iteration {n} of {total_iterations}, testing thresholds: {i}, {j}, estimated time remaining: {round((total_iterations - n) * 10, 2)} seconds, {round((total_iterations - n) * 10 / 60, 2)} minutes, {round((total_iterations - n) * 10 / 3600, 2)} hours."
+                )
 
                 thresholds: Tuple[int, int] = (i, j)
                 result: Tuple[int, int, float, float, float, float] = (
                     self.test_thresholds(thresholds, data, DataAnalyzer, AngleAnalyzer)
                 )
-
-                print("--> Results:")
-                print(f"----> ANGLE_PAST_THRESHOLD: {result[0]}")
-                print(f"----> ANGLE_FUTURE_THRESHOLD: {result[1]}")
-                print(f"----> AVERAGE_R_VALUE: {result[2]}")
-                print(f"----> AVERAGE_P_VALUE: {result[3]}")
-                print(f"----> AVERAGE_STD_ERR: {result[4]}")
-                print(f"----> SCORE: {result[5]}")
-                print("--> Appending results...")
 
                 results = pd.concat(
                     [
@@ -198,17 +205,25 @@ class ThresholdOptimizer:
                     ignore_index=True,
                 )
 
-                print("--> Preparing next iteration...")
-                print()
-
                 n += 1
 
+        print("--> Processing results...")
+
+        results = results.sort_values(by="score", ascending=False).reset_index(
+            drop=True
+        )
+        self.best_scores = results.head(5)
         self.future_threshold_optimized = results.loc[
             results["score"].idxmax(), "angle_future_threshold"
         ]
         self.past_threshold_optimized = results.loc[
             results["score"].idxmax(), "angle_past_threshold"
         ]
+
+        print("--> Results processed.")
+        print(
+            f"----> Total runtime: {round(time.time() - start_time, 2)} seconds, {round((time.time() - start_time) / 60, 2)} minutes, {round((time.time() - start_time) / 3600, 2)} hours."
+        )
         return results
 
     def export_to_csv(self, results: pd.DataFrame) -> None:
@@ -225,3 +240,7 @@ class ThresholdOptimizer:
             f"{os.path.splitext(self.csv_file)[0]}_optimized.csv",
             index=False,
         )
+        print("--> Results exported to csv.")
+
+
+# %%
