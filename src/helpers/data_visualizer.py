@@ -214,7 +214,7 @@ class DataVisualizer:
         plt.plot(data["score"], data["average_p_value"], label="p_value")
         plt.plot(data["score"], data["average_std_err"], label="sdt_error")
         plt.xlabel("Score")
-        plt.ylabel("Threashold")
+        plt.ylabel("Wert")
         plt.title("Optimierung der Thresholds")
         plt.legend(loc="lower right")
         plt.show()

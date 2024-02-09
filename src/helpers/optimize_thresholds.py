@@ -30,6 +30,7 @@ class ThresholdOptimizer:
         sdt_error_weight: float,
         limit: int,
         steps: int,
+        runtime_estimation: int,
     ) -> None:
         """
         Initialize the class.
@@ -41,6 +42,7 @@ class ThresholdOptimizer:
         - sdt_error_weight (float): The weight of the standard error.
         - limit (int): The limit of the optimization.
         - steps (int): The steps of the optimization.
+        - runtime_estimation (int): The runtime estimation per iteration.
 
         Returns:
         - None.
@@ -51,6 +53,7 @@ class ThresholdOptimizer:
         self.sdt_error_weight = sdt_error_weight
         self.limit = limit
         self.steps = steps
+        self.runtime_estimation = runtime_estimation
         self.best_scores: pd.DataFrame
         self.future_threshold_optimized: int = 0
         self.past_threshold_optimized: int = 0
@@ -132,6 +135,22 @@ class ThresholdOptimizer:
             score,
         )
 
+    def calculate_time_remaining(
+        self, n: int, total_iterations: int, previous: float
+    ) -> float:
+        """
+        Calculate the time remaining based on duration of previous iteration.
+
+        Parameters:
+        - n (int): The current iteration.
+        - total_iterations (int): The total number of iterations.
+        - previous (float): The duration of the previous iteration.
+
+        Returns:
+        - float: The time remaining.
+        """
+        return (total_iterations - n + 1) * previous
+
     def optimize_thresholds(
         self,
         data: pd.DataFrame,
@@ -165,22 +184,27 @@ class ThresholdOptimizer:
         )
 
         n = 1
-        start_time = time.time()
-        num_iterations_i = (self.limit - 10) // self.steps
-        num_iterations_j = (self.limit - 10) // self.steps
-        total_iterations = num_iterations_i * num_iterations_j
+        num_iterations_i: float = (self.limit - 10) // self.steps
+        num_iterations_j: float = (self.limit - 10) // self.steps
+        total_iterations: float = num_iterations_i * num_iterations_j
+        start_time: time.time = time.time()
+        previous_duration: float = 0
+        estimated_duration: float = total_iterations * self.runtime_estimation
+        start_iteration: float = 0
 
         print(f"Total iterations: {total_iterations}")
         print(
-            f"--> Expected duration: {round(total_iterations * 10, 2)} seconds, {round(total_iterations * 10 / 60, 2)} minutes, {round(total_iterations * 10 / 3600, 2)} hours."
+            f"--> Expected duration (initial estimation of runtime per iteration is {self.runtime_estimation} seconds): {round(total_iterations * self.runtime_estimation, 2)} seconds, {round(total_iterations * self.runtime_estimation / 60, 2)} minutes, {round(total_iterations * self.runtime_estimation / 3600, 2)} hours."
         )
         print("--> Testing thresholds...")
 
         for i in range(10, self.limit, self.steps):
             for j in range(10, self.limit, self.steps):
 
+                start_iteration = time.time() - start_time
+
                 print(
-                    f"----> Iteration {n} of {total_iterations}, testing thresholds: {i}, {j}, estimated time remaining: {round((total_iterations - n) * 10, 2)} seconds, {round((total_iterations - n) * 10 / 60, 2)} minutes, {round((total_iterations - n) * 10 / 3600, 2)} hours."
+                    f"----> Iteration {n} of {total_iterations}, testing thresholds: {i} & {j}, estimated time remaining: {round(estimated_duration, 2)} seconds, {round(estimated_duration / 60, 2)} minutes, {round(estimated_duration / 3600, 2)} hours."
                 )
 
                 thresholds: Tuple[int, int] = (i, j)
@@ -206,6 +230,10 @@ class ThresholdOptimizer:
                 )
 
                 n += 1
+                previous_duration = time.time() - start_time - start_iteration
+                estimated_duration = self.calculate_time_remaining(
+                    n, total_iterations, previous_duration
+                )
 
         print("--> Processing results...")
 
