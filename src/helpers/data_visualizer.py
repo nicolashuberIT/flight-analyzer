@@ -336,13 +336,14 @@ class DataVisualizer:
         plt.show()
 
     # AI content (ChatGPT, 02/10/2024), verified and adapted by Nicolas Huber.
-    def visualize_score_by_data_loss(self, data: pd.DataFrame) -> None:
+    def visualize_score_by_data_loss(self, data: pd.DataFrame, index: int) -> None:
         """
         Plots the index of the iterations on the x-axis and both the score and the data_loss on separate y-axis (left and right).
         Adds a mark at the point where the difference between data_loss and score is the highest.
 
         Parameters:
         - data: the DataFrame containing the optimization results
+        - index: the index of the best score
 
         Returns:
         - None
@@ -353,6 +354,7 @@ class DataVisualizer:
         ax1.plot(data.index, data["score"], label="Score", color="green")
         ax1.set_ylabel("Score")
         ax1.tick_params(axis="y")
+        ax1.set_xlabel("Tabellenindex")
 
         ax2 = ax1.twinx()
         ax2.plot(
@@ -364,29 +366,8 @@ class DataVisualizer:
         ax2.set_ylabel("Prozentualer Datenverlust")
         ax2.tick_params(axis="y")
 
-        # normalize the data_loss and score to the same scale so both can be compared between 0 and 1
-
-        data_normalized = data.copy()
-        data_normalized["score"] = (data["score"] - data["score"].min()) / (
-            data["score"].max() - data["score"].min()
-        )
-        data_normalized["data_loss"] = (data["data_loss"] - data["data_loss"].min()) / (
-            data["data_loss"].max() - data["data_loss"].min()
-        )
-
-        # calculate the index with the highest difference between data_loss and score
-
-        max_distance_index = 0
-        max_distance = 0
-
-        for index, row in data_normalized.iterrows():
-            distance = abs(row["score"] - row["data_loss"])
-            if distance > max_distance and abs(row["score"]) > abs(row["data_loss"]):
-                max_distance = distance
-                max_distance_index = index
-
         plt.axvline(
-            x=max_distance_index,
+            x=index,
             color="red",
             linestyle="--",
             label="Bester Score bei minimalem Datenverlust",
@@ -397,7 +378,6 @@ class DataVisualizer:
         handles = handles1 + handles2
         labels = labels1 + labels2
 
-        plt.xlabel("Tabellenindex")
         plt.title("Score und Datenverlust")
         plt.legend(handles, labels)
         plt.show()

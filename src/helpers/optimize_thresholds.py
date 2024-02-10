@@ -276,5 +276,33 @@ class ThresholdOptimizer:
         )
         print("--> Results exported to csv.")
 
+    def calculate_optimized_data_loss(self, data: pd.DataFrame) -> int:
+        """
+        Calculate the optimized data loss relative to the score.
+
+        Parameters:
+        - data (pd.DataFrame): The data to be analyzed.
+
+        Returns:
+        - int: the index of the data row with the highest score and the lowest data loss.
+        """
+        data_normalized: pd.DataFrame = data.copy()
+        data_normalized["score"] = (data["score"] - data["score"].min()) / (
+            data["score"].max() - data["score"].min()
+        )
+        data_normalized["data_loss"] = (data["data_loss"] - data["data_loss"].min()) / (
+            data["data_loss"].max() - data["data_loss"].min()
+        )
+        max_distance_index: int = 0
+        max_distance: int = 0
+
+        for index, row in data_normalized.iterrows():
+            distance: float = abs(row["score"] - row["data_loss"])
+            if distance > max_distance and abs(row["score"]) > abs(row["data_loss"]):
+                max_distance = distance
+                max_distance_index = index
+
+        return max_distance_index
+
 
 # %%
