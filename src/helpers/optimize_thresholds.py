@@ -106,7 +106,7 @@ class ThresholdOptimizer:
         - AngleAnalyzer (angle_analyzer.AngleAnalyzer): The angle analyzer object.
 
         Returns:
-        - Tuple[int, int, float, float, float, float]: The results of the test. (ANGLE_PAST_THRESHOLD, ANBGLE_FUTURE_THRESHOLD, r_value, p_value, std_err, score)
+        - Tuple[int, int, float, float, float, float, float]: The results of the test. (ANGLE_PAST_THRESHOLD, ANBGLE_FUTURE_THRESHOLD, r_value, p_value, std_err, score, data_loss)
         """
         data_processed = DataAnalyzer.process_data(
             data, AngleAnalyzer, thresholds[0], thresholds[1]
@@ -126,6 +126,9 @@ class ThresholdOptimizer:
             average_std_err,
         )
         score = self.calculate_score(linear_regression_values)
+        data_loss = (
+            (data_processed["position_int"] == 1).sum() / len(data_processed) * 100
+        )
         return (
             thresholds[0],
             thresholds[1],
@@ -133,6 +136,7 @@ class ThresholdOptimizer:
             average_p_value,
             average_std_err,
             score,
+            data_loss,
         )
 
     def calculate_time_remaining(
@@ -180,6 +184,7 @@ class ThresholdOptimizer:
                 "average_p_value",
                 "average_std_err",
                 "score",
+                "data_loss",
             ]
         )
 
@@ -208,7 +213,7 @@ class ThresholdOptimizer:
                 )
 
                 thresholds: Tuple[int, int] = (i, j)
-                result: Tuple[int, int, float, float, float, float] = (
+                result: Tuple[int, int, float, float, float, float, float] = (
                     self.test_thresholds(thresholds, data, DataAnalyzer, AngleAnalyzer)
                 )
 
@@ -223,6 +228,7 @@ class ThresholdOptimizer:
                                 "average_p_value": [result[3]],
                                 "average_std_err": [result[4]],
                                 "score": [result[5]],
+                                "data_loss": [result[6]],
                             }
                         ),
                     ],

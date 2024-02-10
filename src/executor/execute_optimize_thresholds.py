@@ -66,6 +66,7 @@ print("\n<------- END: OPTIMIZATION ------>")
 print("<------- START: VISUALISATION ------>\n")
 
 Visualizer.visualize_optimization_linear_regression(optimization)
+Visualizer.visualize_score_by_data_loss(optimization)
 Visualizer.visualize_optimization_score(optimization)
 Visualizer.visualize_optimization_rvalues(optimization)
 Visualizer.visualize_optimization_pvalues(optimization)
