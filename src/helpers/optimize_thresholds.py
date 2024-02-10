@@ -190,11 +190,11 @@ class ThresholdOptimizer:
         start_time: time.time = time.time()
         previous_duration: float = 0
         estimated_duration: float = total_iterations * self.runtime_estimation
-        start_iteration: float = 0
+        estimated_time_finished: float = start_time + estimated_duration
 
         print(f"Total iterations: {total_iterations}")
         print(
-            f"--> Expected duration (initial estimation of runtime per iteration is {self.runtime_estimation} seconds): {round(total_iterations * self.runtime_estimation, 2)} seconds, {round(total_iterations * self.runtime_estimation / 60, 2)} minutes, {round(total_iterations * self.runtime_estimation / 3600, 2)} hours."
+            f"--> Expected duration (initial estimation of runtime per iteration is {self.runtime_estimation} seconds): {round(total_iterations * self.runtime_estimation, 2)} seconds, {round(total_iterations * self.runtime_estimation / 60, 2)} minutes, {round(total_iterations * self.runtime_estimation / 3600, 2)} hours. Estimated time finished: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(estimated_time_finished))}."
         )
         print("--> Testing thresholds...")
 
@@ -204,7 +204,7 @@ class ThresholdOptimizer:
                 start_iteration = time.time() - start_time
 
                 print(
-                    f"----> Iteration {n} of {total_iterations}, testing thresholds: {i} & {j}, estimated time remaining: {round(estimated_duration, 2)} seconds, {round(estimated_duration / 60, 2)} minutes, {round(estimated_duration / 3600, 2)} hours."
+                    f"----> Iteration {n} of {total_iterations}, testing thresholds: {i} & {j}, estimated time remaining: {round(estimated_duration, 2)} seconds, {round(estimated_duration / 60, 2)} minutes, {round(estimated_duration / 3600, 2)} hours. Estimated time finished: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start_time + start_iteration + estimated_duration))}."
                 )
 
                 thresholds: Tuple[int, int] = (i, j)

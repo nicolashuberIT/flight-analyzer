@@ -29,5 +29,6 @@ INDEX_CURVE: Tuple[bool, str, int] = False, "Curve / Overlap / Error", 1
 R_VALUE_WEIGHT: float = 0.6
 P_VALUE_WEIGHT: float = 0.3
 STD_ERROR_WEIGHT: float = 0.1
-OPTIMIZATION_LIMIT: int = 20
+OPTIMIZATION_LIMIT: int = 175
 OPTIMIZATION_STEPS: int = 5
+OPTIMIZATION_RUNTIME_ESTIMATION: int = 12
