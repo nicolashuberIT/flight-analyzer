@@ -14,8 +14,12 @@ GITHUB_ACTIONS_URL: str = "https://github.com/nicolashuberIT/flight-analyzer/act
 
 # algorithms
 
-ANGLE_PAST_THRESHOLD: int = 90
-ANGLE_FUTURE_THRESHOLD: int = 45
+ANGLE_PAST_THRESHOLD: int = (
+    85  # 80 by score (by data loss 60): optimized with limit 100, step 5 / adapted by eye under consideration of the optimization table
+)
+ANGLE_FUTURE_THRESHOLD: int = (
+    40  # 35 by score (by data loss 15): optimized with limit 100, step 5 / adapted by eye under consideration of the optimization table
+)
 ANGLE_THRESHOLD: int = 20
 LINEAR_REGRESSION_THRESHOLD: float = 0.9
 
@@ -29,6 +33,6 @@ INDEX_CURVE: Tuple[bool, str, int] = False, "Curve / Overlap / Error", 1
 R_VALUE_WEIGHT: float = 0.6
 P_VALUE_WEIGHT: float = 0.3
 STD_ERROR_WEIGHT: float = 0.1
-OPTIMIZATION_LIMIT: int = 40
+OPTIMIZATION_LIMIT: int = 250
 OPTIMIZATION_STEPS: int = 5
 OPTIMIZATION_RUNTIME_ESTIMATION: int = 12
