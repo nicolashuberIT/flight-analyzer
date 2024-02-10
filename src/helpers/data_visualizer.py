@@ -381,7 +381,7 @@ class DataVisualizer:
 
         for index, row in data_normalized.iterrows():
             distance = abs(row["score"] - row["data_loss"])
-            if distance > max_distance:
+            if distance > max_distance and abs(row["score"]) > abs(row["data_loss"]):
                 max_distance = distance
                 max_distance_index = index
 
@@ -389,7 +389,7 @@ class DataVisualizer:
             x=max_distance_index,
             color="red",
             linestyle="--",
-            label="Bester Index bei maximaler Differenz",
+            label="Bester Score bei minimalem Datenverlust",
         )
 
         handles1, labels1 = ax1.get_legend_handles_labels()
