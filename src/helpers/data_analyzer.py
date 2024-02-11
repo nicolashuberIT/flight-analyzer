@@ -101,9 +101,7 @@ class DataAnalyzer:
             ]
         )
 
-        for i in range(
-            constants.ANGLE_PAST_THRESHOLD, len(data) - constants.ANGLE_FUTURE_THRESHOLD
-        ):
+        for i in range(angle_past_threshold, len(data) - angle_future_threshold):
             latest_coordinates = AngleAnalyzer.extract_latest_coordinates(
                 data, i, angle_past_threshold
             )

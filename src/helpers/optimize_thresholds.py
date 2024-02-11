@@ -27,7 +27,7 @@ class ThresholdOptimizer:
         csv_file: str,
         r_value_weight: float,
         p_value_weight: float,
-        sdt_error_weight: float,
+        std_error_weight: float,
         limit: int,
         steps: int,
         runtime_estimation: int,
@@ -50,7 +50,7 @@ class ThresholdOptimizer:
         self.csv_file = csv_file
         self.r_value_weight = r_value_weight
         self.p_value_weight = p_value_weight
-        self.sdt_error_weight = sdt_error_weight
+        self.std_error_weight = std_error_weight
         self.limit = limit
         self.steps = steps
         self.runtime_estimation = runtime_estimation
@@ -86,7 +86,7 @@ class ThresholdOptimizer:
         return (
             (values[0] * self.r_value_weight)
             - (values[1] * self.p_value_weight)
-            - (values[2] * self.sdt_error_weight)
+            - (values[2] * self.std_error_weight)
         )
 
     def test_thresholds(
@@ -94,7 +94,6 @@ class ThresholdOptimizer:
         thresholds: Tuple[int, int],
         data: pd.DataFrame,
         DataAnalyzer: data_analyzer.DataAnalyzer,
-        AngleAnalyzer: angle_analyzer.AngleAnalyzer,
     ) -> Tuple[int, int, float, float, float, float]:
         """
         Test the thresholds.
@@ -103,11 +102,18 @@ class ThresholdOptimizer:
         - thresholds (Tuple[int, int]): The thresholds to be tested.
         - data (pd.DataFrame): The data to be analyzed.
         - DataAnalyzer (data_analyzer.DataAnalyzer): The data analyzer object.
-        - AngleAnalyzer (angle_analyzer.AngleAnalyzer): The angle analyzer object.
 
         Returns:
         - Tuple[int, int, float, float, float, float, float]: The results of the test. (ANGLE_PAST_THRESHOLD, ANBGLE_FUTURE_THRESHOLD, r_value, p_value, std_err, score, data_loss)
         """
+        AngleAnalyzer: angle_analyzer.AngleAnalyzer = angle_analyzer.AngleAnalyzer(
+            self.csv_file,
+            thresholds[0],
+            thresholds[1],
+            constants.ANGLE_THRESHOLD,
+            constants.LINEAR_REGRESSION_THRESHOLD,
+        )
+
         data_processed = DataAnalyzer.process_data(
             data, AngleAnalyzer, thresholds[0], thresholds[1]
         )
@@ -159,7 +165,6 @@ class ThresholdOptimizer:
         self,
         data: pd.DataFrame,
         DataAnalyzer: data_analyzer.DataAnalyzer,
-        AngleAnalyzer: angle_analyzer.AngleAnalyzer,
     ) -> pd.DataFrame:
         """
         Optimize the thresholds.
@@ -167,7 +172,6 @@ class ThresholdOptimizer:
         Parameters:
         - data (pd.DataFrame): The data to be analyzed.
         - DataAnalyzer (data_analyzer.DataAnalyzer): The data analyzer object.
-        - AngleAnalyzer (angle_analyzer.AngleAnalyzer): The angle analyzer object.
 
         Returns:
         - pd.DataFrame: DataFrame with optimization data to be analyzed.
@@ -203,8 +207,8 @@ class ThresholdOptimizer:
         )
         print("--> Testing thresholds...")
 
-        for i in range(10, self.limit, self.steps):
-            for j in range(10, self.limit, self.steps):
+        for i in range(10, self.limit, self.steps):  # past threshold
+            for j in range(10, self.limit, self.steps):  # future threshold
 
                 start_iteration = time.time() - start_time
 
@@ -214,7 +218,7 @@ class ThresholdOptimizer:
 
                 thresholds: Tuple[int, int] = (i, j)
                 result: Tuple[int, int, float, float, float, float, float] = (
-                    self.test_thresholds(thresholds, data, DataAnalyzer, AngleAnalyzer)
+                    self.test_thresholds(thresholds, data, DataAnalyzer)
                 )
 
                 results = pd.concat(
