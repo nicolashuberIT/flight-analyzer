@@ -5,7 +5,7 @@
 ![Python 3.12](https://img.shields.io/badge/Python-3.12.0-blue)
 ![Formatting](https://img.shields.io/badge/formatting-Black-black)
 ![Linting](https://img.shields.io/badge/linting-Pylint-yellow)
-[![License](https://img.shields.io/badge/License-INDIVIDUAL-blue)](#license)
+[![License](https://img.shields.io/badge/License-INDIVIDUAL-blue)](#license--intellectual-property)
 
 ## Overview
 
@@ -59,11 +59,11 @@ flight-analyzer
 |-- .github/
 |-- assets/
 |-- docs/
-| -- src/ |
-| ------- || algorithms/ |
-| ----------- ||     | executor/ |
-| --- || helpers/ |
-| -------- ||constants.py
+| -- src/ 
+|-- |-- algorithms/
+|-- |-- executor/
+|-- |-- helpers
+|-- |-- constants.py
 |-- tests/
 |-- main.py
 |-- LICENSE.md
