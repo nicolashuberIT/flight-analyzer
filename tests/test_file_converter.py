@@ -272,3 +272,4 @@ def test_export_to_csv(converter: FileConverter) -> None:
     assert os.path.exists(
         converter.output_file
     ), "The CSV file is not exported correctly."
+    os.remove(converter.output_file)
