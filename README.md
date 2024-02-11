@@ -3,9 +3,10 @@
 [![nicolashuberIT - flight-analyzer](https://img.shields.io/static/v1?label=nicolashuberIT&message=flight-analyzer&color=blue&logo=github)](https://github.com/nicolashuberIT/flight-analyzer "Go to GitHub repo")
 ![Testing](https://github.com/nicolashuberIT/flight-analyzer/actions/workflows/ci.yaml/badge.svg)
 ![Python 3.12](https://img.shields.io/badge/Python-3.12.0-blue)
-![Formatting](https://img.shields.io/badge/Formatting-Black-black)
-![Linting](https://img.shields.io/badge/Linting-Pylint-yellow)
+![Formatting](https://img.shields.io/badge/formatting-Black-black)
+![Linting](https://img.shields.io/badge/linting-Pylint-yellow)
 [![License](https://img.shields.io/badge/License-INDIVIDUAL-blue)](#license)
+![Latest Release](https://img.shields.io/github/release-date/nicolashuberIT/flight-analyzer)
 
 ## Overview
 
