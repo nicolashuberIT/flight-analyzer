@@ -1,7 +1,7 @@
 # flight-analyzer
  
 [![nicolashuberIT - flight-analyzer](https://img.shields.io/static/v1?label=nicolashuberIT&message=flight-analyzer&color=blue&logo=github)](https://github.com/nicolashuberIT/flight-analyzer "Go to GitHub repo")
-![Testing](https://github.com/nicolashuberIT/flight-analyzer/actions/workflows/ci.yaml/badge.svg)
+![Testing](https://github.com/nicolashuberIT/flight-analyzer/actions/workflows/testing.yaml/badge.svg)
 ![Python 3.12](https://img.shields.io/badge/Python-3.12.0-blue)
 ![Formatting](https://img.shields.io/badge/formatting-Black-black)
 ![Linting](https://img.shields.io/badge/linting-Pylint-yellow)
@@ -59,6 +59,8 @@ flight-analyzer
 |-- .github/
 |-- assets/
 |-- docs/
+|-- |-- datasets/
+|-- |-- reports/
 | -- src/ 
 |-- |-- algorithms/
 |-- |-- executor/
