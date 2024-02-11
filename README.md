@@ -56,22 +56,22 @@ The application is structured as follows:
 
 ```txt
 ⎡ flight-analyzer
-⎢⎬ .github/
-⎢⎬ assets/
-⎢⎬ docs/
-⎢⎬ → datasets/
-⎢⎬ → reports/
-⎢⎬ src/
-⎢⎬ → algorithms/
-⎢⎬ → executor/
-⎢⎬ → helpers/
-⎢⎬ → constants.py
-⎢⎬ tests/
-⎢⎬ main.py
-⎢⎬ main.ipynb
-⎢⎬ LICENSE.md
-⎢⎬ README.md
-⎢⎬ requirements.txt
+⎢ ⟶ .github/
+⎢ ⟶ assets/
+⎢ ⟶ docs/
+⎢   ⟶ datasets/
+⎢   ⟶ reports/
+⎢ ⟶ src/
+⎢   ⟶ algorithms/
+⎢   ⟶ executor/
+⎢   ⟶ helpers/
+⎢   ⟶ constants.py
+⎢ ⟶ tests/
+⎢ ⟶ main.py
+⎢ ⟶ main.ipynb
+⎢ ⟶ LICENSE.md
+⎢ ⟶ README.md
+⎢ ⟶ requirements.txt
 ⎣
 ```
 
