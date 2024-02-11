@@ -1,7 +1,8 @@
 # flight-analyzer
  
 [![nicolashuberIT - flight-analyzer](https://img.shields.io/static/v1?label=nicolashuberIT&message=flight-analyzer&color=blue&logo=github)](https://github.com/nicolashuberIT/flight-analyzer "Go to GitHub repo")
-![automated testing](https://github.com/nicolashuberIT/flight-analyzer/actions/workflows/ci.yaml/badge.svg)
+![Testing](https://github.com/nicolashuberIT/flight-analyzer/actions/workflows/ci.yaml/badge.svg)
+[![codecov](https://codecov.io/gh/nicolashuberIT/flight-analyzer/graph/badge.svg?token=B98JBEY9R6)](https://codecov.io/gh/nicolashuberIT/flight-analyzer)
 [![License](https://img.shields.io/badge/License-INDIVIDUAL-blue)](#license)
 
 ## Overview
@@ -56,11 +57,11 @@ flight-analyzer
 |-- .github/
 |-- assets/
 |-- docs/
-|-- src/
-|-- |-- algorithms/
-|-- |-- executor/
-|-- |-- helpers/
-|-- |-- constants.py
+| -- src/ |
+| ------- || algorithms/ |
+| ----------- ||     | executor/ |
+| --- || helpers/ |
+| -------- |  |constants.py
 |-- tests/
 |-- main.py
 |-- LICENSE.md
