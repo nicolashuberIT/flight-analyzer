@@ -13,7 +13,7 @@ import algorithms.angle_analyzer as angle_analyzer
 import helpers.data_visualizer as data_visualizer
 import constants as constants
 
-# 200 expects linear, 270 expects curve, 400 expects overlap, 1400 expects straight line, 1320 expects end of curve, 1200 expects start of curve
+# 200 expects linear (true), 270 expects curve (false), 400 expects overlap (false), 1400 expects straight line (true), 1320 expects end of curve (true), 1200 expects start of curve (false)
 index: int = 1200
 
 print("\n<------- START: INITIALISATION PROCESS------> \n")
