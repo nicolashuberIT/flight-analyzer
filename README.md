@@ -55,22 +55,24 @@ This section will be added as soon as the development work is completed.
 The application is structured as follows:
 
 ```txt
-flight-analyzer
-|-- .github/
-|-- assets/
-|-- docs/
-|-- |-- datasets/
-|-- |-- reports/
-| -- src/ 
-|-- |-- algorithms/
-|-- |-- executor/
-|-- |-- helpers
-|-- |-- constants.py
-|-- tests/
-|-- main.py
-|-- LICENSE.md
-|-- README.md
-|-- requirements.txt
+⎡ flight-analyzer
+⎢⎬ .github/
+⎢⎬ assets/
+⎢⎬ docs/
+⎢⎬ → datasets/
+⎢⎬ → reports/
+⎢⎬ src/
+⎢⎬ → algorithms/
+⎢⎬ → executor/
+⎢⎬ → helpers/
+⎢⎬ → constants.py
+⎢⎬ tests/
+⎢⎬ main.py
+⎢⎬ main.ipynb
+⎢⎬ LICENSE.md
+⎢⎬ README.md
+⎢⎬ requirements.txt
+⎣
 ```
 
 ### Conventions
