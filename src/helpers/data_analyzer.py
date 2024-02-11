@@ -18,12 +18,19 @@ class DataAnalyzer:
     Class to loop through the data and analyze it by applying the AngleAnalyzer class. The foundation of this class is a csv file containing coordinates, speed data etc. The output will be a new csv file containing the same data but flagged with an index:
 
     - 0 = point lies on a straight line
-    - 1 = end point of a straight line
-    - 2 = end point of curve
-    - 3 = point lies on curve
+    - 1 = point lies on curve
     """
 
     def __init__(self, csv_file: str) -> None:
+        """
+        Initialize the DataAnalyzer object.
+
+        Parameters:
+        - csv_file (str): The csv file containing the data to be analyzed.
+
+        Returns:
+        - None.
+        """
         self.csv_file = csv_file
         self.csv_file_out = f"{os.path.splitext(csv_file)[0]}_analyzed.csv"
 
