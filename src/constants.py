@@ -15,10 +15,10 @@ GITHUB_ACTIONS_URL: str = "https://github.com/nicolashuberIT/flight-analyzer/act
 # algorithms
 
 ANGLE_PAST_THRESHOLD: int = (
-    215  # 80 by score (by data loss 60): optimized with limit 100, step 5 / adapted by eye under consideration of the optimization table
+    80  # 80 by score (by data loss 60): optimized with limit 100, step 5 / adapted by eye under consideration of the optimization table
 )
 ANGLE_FUTURE_THRESHOLD: int = (
-    25  # 35 by score (by data loss 15): optimized with limit 100, step 5 / adapted by eye under consideration of the optimization table
+    35  # 35 by score (by data loss 15): optimized with limit 100, step 5 / adapted by eye under consideration of the optimization table
 )
 ANGLE_THRESHOLD: int = 20
 LINEAR_REGRESSION_THRESHOLD: float = 0.9
