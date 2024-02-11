@@ -8,9 +8,8 @@ import pandas as pd
 src_directory: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 sys.path.append(src_directory)
 
-import constants as constants
-import helpers.data_analyzer as data_analyzer
-import algorithms.angle_analyzer as angle_analyzer
+import src.constants as constants
+import src.helpers.data_analyzer as data_analyzer
 
 CSV_FILE: str = "tests/assets/data_analyzer/test_data_analyzer.csv"
 
