@@ -1,6 +1,6 @@
 # Reference: https://www.youtube.com/watch?v=0aEJBygCn5Q [01/25/2024]
 
-name: CI / CD
+name: Testing
 
 on:
   push:
