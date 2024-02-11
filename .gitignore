@@ -1,6 +1,5 @@
 .python-version
 .pytest_cache
 .vscode
-/assets/test-files
 __pycache__
 experiments/
