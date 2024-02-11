@@ -211,7 +211,6 @@ class FileConverter:
         - None
         """
         df.to_csv(self.output_file, index=False, header=custom_headers)
-        print(df)
 
     # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
     def process_csv(
