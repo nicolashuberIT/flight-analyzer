@@ -75,14 +75,15 @@ Visualizer.visualize_optimization_stderrs(optimization)
 print("\n<------- END: VISUALISATION ------>")
 print("<------- START: REPORT ------>\n")
 
-print("Individuelle Threasholds mit dem besten Score:")
+print("Individual thresholds with the best score:")
 print(f"--> past_threshold_optimized: {Optimizer.past_threshold_optimized}")
 print(f"--> future_threshold_optimized: {Optimizer.future_threshold_optimized}")
 print()
 
 print(
-    "Unten findet sich eine tabellarische Übersicht der 5 besten Scores und deren Threasholds. Diese Angabe ist hier aussagekräftiger, da in der Analyse später für die Evaulierung eines Punktes sowohl die Zukunft als auch die Vergangenheit berücksichtigt werden und der Score somit die Interaktion der beiden Threasholds berücksichtigt."
+    "Below is a tabular overview of the 5 best scores and their thresholds. This information is more meaningful here, as in the analysis later for the evaluation of a point, both the future and the past are taken into account, and thus the score considers the interaction of the two thresholds."
 )
+
 print()
 print(Optimizer.best_scores)
 print()
