@@ -6,7 +6,6 @@
 ![Formatting](https://img.shields.io/badge/formatting-Black-black)
 ![Linting](https://img.shields.io/badge/linting-Pylint-yellow)
 [![License](https://img.shields.io/badge/License-INDIVIDUAL-blue)](#license)
-![Latest Release](https://img.shields.io/github/release-date/nicolashuberIT/flight-analyzer)
 
 ## Overview
 
