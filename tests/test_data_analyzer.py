@@ -98,6 +98,7 @@ def test_read_csv_data(analyzer: data_analyzer.DataAnalyzer) -> None:
     assert len(data) == 3959, "The length of the dataset is not set correctly."
 
 
+# AI content (GitHub Copilot, 02/11/2024), verified and adapted by Nicolas Huber.
 def test_process_data(analyzer: data_analyzer.DataAnalyzer) -> None:
     """
     Test the process_data method of the DataAnalyzer class.
@@ -169,6 +170,7 @@ def test_process_data(analyzer: data_analyzer.DataAnalyzer) -> None:
     ), "The type of the average_std_err column is not set correctly."
 
 
+# AI content (GitHub Copilot, 02/11/2024), verified and adapted by Nicolas Huber.
 def test_export_to_csv(analyzer: data_analyzer.DataAnalyzer) -> None:
     """
     Test the export_to_csv method of the DataAnalyzer class.
