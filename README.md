@@ -1,7 +1,7 @@
 # flight-analyzer
  
 [![nicolashuberIT - flight-analyzer](https://img.shields.io/static/v1?label=nicolashuberIT&message=flight-analyzer&color=blue&logo=github)](https://github.com/nicolashuberIT/flight-analyzer "Go to GitHub repo")
-![Python 3.12](https://img.shields.io/badge/Python-3.12.0-blue)
+![Python](https://img.shields.io/badge/Python-3.9,3.10,3.11,3.12-blue)
 [![License](https://img.shields.io/badge/License-INDIVIDUAL-blue)](#license--intellectual-property)
 ![Testing](https://github.com/nicolashuberIT/flight-analyzer/actions/workflows/testing.yaml/badge.svg)
 ![Formatting](https://img.shields.io/badge/formatting-Black-black)
