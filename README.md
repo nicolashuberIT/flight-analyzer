@@ -62,9 +62,13 @@ The application is structured as follows:
 
 Please find naming conventions for this project linked here: [click](/docs/docs-conventions.md). In addition, static type annotations are used in this project. The codebase has been tested using the `pytest` module. The recent CI/CD status can be found at the top of this page. Click [here](https://github.com/nicolashuberIT/flight-analyzer/actions) for a detailed overview and unit testing logs. The code is formatted and linted in VS Code using the Black Formatter Extension and Pylint.
 
+---
+
 ### Contributing
 
 At this time, the `flight-analyzer` project is not open for community contributions. The development is currently handled exclusively by Nicolas Huber. Your interest is appreciated and this section will be updated if the policy changes in the future.
+
+---
 
 ### Changelog
 
