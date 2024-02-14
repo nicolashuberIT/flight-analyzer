@@ -2,7 +2,6 @@ from typing import Tuple
 
 # general
 
-VERSION: str = "0.1.0"
 AUTHOR: str = "Nicolas Huber"
 AUTHOR_EMAIL: str = "info@nicolas-huber.ch"
 AUTHOR_URL: str = "https://nicolas-huber.ch"
