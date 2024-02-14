@@ -5,22 +5,19 @@ from typing import Tuple
 AUTHOR: str = "Nicolas Huber"
 AUTHOR_EMAIL: str = "info@nicolas-huber.ch"
 AUTHOR_URL: str = "https://nicolas-huber.ch"
-
-# links
-
 GITHUB_URL: str = "https://github.com/nicolashuberIT/flight-analyzer"
 GITHUB_ACTIONS_URL: str = "https://github.com/nicolashuberIT/flight-analyzer/actions"
 
 # algorithms
 
 ANGLE_PAST_THRESHOLD: int = (
-    80  # 80 by score (by data loss 60): optimized with limit 100, step 5 / adapted by eye under consideration of the optimization table
+    80  # number of points in the past that are considered for the angle evaluation
 )
 ANGLE_FUTURE_THRESHOLD: int = (
-    35  # 35 by score (by data loss 15): optimized with limit 100, step 5 / adapted by eye under consideration of the optimization table
+    35  # number of points in the future that are considered for the angle evaluation
 )
-ANGLE_THRESHOLD: int = 20
-LINEAR_REGRESSION_THRESHOLD: float = 0.9
+ANGLE_THRESHOLD: int = 20  # angle < 20° is considered as straight line
+LINEAR_REGRESSION_THRESHOLD: float = 0.9  # r-value > 0.9 is considered as straight line
 
 # categories
 
@@ -29,9 +26,9 @@ INDEX_CURVE: Tuple[bool, str, int] = False, "Curve / Overlap / Error", 1
 
 # optimization
 
-R_VALUE_WEIGHT: float = 0.6
-P_VALUE_WEIGHT: float = 0.3
-STD_ERROR_WEIGHT: float = 0.1
-OPTIMIZATION_LIMIT: int = 30
-OPTIMIZATION_STEPS: int = 5
-OPTIMIZATION_RUNTIME_ESTIMATION: int = 120
+R_VALUE_WEIGHT: float = 0.6  # weight of the r-value in the optimization
+P_VALUE_WEIGHT: float = 0.3  # weight of the p-value in the optimization
+STD_ERROR_WEIGHT: float = 0.1  # weight of the standard error in the optimization
+OPTIMIZATION_LIMIT: int = 30  # upper limit of optimization loops
+OPTIMIZATION_STEPS: int = 5  # step size per optimization loop
+OPTIMIZATION_RUNTIME_ESTIMATION: int = 120  # estimated runtime per loop in seconds
