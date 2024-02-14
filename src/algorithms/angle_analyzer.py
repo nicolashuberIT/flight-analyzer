@@ -40,6 +40,7 @@ class AngleAnalyzer:
         - latest_threshold: the number of coordinates to be analyzed in the past
         - future_threshold: the number of coordinates to be analyzed in the future
         - angle_threshold: the threshold for the angle analysis
+        - linear_regression_threshold: the threshold for the linear regression analysis
 
         Returns:
         - None
@@ -74,6 +75,7 @@ class AngleAnalyzer:
         Parameters:
         - df: the DataFrame to be filtered
         - i: the index of the coordinates to be extracted
+        - angle_past_threshold: the number of coordinates to be analyzed in the past
 
         Returns:
         - A DataFrame containing the latest n coordinates at the index i
@@ -99,6 +101,7 @@ class AngleAnalyzer:
         Parameters:
         - df: the DataFrame to be filtered
         - i: the index of the coordinates to be extracted
+        - angle_future_threshold: the number of coordinates to be analyzed in the future
 
         Returns:
         - A DataFrame containing the future n coordinates at the index i
@@ -176,7 +179,7 @@ class AngleAnalyzer:
         Analyzes a point of a flight to determine whether it lies on a straight line or not, based on angle.
 
         Parameters:
-        - df: the DataFrame containing the angles
+        - angles: the DataFrame containing the angles
 
         Returns:
         - True if the point lies on a straight line, False otherwise
@@ -244,11 +247,13 @@ class AngleAnalyzer:
         Analyzes the data of a flight to determine whether it lies on a straight line or not.
 
         Parameters:
-        - status_angle: the status of the angle analysis
-        - status_regression: the status of the linear regression analysis
+        - status_angle_past: the status of the angle analysis in the past
+        - status_regression_past: the status of the linear regression analysis in the past
+        - status_angle_future: the status of the angle analysis in the future
+        - status_regression_future: the status of the linear regression analysis in the future
 
         Returns:
-        - True if the point lies on a straight line, False otherwise
+        - tuple containing the status of the analysis, the type of the line and the index of the line
         """
         if (
             status_angle_past
