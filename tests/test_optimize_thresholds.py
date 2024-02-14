@@ -97,7 +97,9 @@ def test_construct_data_analyzer(
     """
     data_analyzer: pd.DataFrame = optimizer.construct_data_analyzer()
     assert data_analyzer is not None, "The data_analyzer is None."
-    assert data_analyzer.csv_file == CSV_FILE, "The csv_file is not set correctly."
+    assert (
+        data_analyzer.csv_file_in == CSV_FILE
+    ), "The csv_file_in is not set correctly."
 
 
 def test_calculate_score(optimizer: optimize_thresholds.ThresholdOptimizer) -> None:
