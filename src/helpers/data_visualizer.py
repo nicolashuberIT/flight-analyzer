@@ -1,13 +1,25 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib.colors import ListedColormap
 from scipy.stats import linregress
+from matplotlib.colors import ListedColormap
 
 
 class DataVisualizer:
     """
     Class to visualize data generated using the AngleAnalyzer class, which can be found in the src/algorithms/angle_analyzer.py file.
     """
+
+    def __init__(self, output_path: str = None) -> None:
+        """
+        Initialize the DataVisualizer object.
+
+        Parameters:
+        - output_path (str): The path to the output directory.
+
+        Returns:
+        - None.
+        """
+        self.output_path = output_path
 
     def visualize_points_2d(
         self, df: pd.DataFrame, relative: int = 0, linear: bool = False, title: str = ""
@@ -27,6 +39,7 @@ class DataVisualizer:
         fig = plt.figure(figsize=(12, 6))
         fig.set_facecolor("#F2F2F2")
         plt.scatter(df["longitude"], df["latitude"], s=1)
+
         if relative != 0:
             plt.plot(
                 df["longitude"].iloc[relative],
@@ -40,6 +53,7 @@ class DataVisualizer:
                 xytext=(0, 10),
                 ha="center",
             )
+
         # AI content (GitHub Copilot, 01/29/2024), verified and adapted by Nicolas Huber.
         if linear:
             slope, intercept, r_value, p_value, std_err = linregress(
@@ -54,12 +68,15 @@ class DataVisualizer:
                 transform=plt.gca().transAxes,
                 verticalalignment="top",
             )
+
         plt.xlabel("Längengrad")
         plt.ylabel("Breitengrad")
+
         if relative != 0:
             plt.title("Punktvariation")
         else:
             plt.title(f"Punktvariation mit linearer Regression ({title})")
+
         plt.show()
 
     # AI content (GitHub Copilot, 01/29/2024), verified and adapted by Nicolas Huber.
@@ -76,6 +93,7 @@ class DataVisualizer:
         """
         fig = plt.figure(figsize=(12, 6))
         fig.set_facecolor("#F2F2F2")
+
         scatter = plt.scatter(
             df["longitude"],
             df["latitude"],
@@ -83,7 +101,9 @@ class DataVisualizer:
             s=1,
             cmap="jet",
         )
+
         plt.colorbar(scatter, label="Relative Höhe [m]")
+
         if relative != 0:
             plt.scatter(
                 df["longitude"].iloc[relative],
@@ -98,9 +118,11 @@ class DataVisualizer:
                 xytext=(0, 10),
                 ha="center",
             )
+
         plt.xlabel("Längengrad")
         plt.ylabel("Breitengrad")
         plt.title("Punktvariation mit relativer Höhe")
+
         plt.show()
 
     def visualize_angles(
@@ -118,30 +140,37 @@ class DataVisualizer:
         """
         len_past_angles = len(past_angles)
         past_angles.drop(past_angles.index[-1], inplace=True)
+
         fig = plt.figure(figsize=(12, 6))
         fig.set_facecolor("#F2F2F2")
+
         plt.plot(
             past_angles.index,
             past_angles["angle"],
             color="green",
             label="Vergangene Winkel",
         )
+
         future_angles.index = range(
             len_past_angles, len_past_angles + len(future_angles)
         )
+
         plt.plot(
             future_angles.index,
             future_angles["angle"],
             color="red",
             label="Zukünftige Winkel",
         )
+
         plt.axvline(
             x=len_past_angles, color="blue", linestyle="--", label="Analysepunkt"
         )
+
         plt.xlabel("Index [n]")
         plt.ylabel("Winkel [°]")
         plt.title("Winkelvariation")
         plt.legend(loc="upper right")
+
         plt.show()
 
     # AI content (ChatGPT, 02/08/2024), verified and adapted by Nicolas Huber.
@@ -168,6 +197,7 @@ class DataVisualizer:
             cmap=custom_cmap,
             s=1,
         )
+
         plt.xlabel("Längengrad")
         plt.ylabel("Breitengrad")
         plt.title("Punktvariation mit Position und Kategorisierung")
@@ -232,6 +262,7 @@ class DataVisualizer:
         """
         fig = plt.figure(figsize=(12, 6))
         fig.set_facecolor("#F2F2F2")
+
         plt.scatter(
             data["angle_past_threshold"],
             data["score"],
@@ -242,10 +273,12 @@ class DataVisualizer:
             data["score"],
             label="future_threshold",
         )
+
         plt.xlabel("Threshold")
         plt.ylabel("Score")
         plt.title("Score in Abhängigkeit der Thresholds")
         plt.legend(loc="lower right")
+
         plt.show()
 
     # AI content (ChatGPT, 02/08/2024), verified and adapted by Nicolas Huber.
@@ -261,6 +294,7 @@ class DataVisualizer:
         """
         fig = plt.figure(figsize=(12, 6))
         fig.set_facecolor("#F2F2F2")
+
         plt.scatter(
             data["angle_past_threshold"],
             data["average_r_value"],
@@ -271,10 +305,12 @@ class DataVisualizer:
             data["average_r_value"],
             label="future_threshold",
         )
+
         plt.xlabel("Threshold")
         plt.ylabel("r_value")
         plt.title("r_value in Abhängigkeit der Thresholds")
         plt.legend(loc="lower right")
+
         plt.show()
 
     # AI content (ChatGPT, 02/08/2024), verified and adapted by Nicolas Huber.
@@ -290,6 +326,7 @@ class DataVisualizer:
         """
         fig = plt.figure(figsize=(12, 6))
         fig.set_facecolor("#F2F2F2")
+
         plt.scatter(
             data["angle_past_threshold"],
             data["average_p_value"],
@@ -300,10 +337,12 @@ class DataVisualizer:
             data["average_p_value"],
             label="future_threshold",
         )
+
         plt.xlabel("Threshold")
         plt.ylabel("p_value")
         plt.title("p_value in Abhängigkeit der Thresholds")
         plt.legend(loc="lower right")
+
         plt.show()
 
     # AI content (ChatGPT, 02/08/2024), verified and adapted by Nicolas Huber.
@@ -319,6 +358,7 @@ class DataVisualizer:
         """
         fig = plt.figure(figsize=(12, 6))
         fig.set_facecolor("#F2F2F2")
+
         plt.scatter(
             data["angle_past_threshold"],
             data["average_std_err"],
@@ -329,10 +369,12 @@ class DataVisualizer:
             data["average_std_err"],
             label="future_threshold",
         )
+
         plt.xlabel("Threshold")
         plt.ylabel("std_error")
         plt.title("std_error in Abhängigkeit der Thresholds")
         plt.legend(loc="lower right")
+
         plt.show()
 
     # AI content (ChatGPT, 02/10/2024), verified and adapted by Nicolas Huber.
