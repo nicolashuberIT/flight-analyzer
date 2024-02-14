@@ -27,7 +27,7 @@ Detailed descriptions can be found in docstrings and comments within the source 
 
 ### Getting started
 
-Make sure to install `Python 3.12.0` on your machine. The code has only been tested for this Python version and should properly work on MacOS, Linux distributions and Windows. It's recommended to use pyenv to manage local python environments as well as dependencies. To run this project make sure to activate an environment that supports Python 3.12.0 and then run `pip install -r requirements.txt`. The application should work fine with the dependencies (indicated version) listed in `requirements.txt`.
+Make sure to install `Python 3.9` or higher on your machine. The code has only been tested for these Python versions and should properly work on MacOS, Linux distributions and Windows. It's recommended to use pyenv to manage local python environments as well as dependencies. To run this project make sure to activate an environment that supports Python 3.9 or higher and then run `pip install -r requirements.txt`. The application should work fine with the dependencies (indicated version) listed in `requirements.txt`.
 
 #### Basic Usage
 
