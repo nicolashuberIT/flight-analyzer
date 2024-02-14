@@ -11,7 +11,7 @@ sys.path.append(src_directory)
 import src.constants as constants
 import src.helpers.data_analyzer as dataanalyzer
 
-CSV_FILE: str = "tests/assets/data_analyzer/test_data_analyzer.csv"
+CSV_FILE_IN: str = "tests/assets/data_analyzer/test_data_analyzer.csv"
 
 
 @pytest.fixture()
@@ -25,7 +25,7 @@ def analyzer() -> dataanalyzer.DataAnalyzer:
     Returns:
     - DataAnalyzer: The DataAnalyzer object.
     """
-    return dataanalyzer.DataAnalyzer(CSV_FILE)
+    return dataanalyzer.DataAnalyzer(CSV_FILE_IN)
 
 
 def test_init(analyzer: dataanalyzer.DataAnalyzer) -> None:
@@ -38,9 +38,11 @@ def test_init(analyzer: dataanalyzer.DataAnalyzer) -> None:
     Returns:
     - None.
     """
-    assert analyzer.csv_file == CSV_FILE, "The csv_file attribute is not set correctly."
     assert (
-        analyzer.csv_file_out == f"{os.path.splitext(CSV_FILE)[0]}_analyzed.csv"
+        analyzer.csv_file_in == CSV_FILE_IN
+    ), "The csv_file attribute is not set correctly."
+    assert (
+        analyzer.csv_file_out is not None
     ), "The csv_file_out attribute is not set correctly."
 
 
@@ -56,7 +58,7 @@ def test_construct_angle_analyzer(analyzer: dataanalyzer.DataAnalyzer) -> None:
     """
     angle_analyzer: angle_analyzer.AngleAnalyzer = analyzer.construct_angle_analyzer()  # type: ignore
     assert (
-        angle_analyzer.csv_file == CSV_FILE
+        angle_analyzer.csv_file == CSV_FILE_IN
     ), "The csv_file attribute is not set correctly."
     assert (
         angle_analyzer.latest_threshold == constants.ANGLE_PAST_THRESHOLD

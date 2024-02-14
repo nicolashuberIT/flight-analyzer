@@ -21,18 +21,22 @@ class DataAnalyzer:
     - 1 = point lies on curve
     """
 
-    def __init__(self, csv_file: str) -> None:
+    def __init__(self, csv_file_in: str, csv_file_out: str = None) -> None:
         """
         Initialize the DataAnalyzer object.
 
         Parameters:
-        - csv_file (str): The csv file containing the data to be analyzed.
+        - csv_file_in (str): The csv file containing the data to be analyzed.
+        - csv_file_out (str): The csv file to which the analyzed data will be exported.
 
         Returns:
         - None.
         """
-        self.csv_file = csv_file
-        self.csv_file_out = f"{os.path.splitext(csv_file)[0]}_analyzed.csv"
+        self.csv_file_in = csv_file_in
+        if csv_file_out is None:
+            self.csv_file_out = f"{os.path.splitext(csv_file_in)[0]}_analyzed.csv"
+        else:
+            self.csv_file_out = csv_file_out
 
     def construct_angle_analyzer(self) -> angleanalyzer.AngleAnalyzer:
         """
@@ -45,7 +49,7 @@ class DataAnalyzer:
         - AngleAnalyzer: The angle analyzer object.
         """
         AngleAnalyzer: angleanalyzer.AngleAnalyzer = angleanalyzer.AngleAnalyzer(
-            self.csv_file,
+            self.csv_file_in,
             constants.ANGLE_PAST_THRESHOLD,
             constants.ANGLE_FUTURE_THRESHOLD,
             constants.ANGLE_THRESHOLD,
@@ -63,7 +67,7 @@ class DataAnalyzer:
         Returns:
         - pd.DataFrame: The dataset to be analyzed.
         """
-        self.data = pd.read_csv(self.csv_file)
+        self.data = pd.read_csv(self.csv_file_in)
         return self.data
 
     def process_data(
@@ -78,6 +82,9 @@ class DataAnalyzer:
 
         Parameters:
         - data (pd.DataFrame): The dataset to be analyzed.
+        - AngleAnalyzer (angleanalyzer.AngleAnalyzer): The AngleAnalyzer object.
+        - angle_past_threshold (int): The number of past coordinates to be considered.
+        - angle_future_threshold (int): The number of future coordinates to be considered.
 
         Returns:
         - pd.DataFrame: The dataset with the new columns.
