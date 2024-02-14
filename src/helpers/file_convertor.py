@@ -13,13 +13,7 @@ class FileConverter:
     - https://igc2kml.com/
     - https://products.aspose.app/gis/conversion/kml-to-csv
 
-    To run this script, use Jupyter Notebook and copy the following code:
-
-    input_file: str = "/Users/nicolas/Downloads/data_file_convertor.xlsx"
-    output_file: str = "/Users/nicolas/Downloads/data_file_convertor.csv"
-
-    Converter = FileConverter(input_file, output_file)
-    Converter.process_csv()
+    To run this script use the execute_file_convertor.ipynb notebook in executor folder.
     """
 
     def __init__(self, excel_file: str, output_file: str) -> None:
