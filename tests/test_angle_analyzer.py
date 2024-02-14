@@ -1,13 +1,14 @@
 import os
 import sys
-import pytest
 import math
+import pytest
 import pandas as pd
 
 # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from src.algorithms.angle_analyzer import AngleAnalyzer
+
 import src.constants as constants
+from src.algorithms.angle_analyzer import AngleAnalyzer
 
 PATH = "tests/assets/angle_analyzer/test_angle_analyzer.csv"
 INDEX_STRAIGHT_LINE = 1400

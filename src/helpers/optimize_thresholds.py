@@ -13,8 +13,8 @@ src_directory: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".
 sys.path.append(src_directory)
 
 import constants as constants
-import helpers.data_analyzer as data_analyzer
-import algorithms.angle_analyzer as angle_analyzer
+import helpers.data_analyzer as dataanalyzer
+import algorithms.angle_analyzer as angleanalyzer
 
 
 class ThresholdOptimizer:
@@ -58,7 +58,7 @@ class ThresholdOptimizer:
         self.future_threshold_optimized: int = 0
         self.past_threshold_optimized: int = 0
 
-    def construct_data_analyzer(self) -> data_analyzer.DataAnalyzer:
+    def construct_data_analyzer(self) -> dataanalyzer.DataAnalyzer:
         """
         Construct the data analyzer object.
 
@@ -68,7 +68,7 @@ class ThresholdOptimizer:
         Returns:
         - DataAnalyzer: The data analyzer object.
         """
-        DataAnalyzer: data_analyzer.DataAnalyzer = data_analyzer.DataAnalyzer(
+        DataAnalyzer: dataanalyzer.DataAnalyzer = dataanalyzer.DataAnalyzer(
             self.csv_file
         )
         return DataAnalyzer
@@ -93,7 +93,7 @@ class ThresholdOptimizer:
         self,
         thresholds: Tuple[int, int],
         data: pd.DataFrame,
-        DataAnalyzer: data_analyzer.DataAnalyzer,
+        DataAnalyzer: dataanalyzer.DataAnalyzer,
     ) -> Tuple[int, int, float, float, float, float]:
         """
         Test the thresholds.
@@ -106,7 +106,7 @@ class ThresholdOptimizer:
         Returns:
         - Tuple[int, int, float, float, float, float, float]: The results of the test. (ANGLE_PAST_THRESHOLD, ANBGLE_FUTURE_THRESHOLD, r_value, p_value, std_err, score, data_loss)
         """
-        AngleAnalyzer: angle_analyzer.AngleAnalyzer = angle_analyzer.AngleAnalyzer(
+        AngleAnalyzer: angleanalyzer.AngleAnalyzer = angleanalyzer.AngleAnalyzer(
             self.csv_file,
             thresholds[0],
             thresholds[1],
@@ -164,7 +164,7 @@ class ThresholdOptimizer:
     def optimize_thresholds(
         self,
         data: pd.DataFrame,
-        DataAnalyzer: data_analyzer.DataAnalyzer,
+        DataAnalyzer: dataanalyzer.DataAnalyzer,
     ) -> pd.DataFrame:
         """
         Optimize the thresholds.

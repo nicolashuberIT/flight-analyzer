@@ -2,10 +2,10 @@
 
 import os
 import sys
-import pandas as pd
 import math
-from scipy.stats import linregress
+import pandas as pd
 from typing import List, Tuple
+from scipy.stats import linregress
 
 # AI content (GitHub Copilot, 01/29/2024), verified and adapted by Nicolas Huber.
 src_directory: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")

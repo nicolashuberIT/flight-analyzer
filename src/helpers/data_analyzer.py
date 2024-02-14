@@ -10,7 +10,7 @@ src_directory: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".
 sys.path.append(src_directory)
 
 import constants as constants
-import algorithms.angle_analyzer as angle_analyzer
+import algorithms.angle_analyzer as angleanalyzer
 
 
 class DataAnalyzer:
@@ -34,7 +34,7 @@ class DataAnalyzer:
         self.csv_file = csv_file
         self.csv_file_out = f"{os.path.splitext(csv_file)[0]}_analyzed.csv"
 
-    def construct_angle_analyzer(self) -> angle_analyzer.AngleAnalyzer:
+    def construct_angle_analyzer(self) -> angleanalyzer.AngleAnalyzer:
         """
         Construct the angle analyzer object.
 
@@ -44,7 +44,7 @@ class DataAnalyzer:
         Returns:
         - AngleAnalyzer: The angle analyzer object.
         """
-        AngleAnalyzer: angle_analyzer.AngleAnalyzer = angle_analyzer.AngleAnalyzer(
+        AngleAnalyzer: angleanalyzer.AngleAnalyzer = angleanalyzer.AngleAnalyzer(
             self.csv_file,
             constants.ANGLE_PAST_THRESHOLD,
             constants.ANGLE_FUTURE_THRESHOLD,
@@ -69,7 +69,7 @@ class DataAnalyzer:
     def process_data(
         self,
         data: pd.DataFrame,
-        AngleAnalyzer: angle_analyzer.AngleAnalyzer,
+        AngleAnalyzer: angleanalyzer.AngleAnalyzer,
         angle_past_threshold: int = constants.ANGLE_PAST_THRESHOLD,
         angle_future_threshold: int = constants.ANGLE_FUTURE_THRESHOLD,
     ) -> pd.DataFrame:

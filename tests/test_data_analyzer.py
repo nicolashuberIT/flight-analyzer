@@ -9,13 +9,13 @@ src_directory: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".
 sys.path.append(src_directory)
 
 import src.constants as constants
-import src.helpers.data_analyzer as data_analyzer
+import src.helpers.data_analyzer as dataanalyzer
 
 CSV_FILE: str = "tests/assets/data_analyzer/test_data_analyzer.csv"
 
 
 @pytest.fixture()
-def analyzer() -> data_analyzer.DataAnalyzer:
+def analyzer() -> dataanalyzer.DataAnalyzer:
     """
     Create a DataAnalyzer object for testing purposes.
 
@@ -25,10 +25,10 @@ def analyzer() -> data_analyzer.DataAnalyzer:
     Returns:
     - DataAnalyzer: The DataAnalyzer object.
     """
-    return data_analyzer.DataAnalyzer(CSV_FILE)
+    return dataanalyzer.DataAnalyzer(CSV_FILE)
 
 
-def test_init(analyzer: data_analyzer.DataAnalyzer) -> None:
+def test_init(analyzer: dataanalyzer.DataAnalyzer) -> None:
     """
     Test the __init__ method of the DataAnalyzer class.
 
@@ -44,7 +44,7 @@ def test_init(analyzer: data_analyzer.DataAnalyzer) -> None:
     ), "The csv_file_out attribute is not set correctly."
 
 
-def test_construct_angle_analyzer(analyzer: data_analyzer.DataAnalyzer) -> None:
+def test_construct_angle_analyzer(analyzer: dataanalyzer.DataAnalyzer) -> None:
     """
     Test the construct_angle_analyzer method of the DataAnalyzer class.
 
@@ -74,7 +74,7 @@ def test_construct_angle_analyzer(analyzer: data_analyzer.DataAnalyzer) -> None:
     )
 
 
-def test_read_csv_data(analyzer: data_analyzer.DataAnalyzer) -> None:
+def test_read_csv_data(analyzer: dataanalyzer.DataAnalyzer) -> None:
     """
     Test the read_csv_data method of the DataAnalyzer class.
 
@@ -98,7 +98,7 @@ def test_read_csv_data(analyzer: data_analyzer.DataAnalyzer) -> None:
 
 
 # AI content (GitHub Copilot, 02/11/2024), verified and adapted by Nicolas Huber.
-def test_process_data(analyzer: data_analyzer.DataAnalyzer) -> None:
+def test_process_data(analyzer: dataanalyzer.DataAnalyzer) -> None:
     """
     Test the process_data method of the DataAnalyzer class.
 
@@ -170,7 +170,7 @@ def test_process_data(analyzer: data_analyzer.DataAnalyzer) -> None:
 
 
 # AI content (GitHub Copilot, 02/11/2024), verified and adapted by Nicolas Huber.
-def test_export_to_csv(analyzer: data_analyzer.DataAnalyzer) -> None:
+def test_export_to_csv(analyzer: dataanalyzer.DataAnalyzer) -> None:
     """
     Test the export_to_csv method of the DataAnalyzer class.
 

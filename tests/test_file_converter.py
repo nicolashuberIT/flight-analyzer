@@ -1,11 +1,12 @@
 import os
 import sys
-from typing import List
 import pytest
 import pandas as pd
+from typing import List
 
 # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from src.helpers.file_convertor import FileConverter
 
 

@@ -9,8 +9,7 @@ src_directory: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".
 sys.path.append(src_directory)
 
 import src.constants as constants
-import src.helpers.data_analyzer as data_analyzer
-import src.algorithms.angle_analyzer as angle_analyzer
+import src.helpers.data_analyzer as dataanalyzer
 import src.helpers.optimize_thresholds as optimize_thresholds
 
 CSV_FILE: str = "tests/assets/data_analyzer/test_data_analyzer.csv"
@@ -135,7 +134,7 @@ def test_test_thresholds(
     Returns:
     - None.
     """
-    DataAnalyzer: data_analyzer.DataAnalyzer = data_analyzer.DataAnalyzer(CSV_FILE)
+    DataAnalyzer: dataanalyzer.DataAnalyzer = dataanalyzer.DataAnalyzer(CSV_FILE)
     data = DataAnalyzer.read_csv_data()
     data_processed: Tuple[int, int, float, float, float, float, float] = (
         optimizer.test_thresholds(
@@ -188,7 +187,7 @@ def test_optimize_thresholds(optimizer: optimize_thresholds.ThresholdOptimizer) 
     - None.
     """
 
-    DataAnalyzer: data_analyzer.DataAnalyzer = optimizer.construct_data_analyzer()
+    DataAnalyzer: dataanalyzer.DataAnalyzer = optimizer.construct_data_analyzer()
     data = DataAnalyzer.read_csv_data()
     results: pd.DataFrame = optimizer.optimize_thresholds(data, DataAnalyzer)
 
@@ -213,7 +212,7 @@ def test_export_to_csv(optimizer: optimize_thresholds.ThresholdOptimizer) -> Non
     Returns:
     - None.
     """
-    DataAnalyzer: data_analyzer.DataAnalyzer = optimizer.construct_data_analyzer()
+    DataAnalyzer: dataanalyzer.DataAnalyzer = optimizer.construct_data_analyzer()
     data = DataAnalyzer.read_csv_data()
     results: pd.DataFrame = optimizer.optimize_thresholds(data, DataAnalyzer)
 
@@ -239,7 +238,7 @@ def test_calculate_optimized_data_loss(
     Returns:
     - None.
     """
-    DataAnalyzer: data_analyzer.DataAnalyzer = optimizer.construct_data_analyzer()
+    DataAnalyzer: dataanalyzer.DataAnalyzer = optimizer.construct_data_analyzer()
     data = DataAnalyzer.read_csv_data()
     results: pd.DataFrame = optimizer.optimize_thresholds(data, DataAnalyzer)
 
