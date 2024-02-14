@@ -69,7 +69,7 @@ class ThresholdOptimizer:
         - DataAnalyzer: The data analyzer object.
         """
         DataAnalyzer: dataanalyzer.DataAnalyzer = dataanalyzer.DataAnalyzer(
-            self.csv_file
+            csv_file_in=self.csv_file, csv_file_out=None
         )
         return DataAnalyzer
 
@@ -107,15 +107,18 @@ class ThresholdOptimizer:
         - Tuple[int, int, float, float, float, float, float]: The results of the test. (ANGLE_PAST_THRESHOLD, ANBGLE_FUTURE_THRESHOLD, r_value, p_value, std_err, score, data_loss)
         """
         AngleAnalyzer: angleanalyzer.AngleAnalyzer = angleanalyzer.AngleAnalyzer(
-            self.csv_file,
-            thresholds[0],
-            thresholds[1],
-            constants.ANGLE_THRESHOLD,
-            constants.LINEAR_REGRESSION_THRESHOLD,
+            csv_file=self.csv_file,
+            latest_threshold=thresholds[0],
+            future_threshold=thresholds[1],
+            angle_threshold=constants.ANGLE_THRESHOLD,
+            linear_regression_threshold=constants.LINEAR_REGRESSION_THRESHOLD,
         )
 
         data_processed = DataAnalyzer.process_data(
-            data, AngleAnalyzer, thresholds[0], thresholds[1]
+            data=data,
+            AngleAnalyzer=AngleAnalyzer,
+            angle_past_threshold=thresholds[0],
+            angle_future_threshold=thresholds[1],
         )
         average_r_value = data_processed[data_processed["position_int"] == 0][
             "average_r_value"
@@ -131,7 +134,7 @@ class ThresholdOptimizer:
             average_p_value,
             average_std_err,
         )
-        score = self.calculate_score(linear_regression_values)
+        score = self.calculate_score(values=linear_regression_values)
         data_loss = (
             (data_processed["position_int"] == 1).sum() / len(data_processed) * 100
         )
@@ -218,7 +221,9 @@ class ThresholdOptimizer:
 
                 thresholds: Tuple[int, int] = (i, j)
                 result: Tuple[int, int, float, float, float, float, float] = (
-                    self.test_thresholds(thresholds, data, DataAnalyzer)
+                    self.test_thresholds(
+                        thresholds=thresholds, data=data, DataAnalyzer=DataAnalyzer
+                    )
                 )
 
                 results = pd.concat(
@@ -242,7 +247,7 @@ class ThresholdOptimizer:
                 n += 1
                 previous_duration = time.time() - start_time - start_iteration
                 estimated_duration = self.calculate_time_remaining(
-                    n, total_iterations, previous_duration
+                    n=n, total_iterations=total_iterations, previous=previous_duration
                 )
 
         print("--> Processing results...")
