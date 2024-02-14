@@ -30,11 +30,11 @@ def analyzer() -> AngleAnalyzer:
     - A AngleAnalyzer object
     """
     return AngleAnalyzer(
-        PATH,
-        constants.ANGLE_PAST_THRESHOLD,
-        constants.ANGLE_FUTURE_THRESHOLD,
-        constants.ANGLE_THRESHOLD,
-        constants.LINEAR_REGRESSION_THRESHOLD,
+        csv_file=PATH,
+        latest_threshold=constants.ANGLE_PAST_THRESHOLD,
+        future_threshold=constants.ANGLE_FUTURE_THRESHOLD,
+        angle_threshold=constants.ANGLE_THRESHOLD,
+        linear_regression_threshold=constants.LINEAR_REGRESSION_THRESHOLD,
     )
 
 
@@ -88,7 +88,9 @@ def test_extract_latest_coordinates(analyzer: AngleAnalyzer) -> None:
     - None
     """
     data = analyzer.read_csv_file()
-    latest_coordinates = analyzer.extract_latest_coordinates(data, INDEX_STRAIGHT_LINE)
+    latest_coordinates = analyzer.extract_latest_coordinates(
+        df=data, i=INDEX_STRAIGHT_LINE
+    )
     assert (
         latest_coordinates.index[-1] == INDEX_STRAIGHT_LINE
     ), "The index of the DataFrame is not correct."
@@ -106,7 +108,9 @@ def test_extract_future_coordinates(analyzer: AngleAnalyzer) -> None:
     - None
     """
     data = analyzer.read_csv_file()
-    future_coordinates = analyzer.extract_future_coordinates(data, INDEX_STRAIGHT_LINE)
+    future_coordinates = analyzer.extract_future_coordinates(
+        df=data, i=INDEX_STRAIGHT_LINE
+    )
     assert (
         len(future_coordinates) == constants.ANGLE_FUTURE_THRESHOLD
     ), "The length of the DataFrame is not correct."
@@ -127,9 +131,11 @@ def test_calculate_angles(analyzer: AngleAnalyzer) -> None:
     - None
     """
     data = analyzer.read_csv_file()
-    latest_coordinates = analyzer.extract_latest_coordinates(data, INDEX_STRAIGHT_LINE)
+    latest_coordinates = analyzer.extract_latest_coordinates(
+        df=data, i=INDEX_STRAIGHT_LINE
+    )
     angles_past = analyzer.cut_zero_angles(
-        analyzer.calculate_angles(latest_coordinates)
+        df=analyzer.calculate_angles(df=latest_coordinates)
     )
     index_coordinates = latest_coordinates.index[0]
     index_angles = angles_past.index[0]
@@ -182,9 +188,11 @@ def test_cut_zero_angles(analyzer: AngleAnalyzer) -> None:
     - None
     """
     data = analyzer.read_csv_file()
-    latest_coordinates = analyzer.extract_latest_coordinates(data, INDEX_STRAIGHT_LINE)
+    latest_coordinates = analyzer.extract_latest_coordinates(
+        df=data, i=INDEX_STRAIGHT_LINE
+    )
     angles_past = analyzer.cut_zero_angles(
-        analyzer.calculate_angles(latest_coordinates)
+        df=analyzer.calculate_angles(df=latest_coordinates)
     )
     assert (
         0 not in angles_past["angle"].values
@@ -204,36 +212,38 @@ def test_analyze_angles(analyzer: AngleAnalyzer) -> None:
     """
     data = analyzer.read_csv_file()
     coordinates_straight_line = analyzer.extract_latest_coordinates(
-        data, INDEX_STRAIGHT_LINE
+        df=data, i=INDEX_STRAIGHT_LINE
     )
     data_coordinates_end_straight_line = analyzer.extract_latest_coordinates(
-        data, INDEX_END_STRAIGHT_LINE
+        df=data, i=INDEX_END_STRAIGHT_LINE
     )
-    coordinates_curve = analyzer.extract_latest_coordinates(data, INDEX_CURVE)
-    coordinates_overlap = analyzer.extract_latest_coordinates(data, INDEX_OVERLAP)
-    coordinates_end_curve = analyzer.extract_latest_coordinates(data, INDEX_END_CURVE)
+    coordinates_curve = analyzer.extract_latest_coordinates(df=data, i=INDEX_CURVE)
+    coordinates_overlap = analyzer.extract_latest_coordinates(df=data, i=INDEX_OVERLAP)
+    coordinates_end_curve = analyzer.extract_latest_coordinates(
+        df=data, i=INDEX_END_CURVE
+    )
 
     angles_straight_line = analyzer.cut_zero_angles(
-        analyzer.calculate_angles(coordinates_straight_line)
+        df=analyzer.calculate_angles(df=coordinates_straight_line)
     )
     angles_end_straight_line = analyzer.cut_zero_angles(
-        analyzer.calculate_angles(data_coordinates_end_straight_line)
+        df=analyzer.calculate_angles(df=data_coordinates_end_straight_line)
     )
     angles_curve = analyzer.cut_zero_angles(
-        analyzer.calculate_angles(coordinates_curve)
+        df=analyzer.calculate_angles(df=coordinates_curve)
     )
     angles_overlap = analyzer.cut_zero_angles(
-        analyzer.calculate_angles(coordinates_overlap)
+        df=analyzer.calculate_angles(df=coordinates_overlap)
     )
     angles_end_curve = analyzer.cut_zero_angles(
-        analyzer.calculate_angles(coordinates_end_curve)
+        df=analyzer.calculate_angles(df=coordinates_end_curve)
     )
 
-    status_straight_line = analyzer.analyze_angles(angles_straight_line)
-    status_end_straight_line = analyzer.analyze_angles(angles_end_straight_line)
-    status_curve = analyzer.analyze_angles(angles_curve)
-    status_overlap = analyzer.analyze_angles(angles_overlap)
-    status_end_curve = analyzer.analyze_angles(angles_end_curve)
+    status_straight_line = analyzer.analyze_angles(angles=angles_straight_line)
+    status_end_straight_line = analyzer.analyze_angles(angles=angles_end_straight_line)
+    status_curve = analyzer.analyze_angles(angles=angles_curve)
+    status_overlap = analyzer.analyze_angles(angles=angles_overlap)
+    status_end_curve = analyzer.analyze_angles(angles=angles_end_curve)
 
     # remove '#' as soon as optimization algorithm has executed for all test cases and optimized thresholds have been set -> update of the reference track points at the top of this file required
 
@@ -267,38 +277,40 @@ def test_analyze_linear_regression(analyzer: AngleAnalyzer) -> None:
     """
     data = analyzer.read_csv_file()
     coordinates_straight_line = analyzer.extract_latest_coordinates(
-        data, INDEX_STRAIGHT_LINE
+        df=data, i=INDEX_STRAIGHT_LINE
     )
     data_coordinates_end_straight_line = analyzer.extract_latest_coordinates(
-        data, INDEX_END_STRAIGHT_LINE
+        df=data, i=INDEX_END_STRAIGHT_LINE
     )
-    coordinates_curve = analyzer.extract_latest_coordinates(data, INDEX_CURVE)
-    coordinates_overlap = analyzer.extract_latest_coordinates(data, INDEX_OVERLAP)
-    coordinates_end_curve = analyzer.extract_latest_coordinates(data, INDEX_END_CURVE)
+    coordinates_curve = analyzer.extract_latest_coordinates(df=data, i=INDEX_CURVE)
+    coordinates_overlap = analyzer.extract_latest_coordinates(df=data, i=INDEX_OVERLAP)
+    coordinates_end_curve = analyzer.extract_latest_coordinates(
+        df=data, i=INDEX_END_CURVE
+    )
 
     angles_straight_line = analyzer.cut_zero_angles(
-        analyzer.calculate_angles(coordinates_straight_line)
+        df=analyzer.calculate_angles(df=coordinates_straight_line)
     )
     angles_end_straight_line = analyzer.cut_zero_angles(
-        analyzer.calculate_angles(data_coordinates_end_straight_line)
+        df=analyzer.calculate_angles(df=data_coordinates_end_straight_line)
     )
     angles_curve = analyzer.cut_zero_angles(
-        analyzer.calculate_angles(coordinates_curve)
+        df=analyzer.calculate_angles(df=coordinates_curve)
     )
     angles_overlap = analyzer.cut_zero_angles(
-        analyzer.calculate_angles(coordinates_overlap)
+        df=analyzer.calculate_angles(df=coordinates_overlap)
     )
     angles_end_curve = analyzer.cut_zero_angles(
-        analyzer.calculate_angles(coordinates_end_curve)
+        df=analyzer.calculate_angles(df=coordinates_end_curve)
     )
 
-    status_straight_line = analyzer.analyze_linear_regression(angles_straight_line)
+    status_straight_line = analyzer.analyze_linear_regression(df=angles_straight_line)
     status_end_straight_line = analyzer.analyze_linear_regression(
-        angles_end_straight_line
+        df=angles_end_straight_line
     )
-    status_curve = analyzer.analyze_linear_regression(angles_curve)
-    status_overlap = analyzer.analyze_linear_regression(angles_overlap)
-    status_end_curve = analyzer.analyze_linear_regression(angles_end_curve)
+    status_curve = analyzer.analyze_linear_regression(df=angles_curve)
+    status_overlap = analyzer.analyze_linear_regression(df=angles_overlap)
+    status_end_curve = analyzer.analyze_linear_regression(df=angles_end_curve)
 
     # remove '#' as soon as optimization algorithm has executed for all test cases and optimized thresholds have been set -> update of the reference track points at the top of this file required
 
@@ -331,24 +343,28 @@ def test_analyze_data(analyzer: AngleAnalyzer) -> None:
     - None
     """
     data = analyzer.read_csv_file()
-    latest_coordinates = analyzer.extract_latest_coordinates(data, INDEX_STRAIGHT_LINE)
-    future_coordinates = analyzer.extract_future_coordinates(data, INDEX_STRAIGHT_LINE)
+    latest_coordinates = analyzer.extract_latest_coordinates(
+        df=data, i=INDEX_STRAIGHT_LINE
+    )
+    future_coordinates = analyzer.extract_future_coordinates(
+        df=data, i=INDEX_STRAIGHT_LINE
+    )
     angles_past = analyzer.cut_zero_angles(
-        analyzer.calculate_angles(latest_coordinates)
+        df=analyzer.calculate_angles(df=latest_coordinates)
     )
     angles_future = analyzer.cut_zero_angles(
-        analyzer.calculate_angles(future_coordinates)
+        df=analyzer.calculate_angles(df=future_coordinates)
     )
-    status_angle_past = analyzer.analyze_angles(angles_past)
-    status_angle_future = analyzer.analyze_angles(angles_future)
-    status_regression_past = analyzer.analyze_linear_regression(angles_past)
-    status_regression_future = analyzer.analyze_linear_regression(angles_future)
+    status_angle_past = analyzer.analyze_angles(angles=angles_past)
+    status_angle_future = analyzer.analyze_angles(angles=angles_future)
+    status_regression_past = analyzer.analyze_linear_regression(df=angles_past)
+    status_regression_future = analyzer.analyze_linear_regression(df=angles_future)
     assert (
         analyzer.analyze_data(
-            status_angle_past,
-            status_regression_past,
-            status_angle_future,
-            status_regression_future,
+            status_angle_past=status_angle_past,
+            status_regression_past=status_regression_past,
+            status_angle_future=status_angle_future,
+            status_regression_future=status_regression_future,
         )
         == constants.INDEX_STRAIGHT_LINE
     ), "The status of the analysis is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
