@@ -22,8 +22,8 @@ def converter() -> FileConverter:
     - A FileConverter object
     """
     return FileConverter(
-        "tests/assets/file_converter/test_file_convertor.xlsx",
-        "tests/assets/file_converter/test_file_convertor_output.csv",
+        excel_file="tests/assets/file_converter/test_file_convertor.xlsx",
+        output_file="tests/assets/file_converter/test_file_convertor_output.csv",
     )
 
 
@@ -74,7 +74,7 @@ def test_filter_dataframe(converter: FileConverter) -> None:
     - None
     """
     df = converter.read_excel_file()
-    df = converter.filter_dataframe(df)
+    df = converter.filter_dataframe(df=df)
     assert df[
         df["altitudeMode"] == "clampToGround"
     ].empty, "The DataFrame is not filtered correctly."
@@ -92,8 +92,8 @@ def test_split_and_reorder_columns(converter: FileConverter) -> None:
     - None
     """
     df = converter.read_excel_file()
-    df = converter.filter_dataframe(df)
-    df = converter.split_and_reorder_columns(df)
+    df = converter.filter_dataframe(df=df)
+    df = converter.split_and_reorder_columns(df=df)
     assert df.columns.tolist() == [
         "timestamp",
         "altitude",
@@ -116,9 +116,9 @@ def test_remove_static_speeds(converter: FileConverter) -> None:
     - None
     """
     df = converter.read_excel_file()
-    df = converter.filter_dataframe(df)
-    df = converter.split_and_reorder_columns(df)
-    df = converter.remove_static_speeds(df)
+    df = converter.filter_dataframe(df=df)
+    df = converter.split_and_reorder_columns(df=df)
+    df = converter.remove_static_speeds(df=df)
     assert df[
         df["horizontal"] == "0"
     ].empty, "The static horizontal speeds are not removed."
@@ -136,10 +136,10 @@ def test_extract_coordinates(converter: FileConverter) -> None:
     - None
     """
     df = converter.read_excel_file()
-    df = converter.filter_dataframe(df)
-    df = converter.split_and_reorder_columns(df)
-    df = converter.remove_static_speeds(df)
-    df = converter.extract_coordinates(df)
+    df = converter.filter_dataframe(df=df)
+    df = converter.split_and_reorder_columns(df=df)
+    df = converter.remove_static_speeds(df=df)
+    df = converter.extract_coordinates(df=df)
     assert "coordinates_a" in df.columns, "The coordinates are not extracted correctly."
 
 
@@ -155,11 +155,11 @@ def test_extract_coordinates_a(converter: FileConverter) -> None:
     - None
     """
     df = converter.read_excel_file()
-    df = converter.filter_dataframe(df)
-    df = converter.split_and_reorder_columns(df)
-    df = converter.remove_static_speeds(df)
-    df = converter.extract_coordinates(df)
-    df = converter.extract_coordinates_a(df)
+    df = converter.filter_dataframe(df=df)
+    df = converter.split_and_reorder_columns(df=df)
+    df = converter.remove_static_speeds(df=df)
+    df = converter.extract_coordinates(df=df)
+    df = converter.extract_coordinates_a(df=df)
     assert (
         "longitude" in df.columns
     ), "The coordinates are not extracted correctly to the longitude row."
@@ -180,12 +180,12 @@ def test_clean_up_coordinates(converter: FileConverter) -> None:
     - None
     """
     df = converter.read_excel_file()
-    df = converter.filter_dataframe(df)
-    df = converter.split_and_reorder_columns(df)
-    df = converter.remove_static_speeds(df)
-    df = converter.extract_coordinates(df)
-    df = converter.extract_coordinates_a(df)
-    df = converter.clean_up_coordinates(df)
+    df = converter.filter_dataframe(df=df)
+    df = converter.split_and_reorder_columns(df=df)
+    df = converter.remove_static_speeds(df=df)
+    df = converter.extract_coordinates(df=df)
+    df = converter.extract_coordinates_a(df=df)
+    df = converter.clean_up_coordinates(df=df)
     assert (
         df["longitude"].iloc[0] == 9.303066
     ), "The longitude is not cleaned up correctly."
@@ -206,13 +206,13 @@ def test_remove_units(converter: FileConverter) -> None:
     - None
     """
     df = converter.read_excel_file()
-    df = converter.filter_dataframe(df)
-    df = converter.split_and_reorder_columns(df)
-    df = converter.remove_static_speeds(df)
-    df = converter.extract_coordinates(df)
-    df = converter.extract_coordinates_a(df)
-    df = converter.clean_up_coordinates(df)
-    df = converter.remove_units(df)
+    df = converter.filter_dataframe(df=df)
+    df = converter.split_and_reorder_columns(df=df)
+    df = converter.remove_static_speeds(df=df)
+    df = converter.extract_coordinates(df=df)
+    df = converter.extract_coordinates_a(df=df)
+    df = converter.clean_up_coordinates(df=df)
+    df = converter.remove_units(df=df)
     assert isinstance(df["altitude"].iloc[0], float), "The altitude is not a float."
     assert isinstance(
         df["horizontal"].iloc[0], float
@@ -226,13 +226,13 @@ def test_remove_units(converter: FileConverter) -> None:
 # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
 def test_convert_horizontal_speed(converter: FileConverter) -> None:
     df = converter.read_excel_file()
-    df = converter.filter_dataframe(df)
-    df = converter.split_and_reorder_columns(df)
-    df = converter.remove_static_speeds(df)
-    df = converter.extract_coordinates(df)
-    df = converter.extract_coordinates_a(df)
-    df = converter.clean_up_coordinates(df)
-    df = converter.remove_units(df)
+    df = converter.filter_dataframe(df=df)
+    df = converter.split_and_reorder_columns(df=df)
+    df = converter.remove_static_speeds(df=df)
+    df = converter.extract_coordinates(df=df)
+    df = converter.extract_coordinates_a(df=df)
+    df = converter.clean_up_coordinates(df=df)
+    df = converter.remove_units(df=df)
     test_speed = df["horizontal"].iloc[2]
     df = converter.convert_horizontal_speed(df)
     assert (
@@ -252,14 +252,14 @@ def test_export_to_csv(converter: FileConverter) -> None:
     - None
     """
     df = converter.read_excel_file()
-    df = converter.filter_dataframe(df)
-    df = converter.split_and_reorder_columns(df)
-    df = converter.remove_static_speeds(df)
-    df = converter.extract_coordinates(df)
-    df = converter.extract_coordinates_a(df)
-    df = converter.clean_up_coordinates(df)
-    df = converter.remove_units(df)
-    df = converter.convert_horizontal_speed(df)
+    df = converter.filter_dataframe(df=df)
+    df = converter.split_and_reorder_columns(df=df)
+    df = converter.remove_static_speeds(df=df)
+    df = converter.extract_coordinates(df=df)
+    df = converter.extract_coordinates_a(df=df)
+    df = converter.clean_up_coordinates(df=df)
+    df = converter.remove_units(df=df)
+    df = converter.convert_horizontal_speed(df=df)
     custom_headers: List[str] = [
         "timestamp [UTC]",
         "relative altitude [m]",
@@ -269,7 +269,7 @@ def test_export_to_csv(converter: FileConverter) -> None:
         "longitude",
         "latitude",
     ]
-    converter.export_to_csv(df, custom_headers)
+    converter.export_to_csv(df=df, custom_headers=custom_headers)
     assert os.path.exists(
         converter.output_file
     ), "The CSV file is not exported correctly."
