@@ -35,7 +35,7 @@ The documentation is available in `.pdf` format and can be downloaded [here](/do
       - [FileConvertor](#fileconvertor)
       - [AngleAnalyzer](#angleanalyzer)
       - [DataAnalyzer](#dataanalyzer)
-      - [ThresholdOptimizer:](#thresholdoptimizer)
+      - [ThresholdOptimizer](#thresholdoptimizer)
   - [Development](#development)
     - [Conventions](#conventions)
     - [Contributing](#contributing)
@@ -278,7 +278,7 @@ In total, you lost 71.08% of the data after applying the AngleAnalyzer algorithm
 
 </details>
 
-#### ThresholdOptimizer:
+#### ThresholdOptimizer
 
 _Description of ThresholdOptimizer helper class._
 
