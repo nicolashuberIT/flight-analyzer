@@ -309,8 +309,7 @@ OPTIMIZATION_RUNTIME_ESTIMATION: int = 120  # estimated runtime per loop in seco
       <em>Fig. 6: Optimization score and data loss</em>
     </td>
     <td style="width: 50%; text-align: center;">
-      <img src="/docs/images/20240215_flight-analyzer_optimierung-der-thresholds_nicolas-huber.png
-" alt="Optimierung der Thresholds">
+      <img src="/docs/images/20240215_flight-analyzer_optimierung-der-thresholds_nicolas-huber.png" alt="Optimierung der Thresholds">
       <br>
       <em>Fig. 7: Threshold optimization</em>
     </td>
