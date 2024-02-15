@@ -148,18 +148,31 @@ index = 1400 (expected straight line, returned straight line)
 
 <table>
   <tr>
-    <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-relativer-hoehe_nicolas-huber.png" alt="Punktvariation mit relativer Höhe"></td>
-    <br><em>Fig. 1: Point variation with relative height</em></td>
-    <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_winkelvariation_nicolas-huber.png" alt="Winkelvariation"></td>
-    <br><em>Fig. 2: Angle variation</em></td>
+    <td style="width: 50%; text-align: center;">
+      <img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-relativer-hoehe_nicolas-huber.png" alt="Punktvariation mit relativer Höhe">
+      <br>
+      <em>Fig. 1: Point variation with relative height</em>
+    </td>
+    <td style="width: 50%; text-align: center;">
+      <img src="/docs/images/20240215_flight-analyzer_winkelvariation_nicolas-huber.png" alt="Winkelvariation">
+      <br>
+      <em>Fig. 2: Angle variation</em>
+    </td>
   </tr>
   <tr>
-    <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-linearer-regression-vergangenheit_nicolas-huber.png" alt="Lineare Regression (Vergangenheit)"></td>
-    <br><em>Fig. 3: Linear regression (past)</em></td>
-    <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-linearer-regression-zukunft_nicolas-huber.png" alt="Lineare Regression (Zukunft)"></td>
-    <br><em>Fig. 4: Linear regression (future)</em></td>
+    <td style="width: 50%; text-align: center;">
+      <img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-linearer-regression-vergangenheit_nicolas-huber.png" alt="Lineare Regression (Vergangenheit)">
+      <br>
+      <em>Fig. 3: Linear regression (past)</em>
+    </td>
+    <td style="width: 50%; text-align: center;">
+      <img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-linearer-regression-zukunft_nicolas-huber.png" alt="Lineare Regression (Zukunft)">
+      <br>
+      <em>Fig. 4: Linear regression (future)</em>
+    </td>
   </tr>
 </table>
+
 
 #### DataAnalyzer
 
