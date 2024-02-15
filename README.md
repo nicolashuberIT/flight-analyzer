@@ -32,6 +32,7 @@ The documentation is available in `.pdf` format and can be downloaded [here](/do
       - [Running main.py / main.ipynb](#running-mainpy--mainipynb)
       - [Run individual analysis](#run-individual-analysis)
     - [Algorithms and helpers](#algorithms-and-helpers)
+      - [AngleAnalyzer](#angleanalyzer)
   - [Development](#development)
     - [Conventions](#conventions)
     - [Contributing](#contributing)
@@ -137,6 +138,18 @@ This application provides the following executor Notebooks:
 Further documentation on the inputs and outputs of these executors can be found in the Notebooks.
 
 ### Algorithms and helpers
+
+#### AngleAnalyzer
+
+[input](/docs/datasets/tracklogs/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv)
+index = 1400 (expected straight line, returned straight line)
+
+![Punktvariation mit relativer Höhe](/docs/images/20240215_flight-analyzer_punktvariation-mit-relativer-hoehe_nicolas-huber.png)
+
+<div style="display: flex;">
+    <img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-linearer-regression-vergangenheit_nicolas-huber.png" alt="Lineare Regression (Vergangenheit)" style="width: 50%;">
+    <img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-linearer-regression-zukunft_nicolas-huber.png" alt="Lineare Regression (Zukunft)" style="width: 50%;">
+</div>
 
 --- 
 
