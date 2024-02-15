@@ -9,11 +9,35 @@
 
 ## Overview
 
-The `flight-analyzer` program is part of the scientific paper "Fliegen am Limit - Aktive Sicherheit im Gleitschirmsport", that was first published on 10/24/2022 and is being further developped by 03/31/2024 as of the "Schweizer Jugend forscht 2024" initiative. The application is designed to analyze flight data that was recorded by devices such as variometers or other flight trackers commonly used by the paragliding community. The program provides tools to clean up the input data after it has manually been processed using the utilities [IGC2KML (.igc -> .kml)](https://igc2kml.com/) and [KML2CSV (.kml -> .csv)](https://products.aspose.app/gis/conversion/kml-to-csv) as well as Microsoft Excel (currently it's not possible to directly parse .igc files). It also allows to combine, filter and sort multiple datasets. The main functionality of the tool is the application of a selection of algorithms to filter the flight data. As part of the scientific paper, this tool is designed to deliver a clean dataset that can be used to do optimized analyses and compare them to the first version of this paper, which was published in 2022. Please find a detailed description of the algorithms in the sections below, in the paper itself or in the code.
+The `flight-analyzer` program is part of the scientific paper "Fliegen am Limit - Aktive Sicherheit im Gleitschirmsport", that was first published on 10/24/2022 and is being further developped by 03/31/2024 as of the "Schweizer Jugend forscht 2024" initiative. The application is designed to analyze flight data. The main functionality of the tool is the application of a selection of algorithms to process tracklogs. As part of the scientific paper, this tool is designed to deliver a clean dataset that can be used to conduct and optimize advanced analyses and simulate the stationary flight of a paraglidider. Please find a detailed description of the algorithms in the sections below, in the paper itself or in the code.
 
 The original paper (10/24/2022) can be downloaded here: [nicolas-huber.ch/docs](https://nicolas-huber.ch/docs/20221220_maturitaetsarbeit_fliegen-am-limit_public-version_nicolas-huber.pdf).
 
-As soon as the refined version of V1 has been published, the links will be listed here. Until then, please refer to the version linked above.
+As soon as the refined version of the 2022 version has been published, the link will be published here. Until then, please refer to the original paper.
+
+---
+
+## Contents
+
+- [flight-analyzer](#flight-analyzer)
+  - [Overview](#overview)
+  - [Contents](#contents)
+  - [Technical documentation](#technical-documentation)
+    - [Introduction](#introduction)
+    - [Getting started](#getting-started)
+    - [Architecture](#architecture)
+    - [Basic Usage](#basic-usage)
+      - [Preprocessing flight data](#preprocessing-flight-data)
+      - [Running main.py / main.ipynb](#running-mainpy--mainipynb)
+      - [Run individual analysis](#run-individual-analysis)
+    - [Algorithms](#algorithms)
+  - [Development](#development)
+    - [Conventions](#conventions)
+    - [Contributing](#contributing)
+    - [Changelog](#changelog)
+  - [License \& Intellectual Property](#license--intellectual-property)
+  - [Disclaimer](#disclaimer)
+
 
 ---
 
@@ -21,17 +45,13 @@ As soon as the refined version of V1 has been published, the links will be liste
 
 ### Introduction
 
-The goal of the `flight-analyzer` application is to automatically manipulate large datasets, which contain the track logs of paragliding flights. The program evaluates for each point of the flight if it is on a straight line or not. An executed example for an individual point can be found [here](https://github.com/nicolashuberIT/flight-analyzer/blob/main/src/executor/execute_angle_analyzer.ipynb). The program will output a new dataset containing an index for each point. This allows further analysis and the filtering by position of the point. In addition, the tool offers some helpers such as tools to visualize the manipulated data. 
+The goal of the `flight-analyzer` application is to automatically manipulate large datasets, which contain the track logs of paragliding flights. The program evaluates for each point of the flight if it is on a straight line or not. This allows further analysis and the filtering by position of the point. After the input dataset has been filtered the tool can apply a selection of algorithms, which have been developped as of the "Fliegen am Limit" paper, to simulate the stationary flight of a paraglider. This serves as a foundation for the development of new algorithms, more advanced models and conduct further analyses. In addition, the tool offers some helpers such as tools to visualize the manipulated data or preprocess raw input files. 
 
-Detailed descriptions can be found in docstrings and comments within the source code of this project. Please find listed below some important aspects to get started. 
+Detailed descriptions can be found in docstrings and comments within the source code of this project. 
 
 ### Getting started
 
 Make sure to install `Python 3.9` or higher on your machine. The code has only been tested for the Python versions 3.9, 3.10, 3.11 and 3.12-dev and should properly work on MacOS, Linux distributions and Windows. It's recommended to use pyenv to manage local python environments as well as dependencies. To run this project make sure to activate an environment that supports Python 3.9 or higher and then run `pip install -r requirements.txt`. The application should work fine with the dependencies (indicated version) listed in `requirements.txt`.
-
-#### Basic Usage
-
-The main entry point of this application are the `main.py` and `main.ipynb` files. Both the Python file and the Jupyter Notebook output the same result - you can chose the file format that fits you best. 
 
 ### Architecture
 
@@ -57,6 +77,70 @@ The application is structured as follows:
 ⎢ ⟶ requirements.txt
 ⎣
 ```
+
+### Basic Usage
+
+The main entry point of this application are the `main.py` and `main.ipynb` files. Both the Python file and the Jupyter Notebook output the same result - you can chose the file format that fits you best. If you'd like to visualize data or run a specific analysis check out the `/src/executors/` directory, which contains a collection of Jupyter Notebooks. Please find listed below some instructions and examples for the Notebooks in `src/executors/`, the `main` scripts and and some guidenines for preprocessing.
+
+#### Preprocessing flight data
+
+The flight data consumed by this program is read from `.igc files`, which are written by flight computers such as variometers or similar. Reading these files is currently not supported in this program, which is why external applications are used. It's recommended to use [IGC2KML](https://igc2kml.com/) for `.igc` to `.kml` conversion and [KML2CSV](https://products.aspose.app/gis/conversion/kml-to-csv) for `.kml` to `.csv` conversion as well as Microsoft Excel to clean up the raw table data.
+
+After processing the tracklog using the linked tools you're dealing with `.csv` data of the following format: 
+
+<details>
+<summary>Show Data</summary>
+
+```txt
+name,description,altitudeMode,visibility,tessellate,WKT
+<<< SOME RANDOM HTML>>>
+"12:25:30 0m 5kmh 0m/s 0km",,"clampToGround",,"true","LINESTRING Z (7.530683 46.213083 2612, 7.5307 46.213083 2612)"
+"12:25:31 1m 0kmh +1m/s 0km",,"clampToGround",,"true","LINESTRING Z (7.5307 46.213083 2612, 7.5307 46.213083 2612)"
+...
+```
+</details>
+<br>
+
+This data is to be processed using a tool like Microsoft Excel to remove the HTML content that's marked as `<<< SOME RANDOM HTML>>>` as well as clean up the data. After your final manual preprocessing steps the `.csv` data is supposed to look like this:
+
+<details>
+<summary>Show Data</summary>
+
+```txt
+name,description,altitudeMode,visibility,tessellate,WKT
+12:25:30 0m 5kmh 0m/s 0km,,clampToGround,,TRUE,"LINESTRING Z (7.530683 46.213083 2612, 7.5307 46.213083 2612)"
+12:25:31 1m 0kmh +1m/s 0km,,clampToGround,,TRUE,"LINESTRING Z (7.5307 46.213083 2612, 7.5307 46.213083 2612)"
+```
+
+</details>
+<br>
+
+Please check your input data before running any of the algorithms in this application to prevent unexpected errors. The preprocessed input is consumed by the `main` scripts in `.csv` or `.xlsx` format. It can also be manually fed into the `FileConvertor` helper class, on which further records can be found [here]().
+
+#### Running main.py / main.ipynb
+
+In order to run the main script of the `flight-analyzer` application make sure to prepare all necessary files and properly preprocess them. Please find instructions on preprocessing [here](#preprocessing-flight-data).
+
+_Further documentation will follow as soon as the `main` script have been developped and properly tested._
+
+#### Run individual analysis
+
+To run a particular algorithm of the `flight-analyzer` application, e.g. to visualize data, please refer to the executor scripts that can be found in `src/executors/`. The algorithms and some examples can be found in the [Algorithms](#algorithms) section.
+
+This application provides the following Notebooks:
+
+- `execute_file_convertor.ipynb`: This Notebook allows you to normalize the manually preprocessed data. 
+- `execute_angle_analyzer.ipynb`: This Notebook allows you to process a normalized dataset. The AngleAnalyzer algorithm is applied. 
+- `execute_data_analyzer.ipynb`: This Notebook allows you to extract points on a straight line from a processed dataset.
+- `execute_optimize_thresholds.ipynb`: This Notebook allows you to automatically determine the best thresholds and constants to process your dataset.
+
+Further documentation on the inputs and outputs of these executors can be found in the Notebooks.
+
+### Algorithms
+
+--- 
+
+## Development
 
 ### Conventions
 
