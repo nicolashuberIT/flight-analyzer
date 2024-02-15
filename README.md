@@ -144,9 +144,11 @@ Further documentation on the inputs and outputs of these executors can be found 
 [input](/docs/datasets/tracklogs/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv)
 index = 1400 (expected straight line, returned straight line)
 
-![Punktvariation mit relativer Höhe](/docs/images/20240215_flight-analyzer_punktvariation-mit-relativer-hoehe_nicolas-huber.png)
-
 <table>
+  <tr>
+    <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-relativer-hoehe_nicolas-huber.png" alt="Punktvariation mit relativer Höhe"></td>
+    <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-relativer-hoehe_nicolas-huber.png" alt="Punktvariation mit relativer Höhe"></td>
+  </tr>
   <tr>
     <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-linearer-regression-vergangenheit_nicolas-huber.png" alt="Lineare Regression (Vergangenheit)"></td>
     <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-linearer-regression-zukunft_nicolas-huber.png" alt="Lineare Regression (Zukunft)"></td>
