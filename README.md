@@ -14,8 +14,6 @@ The original paper (10/24/2022) can be downloaded here: [nicolas-huber.ch/docs](
 
 As soon as the refined version of the 2022 version has been published, the link will be listed here. Until then, please refer to the original paper.
 
-The documentation is available in `.pdf` format and can be downloaded [here](/docs/flight-analyzer.pdf).
-
 ---
 
 ## Contents
