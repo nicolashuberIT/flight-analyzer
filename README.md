@@ -244,7 +244,7 @@ Data Analysis
 ```
 </details>
 
-You can manually execute the `AngleAnalyzer` using [this](/src/executor/execute_angle_analyzer.ipynb) here. The source code of this algorithm can be found [here](/src/algorithms/angle_analyzer.py).
+You can manually execute the `AngleAnalyzer` using [this](/src/executor/execute_angle_analyzer.ipynb) executor. The source code of this algorithm can be found [here](/src/algorithms/angle_analyzer.py).
 
 #### DataAnalyzer
 
