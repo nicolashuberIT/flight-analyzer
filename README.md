@@ -248,9 +248,10 @@ You can manually execute the `AngleAnalyzer` using [this](/src/executor/execute_
 
 #### DataAnalyzer
 
-_Description of DataAnalyzer helper class._
+The `DataAnalyzer` class conducts thorough analysis of flight trajectory data by systematically applying the `AngleAnalyzer` class to every single trackpoint. This process enables the determination of whether each point lies on a straight line or a curve. It reads flight data from a CSV file, processes it by extracting past and future coordinates for each point, and performs angle-based and linear regression analyses. The analysis results, including the classification of each point as belonging to a straight-line segment or a curved segment, are appended to the dataset. Finally, the processed data, enriched with analysis outcomes, is exported to a new CSV file. This systematic approach empowers the identification of different trajectory characteristics throughout the flight path.
 
-[input](/docs/datasets/tracklogs/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv)
+The input for the following examples was [this](/docs/datasets/tracklogs/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv) file.
+The examples used the conditions in the box below:
 
 <details>
 <summary>Conditions</summary>
@@ -267,7 +268,7 @@ LINEAR_REGRESSION_THRESHOLD: float = 0.9  # r-value > 0.9 is considered as strai
 ```
 </details>
 
-<br>
+This results in the following plot and results:
 
 <table>
   <tr>
@@ -281,6 +282,8 @@ LINEAR_REGRESSION_THRESHOLD: float = 0.9  # r-value > 0.9 is considered as strai
 
 <details>
 <summary>Output</summary>
+
+As you can see, the algorithm accurately flagged points on a straight line / points on a curve. For further analyses, such as the simulation of the stationary glide of a paraglider, only points on a straight line can be used, which is why this analysis needs to be as accurate as possible. To optimize the results of this analysis please refer to the [Optimizer](#thresholdoptimizer) section. The analysis in this example leads to this result:
 
 ```txt
 You lost 115 rows of data due to processing. The data loss is supposed to be 115 rows, which can be calculated by adding the ANGLE_FUTURE_THRESHOLD and the ANGLE_PAST_TRESHOLD.
@@ -298,6 +301,8 @@ In total, you lost 71.08% of the data after applying the AngleAnalyzer algorithm
 ```
 
 </details>
+
+You can manually execute the `DataAnalyzer` using [this](/src/executor/execute_data_analyzer.ipynb) executor. The source code of this algorithm can be found [here](/src/helpers/data_analyzer.py).
 
 #### ThresholdOptimizer
 
