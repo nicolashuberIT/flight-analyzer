@@ -280,10 +280,10 @@ This results in the following plot and results:
   </tr>
 </table>
 
+As you can see, the algorithm accurately flagged points on a straight line / points on a curve. For further analyses, such as the simulation of the stationary glide of a paraglider, only points on a straight line can be used, which is why this analysis needs to be as accurate as possible. To optimize the results of this analysis please refer to the [Optimizer](#thresholdoptimizer) section. The analysis in this example leads to this result:
+
 <details>
 <summary>Output</summary>
-
-As you can see, the algorithm accurately flagged points on a straight line / points on a curve. For further analyses, such as the simulation of the stationary glide of a paraglider, only points on a straight line can be used, which is why this analysis needs to be as accurate as possible. To optimize the results of this analysis please refer to the [Optimizer](#thresholdoptimizer) section. The analysis in this example leads to this result:
 
 ```txt
 You lost 115 rows of data due to processing. The data loss is supposed to be 115 rows, which can be calculated by adding the ANGLE_FUTURE_THRESHOLD and the ANGLE_PAST_TRESHOLD.
