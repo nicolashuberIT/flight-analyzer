@@ -33,6 +33,7 @@ The documentation is available in `.pdf` format and can be downloaded [here](/do
       - [Run individual analysis](#run-individual-analysis)
     - [Algorithms and helpers](#algorithms-and-helpers)
       - [AngleAnalyzer](#angleanalyzer)
+      - [DataAnalyzer](#dataanalyzer)
   - [Development](#development)
     - [Conventions](#conventions)
     - [Contributing](#contributing)
@@ -142,6 +143,7 @@ Further documentation on the inputs and outputs of these executors can be found 
 #### AngleAnalyzer
 
 [input](/docs/datasets/tracklogs/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv)
+
 index = 1400 (expected straight line, returned straight line)
 
 <table>
@@ -155,15 +157,15 @@ index = 1400 (expected straight line, returned straight line)
   </tr>
 </table>
 
-<table style="border-collapse: collapse;">
+#### DataAnalyzer
+
+[input](/docs/datasets/tracklogs/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv)
+
+<table>
   <tr>
-    <td style="width: 50%; border: none;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-linearer-regression-vergangenheit_nicolas-huber.png" alt="Lineare Regression (Vergangenheit)"></td>
-    <td style="width: 50%; border: none;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-linearer-regression-zukunft_nicolas-huber.png" alt="Lineare Regression (Zukunft)"></td>
+    <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-relativer-hoehe-ohne-index_nicolas-huber.png" alt="Punktvariation mit relativer Höhe ohne Index"></td>
+    <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-position-und-kategorisierung_nicolas-huber.png" alt="Kategorisierung der Punkte"></td>
   </tr>
-</table>
-
-
-
 
 --- 
 
