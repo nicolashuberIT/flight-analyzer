@@ -337,6 +337,7 @@ The best performing thresholds are 25 (angle_past_threshold) and 25 (angle_futur
 
 Another good performing set of thresholds can be found by comparing the data loss relative to the scores, which are directly related to the thresholds. In this case, the best performing thresholds are 25 (angle_past_threshold) and 15 (angle_future_threshold) with a score of 0.44562524837811207 and a data loss of 59.84324573536192. The bigger the difference between the score and the data loss, the better the thresholds are. This is the case because the precison of the thresholds is overall better if less data is lost, even if there is a small decrease in the score.
 ```
+</details>
 
 --- 
 
