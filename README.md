@@ -142,7 +142,23 @@ Further documentation on the inputs and outputs of these executors can be found 
 
 #### FileConvertor
 
-_Description of FileConverter helper class._
+The `FileConvertor` is a helper class that converts the manually preprocessed data, which is documented [here](#preprocessing-flight-data), to data that can be consumed by the algorithms of this application. The input data is in form of `.csv` or `.xlsx` and in the following structure:
+
+```txt
+name,description,altitudeMode,visibility,tessellate,WKT
+12:25:30 0m 5kmh 0m/s 0km,,clampToGround,,TRUE,"LINESTRING Z (7.530683 46.213083 2612, 7.5307 46.213083 2612)"
+...
+```
+
+After executing the `FileConvertor` for a manually preprocessed file the data looks like this:
+
+```txt
+timestamp [UTC],relative altitude [m],horizontal velocity [m/s],vertical velocity [m/s],distance to takeoff [km],longitude,latitude
+12:25:30,0.0,1.39,0.0,0.0,7.530683,46.213083
+...
+```
+
+You can manually execute the `FileConvertor` using [this](/src/executor/execute_file_convertor.ipynb) executor notebook. The source code of this class can be seen [here](/src/helpers/file_convertor.py).
 
 #### AngleAnalyzer
 
