@@ -101,7 +101,6 @@ name,description,altitudeMode,visibility,tessellate,WKT
 ...
 ```
 </details>
-<br>
 
 This data is to be processed using a tool like Microsoft Excel to remove the HTML content that's marked as `<<< SOME RANDOM HTML>>>` as well as clean up the data. After your final manual preprocessing steps the `.csv` data is supposed to look like this:
 
@@ -115,7 +114,6 @@ name,description,altitudeMode,visibility,tessellate,WKT
 ```
 
 </details>
-<br>
 
 Please check your input data before running any of the algorithms in this application to prevent unexpected errors. The preprocessed input is consumed by the `main` scripts in `.csv` or `.xlsx` format. It can also be manually fed into the `FileConvertor` helper class, on which further records can be found [here](#algorithms-and-helpers).
 
