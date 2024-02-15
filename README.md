@@ -213,7 +213,7 @@ This results in the following graphs, which represent the state at a point of in
   </tr>
 </table>
 
-As you can easily tell by eye the analysed point lies on a straight line. This can be seen in figure 1. Figure 2 is a visualization of the angle variaton of the analysed points, the blue line representing the analysed points. The data behind this graph is calculated by comparing the angle between the datapoint and other trackpoints of the series within the thresholds. Additionally, as shown in figures 3 and 4, the program also runs a linear regression analysis that is validated against the angle analysis for both the past and future values. These analyses result in a categorization of that specific datapoint, which in this case is:
+As you can easily tell by eye the analysed point lies on a straight line. This can be seen in figure 1. Figure 2 is a visualization of the angle variaton of the analysed points, the blue line representing the analysed point. The data behind this plot is calculated by comparing the angle between the datapoint and other trackpoints of the series within the thresholds. More precisely, the slope of the straight line between the analyzed point and the current point is compared with the slope of the first line between the analyzed point and the subsequent point. Additionally, as shown in figures 3 and 4, the program also runs a linear regression analysis that is validated against the angle analysis for both the past and future values. These analyses result in a categorization of that specific datapoint, which in this case is:
 
 <details>
 <summary>Output</summary>
