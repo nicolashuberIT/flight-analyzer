@@ -22,7 +22,7 @@ def converter() -> FileConverter:
     - A FileConverter object
     """
     return FileConverter(
-        excel_file="tests/assets/file_converter/test_file_convertor.xlsx",
+        input_file="tests/assets/file_converter/test_file_convertor.xlsx",
         output_file="tests/assets/file_converter/test_file_convertor_output.csv",
     )
 
@@ -38,7 +38,7 @@ def test_init(converter: FileConverter) -> None:
     - None
     """
     assert (
-        converter.excel_file == "tests/assets/FileConverter/test.xlsx",
+        converter.input_file == "tests/assets/FileConverter/test.xlsx",
         "The excel_file attribute is not correct.",
     )
     assert (
@@ -59,7 +59,7 @@ def test_read_excel_file(converter: FileConverter) -> None:
     - None
     """
     assert isinstance(
-        converter.read_excel_file(), pd.DataFrame
+        converter.read_input_file(), pd.DataFrame
     ), "The returned object is not a Pandas DataFrame."
 
 
@@ -73,7 +73,7 @@ def test_filter_dataframe(converter: FileConverter) -> None:
     Returns:
     - None
     """
-    df = converter.read_excel_file()
+    df = converter.read_input_file()
     df = converter.filter_dataframe(df=df)
     assert df[
         df["altitudeMode"] == "clampToGround"
@@ -91,7 +91,7 @@ def test_split_and_reorder_columns(converter: FileConverter) -> None:
     Returns:
     - None
     """
-    df = converter.read_excel_file()
+    df = converter.read_input_file()
     df = converter.filter_dataframe(df=df)
     df = converter.split_and_reorder_columns(df=df)
     assert df.columns.tolist() == [
@@ -115,7 +115,7 @@ def test_remove_static_speeds(converter: FileConverter) -> None:
     Returns:
     - None
     """
-    df = converter.read_excel_file()
+    df = converter.read_input_file()
     df = converter.filter_dataframe(df=df)
     df = converter.split_and_reorder_columns(df=df)
     df = converter.remove_static_speeds(df=df)
@@ -135,7 +135,7 @@ def test_extract_coordinates(converter: FileConverter) -> None:
     Returns:
     - None
     """
-    df = converter.read_excel_file()
+    df = converter.read_input_file()
     df = converter.filter_dataframe(df=df)
     df = converter.split_and_reorder_columns(df=df)
     df = converter.remove_static_speeds(df=df)
@@ -154,7 +154,7 @@ def test_extract_coordinates_a(converter: FileConverter) -> None:
     Returns:
     - None
     """
-    df = converter.read_excel_file()
+    df = converter.read_input_file()
     df = converter.filter_dataframe(df=df)
     df = converter.split_and_reorder_columns(df=df)
     df = converter.remove_static_speeds(df=df)
@@ -179,7 +179,7 @@ def test_clean_up_coordinates(converter: FileConverter) -> None:
     Returns:
     - None
     """
-    df = converter.read_excel_file()
+    df = converter.read_input_file()
     df = converter.filter_dataframe(df=df)
     df = converter.split_and_reorder_columns(df=df)
     df = converter.remove_static_speeds(df=df)
@@ -205,7 +205,7 @@ def test_remove_units(converter: FileConverter) -> None:
     Returns:
     - None
     """
-    df = converter.read_excel_file()
+    df = converter.read_input_file()
     df = converter.filter_dataframe(df=df)
     df = converter.split_and_reorder_columns(df=df)
     df = converter.remove_static_speeds(df=df)
@@ -225,7 +225,7 @@ def test_remove_units(converter: FileConverter) -> None:
 
 # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
 def test_convert_horizontal_speed(converter: FileConverter) -> None:
-    df = converter.read_excel_file()
+    df = converter.read_input_file()
     df = converter.filter_dataframe(df=df)
     df = converter.split_and_reorder_columns(df=df)
     df = converter.remove_static_speeds(df=df)
@@ -251,7 +251,7 @@ def test_export_to_csv(converter: FileConverter) -> None:
     Returns:
     - None
     """
-    df = converter.read_excel_file()
+    df = converter.read_input_file()
     df = converter.filter_dataframe(df=df)
     df = converter.split_and_reorder_columns(df=df)
     df = converter.remove_static_speeds(df=df)

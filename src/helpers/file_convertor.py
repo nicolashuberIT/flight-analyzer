@@ -16,23 +16,23 @@ class FileConverter:
     To run this script use the execute_file_convertor.ipynb notebook in executor folder.
     """
 
-    def __init__(self, excel_file: str, output_file: str) -> None:
+    def __init__(self, input_file: str, output_file: str) -> None:
         """
         Initializes the FileConverter class.
 
         Parameters:
-        - excel_file: the path to the CSV file to be converted
+        - input_file: the path to the input file to be converted (xlsx or csv)
         - output_file: the path to the CSV file to be created
 
         Returns:
         - None
         """
-        self.excel_file: str = excel_file
+        self.input_file: str = input_file
         self.output_file: str = output_file
 
-    def read_excel_file(self) -> pd.DataFrame:
+    def read_input_file(self) -> pd.DataFrame:
         """
-        Reads the Excel file and returns a Pandas DataFrame.
+        Reads the input file and returns a Pandas DataFrame.
 
         Parameters:
         - None
@@ -40,7 +40,11 @@ class FileConverter:
         Returns:
         - A Pandas DataFrame
         """
-        return pd.read_excel(self.excel_file)
+
+        if self.input_file.endswith(".csv"):
+            return pd.read_csv(self.input_file)
+        elif self.input_file.endswith(".xlsx"):
+            return pd.read_excel(self.input_file)
 
     def filter_dataframe(self, df: pd.DataFrame) -> pd.DataFrame:
         """
@@ -219,7 +223,7 @@ class FileConverter:
         Returns:
         - None
         """
-        df: pd.DataFrame = self.read_excel_file()
+        df: pd.DataFrame = self.read_input_file()
 
         # Process steps
         df = self.filter_dataframe(df)
