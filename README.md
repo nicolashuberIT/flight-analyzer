@@ -343,10 +343,10 @@ This results in the following plots and results:
   </tr>
 </table>
 
+Figure 6 plots both the optimization score and the data loss for this threshold combination on a normalized scale. Figure 7 shows how the 3 relevant linear regression values are weighted for the analysis. This specific run led to the following results:
+
 <details>
 <summary>Output</summary>
-
-Figure 6 plots both the optimization score and the data loss for this threshold combination on a normalized scale. Figure 7 shows how the 3 relevant linear regression values are weighted for the analysis. This specific run led to the following results:
 
 ```txt
 Individual thresholds with the best score:
