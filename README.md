@@ -306,9 +306,10 @@ You can manually execute the `DataAnalyzer` using [this](/src/executor/execute_d
 
 #### ThresholdOptimizer
 
-_Description of ThresholdOptimizer helper class._
+The `ThresholdOptimizer` class optimizes thresholds for the `AngleAnalyzer` algorithm by systematically testing different combinations and scoring them based on specified criteria. It iteratively evaluates threshold combinations using a `DataAnalyzer` object, calculating scores derived from linear regression values and weighted metrics. The class then selects the best-scoring threshold combinations and exports the tested combinations to a CSV file. By providing insights into the trade-offs between different threshold settings, this class enables the fine-tuning of the `AngleAnalyzer` to achieve optimal performance.
 
-[input](/docs/datasets/tracklogs/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv)
+The input for the following examples was [this](/docs/datasets/tracklogs/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv) file.
+The examples used the conditions in the box below:
 
 <details>
 <summary>Conditions</summary>
@@ -325,7 +326,7 @@ OPTIMIZATION_RUNTIME_ESTIMATION: int = 120  # estimated runtime per loop in seco
 
 </details>
 
-<br>
+This results in the following plots and results:
 
 <table>
   <tr>
@@ -344,6 +345,8 @@ OPTIMIZATION_RUNTIME_ESTIMATION: int = 120  # estimated runtime per loop in seco
 
 <details>
 <summary>Output</summary>
+
+Figure 6 plots both the optimization score and the data loss for this threshold combination on a normalized scale. Figure 7 shows how the 3 relevant linear regression values are weighted for the analysis. This specific run led to the following results:
 
 ```txt
 Individual thresholds with the best score:
@@ -364,6 +367,10 @@ The best performing thresholds are 25 (angle_past_threshold) and 25 (angle_futur
 Another good performing set of thresholds can be found by comparing the data loss relative to the scores, which are directly related to the thresholds. In this case, the best performing thresholds are 25 (angle_past_threshold) and 15 (angle_future_threshold) with a score of 0.44562524837811207 and a data loss of 59.84324573536192. The bigger the difference between the score and the data loss, the better the thresholds are. This is the case because the precison of the thresholds is overall better if less data is lost, even if there is a small decrease in the score.
 ```
 </details>
+
+The `ThresholdOptimizer` needs to be executed before running any other algorithms in this application to achieve the best possible performance. Just run the optimization for the limit and step size as well as linear regression weights you like and enter the resulting angle thresholds to the `constants.py` file.
+
+The `ThresholdOptimizer` can be executed using [this](/src/executor/execute_optimize_thresholds.ipynb) notebook. The source code of this class can be seen [here](/src/helpers/optimize_thresholds.py). 
 
 --- 
 
