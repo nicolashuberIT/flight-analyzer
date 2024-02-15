@@ -34,6 +34,8 @@ The documentation is available in `.pdf` format and can be downloaded [here](/do
     - [Algorithms and helpers](#algorithms-and-helpers)
       - [AngleAnalyzer](#angleanalyzer)
       - [DataAnalyzer](#dataanalyzer)
+      - [ThresholdOptimizer:](#thresholdoptimizer)
+      - [FileConvertor](#fileconvertor)
   - [Development](#development)
     - [Conventions](#conventions)
     - [Contributing](#contributing)
@@ -142,6 +144,8 @@ Further documentation on the inputs and outputs of these executors can be found 
 
 #### AngleAnalyzer
 
+_Description of AngleAnalyzer algorithm class._
+
 [input](/docs/datasets/tracklogs/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv)
 
 index = 1400 (expected straight line, returned straight line)
@@ -204,9 +208,10 @@ Data Analysis
 ```
 
 </details>
-<br>
 
 #### DataAnalyzer
+
+_Description of DataAnalyzer helper class._
 
 [input](/docs/datasets/tracklogs/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv)
 
@@ -241,6 +246,23 @@ In total, you lost 71.08% of the data after applying the AngleAnalyzer algorithm
 ```
 
 </details>
+
+#### ThresholdOptimizer:
+
+_Description of ThresholdOptimizer helper class._
+
+[input](/docs/datasets/tracklogs/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv)
+
+R_VALUE_WEIGHT: float = 0.6  # weight of the r-value in the optimization
+P_VALUE_WEIGHT: float = 0.3  # weight of the p-value in the optimization
+STD_ERROR_WEIGHT: float = 0.1  # weight of the standard error in the optimization
+OPTIMIZATION_LIMIT: int = 30  # upper limit of optimization loops
+OPTIMIZATION_STEPS: int = 5  # step size per optimization loop
+OPTIMIZATION_RUNTIME_ESTIMATION: int = 120  # estimated runtime per loop in seconds
+
+#### FileConvertor
+
+_Description of FileConverter helper class._
 
 --- 
 
