@@ -32,10 +32,10 @@ The documentation is available in `.pdf` format and can be downloaded [here](/do
       - [Running main.py / main.ipynb](#running-mainpy--mainipynb)
       - [Run individual analysis](#run-individual-analysis)
     - [Algorithms and helpers](#algorithms-and-helpers)
+      - [FileConvertor](#fileconvertor)
       - [AngleAnalyzer](#angleanalyzer)
       - [DataAnalyzer](#dataanalyzer)
       - [ThresholdOptimizer:](#thresholdoptimizer)
-      - [FileConvertor](#fileconvertor)
   - [Development](#development)
     - [Conventions](#conventions)
     - [Contributing](#contributing)
@@ -142,15 +142,31 @@ Further documentation on the inputs and outputs of these executors can be found 
 
 ### Algorithms and helpers
 
+#### FileConvertor
+
+_Description of FileConverter helper class._
+
 #### AngleAnalyzer
 
 _Description of AngleAnalyzer algorithm class._
 
 [input](/docs/datasets/tracklogs/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv)
 
-index = 1400 (expected straight line, returned straight line)
+<details>
+<summary>Conditions</summary>
 
-Thresholds: past = 80, future = 35
+```Python
+INDEX: int = 1400 # point to be analyzed
+
+ANGLE_PAST_THRESHOLD: int = (
+    80  # number of points in the past that are considered for the angle evaluation
+)
+ANGLE_FUTURE_THRESHOLD: int = (
+    35  # number of points in the future that are considered for the angle evaluation
+)
+ANGLE_THRESHOLD: int = 20  # angle < 20° is considered as straight line
+LINEAR_REGRESSION_THRESHOLD: float = 0.9  # r-value > 0.9 is considered as straight line
+```
 
 <table>
   <tr>
@@ -215,7 +231,23 @@ _Description of DataAnalyzer helper class._
 
 [input](/docs/datasets/tracklogs/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv)
 
-Thresholds: past = 80, future = 35
+<details>
+<summary>Conditions</summary>
+
+```Python
+ANGLE_PAST_THRESHOLD: int = (
+    80  # number of points in the past that are considered for the angle evaluation
+)
+ANGLE_FUTURE_THRESHOLD: int = (
+    35  # number of points in the future that are considered for the angle evaluation
+)
+ANGLE_THRESHOLD: int = 20  # angle < 20° is considered as straight line
+LINEAR_REGRESSION_THRESHOLD: float = 0.9  # r-value > 0.9 is considered as straight line
+```
+
+</details>
+
+<br>
 
 <table>
   <tr>
@@ -253,16 +285,58 @@ _Description of ThresholdOptimizer helper class._
 
 [input](/docs/datasets/tracklogs/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv)
 
+<details>
+<summary>Conditions</summary>
+
+```Python
 R_VALUE_WEIGHT: float = 0.6  # weight of the r-value in the optimization
 P_VALUE_WEIGHT: float = 0.3  # weight of the p-value in the optimization
 STD_ERROR_WEIGHT: float = 0.1  # weight of the standard error in the optimization
 OPTIMIZATION_LIMIT: int = 30  # upper limit of optimization loops
 OPTIMIZATION_STEPS: int = 5  # step size per optimization loop
 OPTIMIZATION_RUNTIME_ESTIMATION: int = 120  # estimated runtime per loop in seconds
+```
 
-#### FileConvertor
+</details>
 
-_Description of FileConverter helper class._
+<br>
+
+<table>
+  <tr>
+    <td style="width: 50%; text-align: center;">
+      <img src="/docs/images/20240215_flight-analyzer_optimierung-der-thresholds_nicolas-huber.png" alt="Score und Datenverlust">
+      <br>
+      <em>Fig. 6: Optimization score and data loss</em>
+    </td>
+    <td style="width: 50%; text-align: center;">
+      <img src="/docs/images/20240215_flight-analyzer_score-und-datenverlust_nicolas-huber.png" alt="Optimierung der Thresholds">
+      <br>
+      <em>Fig. 7: Threshold optimization</em>
+    </td>
+  </tr>
+</table>
+
+<details>
+<summary>Output</summary>
+
+```txt
+Individual thresholds with the best score:
+--> past_threshold_optimized: 25
+--> future_threshold_optimized: 25
+
+Below is a tabular overview of the 5 best scores and their thresholds. This information is more meaningful here, as in the analysis later for the evaluation of a point, both the future and the past are taken into account, and thus the score considers the interaction of the two thresholds.
+
+<<< HEADER >>>
+0	25	25	0.772521	9.392513e-12	0.012124	0.462300	62.820217
+1	25	20	0.753950	2.555986e-10	0.015246	0.450846	61.180948
+2	25	15	0.745859	1.490066e-08	0.018904	0.445625	59.843246
+3	20	25	0.740292	3.472833e-10	0.014465	0.442729	60.581248
+4	25	10	0.724441	2.517912e-06	0.021627	0.432501	58.299735
+
+The best performing thresholds are 25 (angle_past_threshold) and 25 (angle_future_threshold) with a score of 0.4623003930101672.
+
+Another good performing set of thresholds can be found by comparing the data loss relative to the scores, which are directly related to the thresholds. In this case, the best performing thresholds are 25 (angle_past_threshold) and 15 (angle_future_threshold) with a score of 0.44562524837811207 and a data loss of 59.84324573536192. The bigger the difference between the score and the data loss, the better the thresholds are. This is the case because the precison of the thresholds is overall better if less data is lost, even if there is a small decrease in the score.
+```
 
 --- 
 
