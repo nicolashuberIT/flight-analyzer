@@ -125,14 +125,14 @@ _Further documentation will follow as soon as the `main` script have been develo
 
 #### Run individual analysis
 
-To run a particular algorithm of the `flight-analyzer` application, e.g. to visualize data, please refer to the executor scripts that can be found in `src/executors/`. The algorithms and some examples can be found in the [Algorithms](#algorithms-and-helpers) section.
+To run a particular algorithm of the `flight-analyzer` application, e.g. to visualize data, please refer to the executor scripts that can be found in `src/executors/`. The algorithms and some examples can be found in the [Algorithms and helpers](#algorithms-and-helpers) section.
 
-This application provides the following Notebooks:
+This application provides the following executor Notebooks:
 
 - `execute_file_convertor.ipynb`: This Notebook allows you to normalize the manually preprocessed data. 
 - `execute_angle_analyzer.ipynb`: This Notebook allows you to process a normalized dataset. The AngleAnalyzer algorithm is applied. 
-- `execute_data_analyzer.ipynb`: This Notebook allows you to extract points on a straight line from a processed dataset.
-- `execute_optimize_thresholds.ipynb`: This Notebook allows you to automatically determine the best thresholds and constants to process your dataset.
+- `execute_data_analyzer.ipynb`: This Notebook allows you to extract points on a straight line from a processed dataset based on the AngleAnalyzer algorithm.
+- `execute_optimize_thresholds.ipynb`: This Notebook allows you to automatically determine the best thresholds and constants to process your dataset (run before data analysis).
 
 Further documentation on the inputs and outputs of these executors can be found in the Notebooks.
 
