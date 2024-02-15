@@ -142,7 +142,7 @@ Further documentation on the inputs and outputs of these executors can be found 
 
 #### FileConvertor
 
-The `FileConvertor` is a helper class that converts the manually preprocessed data, which is documented [here](#preprocessing-flight-data), to data that can be consumed by the algorithms of this application. The input data is in form of `.csv` or `.xlsx` and in the following structure:
+The `FileConvertor` is a helper class that converts the manually preprocessed data, which is documented [here](#preprocessing-flight-data), to data that can be consumed by the algorithms of this application. Additionally, this class filters the raw data: It removes entries where the `altitudeMode` property is set to `clampToGround` and it removes entries of horizontal speed 0. The input data is in form of `.csv` or `.xlsx` and in the following structure:
 
 ```txt
 name,description,altitudeMode,visibility,tessellate,WKT
