@@ -25,7 +25,7 @@ def analyzer() -> dataanalyzer.DataAnalyzer:
     Returns:
     - DataAnalyzer: The DataAnalyzer object.
     """
-    return dataanalyzer.DataAnalyzer(CSV_FILE_IN)
+    return dataanalyzer.DataAnalyzer(csv_file_in=CSV_FILE_IN)
 
 
 def test_init(analyzer: dataanalyzer.DataAnalyzer) -> None:
@@ -112,7 +112,9 @@ def test_process_data(analyzer: dataanalyzer.DataAnalyzer) -> None:
     """
     data: pd.DataFrame = analyzer.read_csv_data()
     angle_analyzer: angle_analyzer.AngleAnalyzer = analyzer.construct_angle_analyzer()  # type: ignore
-    data_processed: pd.DataFrame = analyzer.process_data(data, angle_analyzer)
+    data_processed: pd.DataFrame = analyzer.process_data(
+        data=data, AngleAnalyzer=angle_analyzer
+    )
 
     assert data_processed.columns.tolist() == [
         "timestamp [UTC]",
@@ -184,7 +186,9 @@ def test_export_to_csv(analyzer: dataanalyzer.DataAnalyzer) -> None:
     """
     data: pd.DataFrame = analyzer.read_csv_data()
     angle_analyzer: angle_analyzer.AngleAnalyzer = analyzer.construct_angle_analyzer()  # type: ignore
-    data_processed: pd.DataFrame = analyzer.process_data(data, angle_analyzer)
-    analyzer.export_to_csv(data_processed)
+    data_processed: pd.DataFrame = analyzer.process_data(
+        data=data, AngleAnalyzer=angle_analyzer
+    )
+    analyzer.export_to_csv(data_processed=data_processed)
     assert os.path.exists(analyzer.csv_file_out), "The csv file was not created."
     os.remove(analyzer.csv_file_out)

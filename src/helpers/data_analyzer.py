@@ -110,21 +110,23 @@ class DataAnalyzer:
 
         for i in range(angle_past_threshold, len(data) - angle_future_threshold):
             latest_coordinates = AngleAnalyzer.extract_latest_coordinates(
-                data, i, angle_past_threshold
+                df=data, i=i, angle_past_threshold=angle_past_threshold
             )
             future_coordinates = AngleAnalyzer.extract_future_coordinates(
-                data, i, angle_future_threshold
+                df=data, i=i, angle_future_threshold=angle_future_threshold
             )
 
             angles_past: pd.DataFrame = AngleAnalyzer.cut_zero_angles(
-                AngleAnalyzer.calculate_angles(latest_coordinates)
+                df=AngleAnalyzer.calculate_angles(df=latest_coordinates)
             )
             angles_future: pd.DataFrame = AngleAnalyzer.cut_zero_angles(
-                AngleAnalyzer.calculate_angles(future_coordinates)
+                df=AngleAnalyzer.calculate_angles(df=future_coordinates)
             )
 
-            status_angle_past: bool = AngleAnalyzer.analyze_angles(angles_past)
-            status_angle_future: bool = AngleAnalyzer.analyze_angles(angles_future)
+            status_angle_past: bool = AngleAnalyzer.analyze_angles(angles=angles_past)
+            status_angle_future: bool = AngleAnalyzer.analyze_angles(
+                angles=angles_future
+            )
             (
                 status_regression_past,
                 slope_past,
@@ -132,7 +134,7 @@ class DataAnalyzer:
                 r_value_past,
                 p_value_past,
                 std_err_past,
-            ) = AngleAnalyzer.analyze_linear_regression(latest_coordinates)
+            ) = AngleAnalyzer.analyze_linear_regression(df=latest_coordinates)
             (
                 status_regression_future,
                 slope_future,
@@ -140,13 +142,13 @@ class DataAnalyzer:
                 r_value_future,
                 p_value_future,
                 std_err_future,
-            ) = AngleAnalyzer.analyze_linear_regression(future_coordinates)
+            ) = AngleAnalyzer.analyze_linear_regression(df=future_coordinates)
 
             status: Tuple[bool, str, int] = AngleAnalyzer.analyze_data(
-                status_angle_past,
-                status_regression_past,
-                status_angle_future,
-                status_regression_future,
+                status_angle_past=status_angle_past,
+                status_regression_past=status_regression_past,
+                status_angle_future=status_angle_future,
+                status_regression_future=status_regression_future,
             )
 
             data_processed.loc[i, "timestamp [UTC]"] = data.iloc[i]["timestamp [UTC]"]
