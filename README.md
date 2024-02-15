@@ -146,6 +146,8 @@ Further documentation on the inputs and outputs of these executors can be found 
 
 index = 1400 (expected straight line, returned straight line)
 
+Thresholds: past = 80, future = 35
+
 <table>
   <tr>
     <td style="width: 50%; text-align: center;">
@@ -207,6 +209,8 @@ Data Analysis
 #### DataAnalyzer
 
 [input](/docs/datasets/tracklogs/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv)
+
+Thresholds: past = 80, future = 35
 
 <table>
   <tr>
