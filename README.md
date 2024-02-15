@@ -173,6 +173,36 @@ index = 1400 (expected straight line, returned straight line)
   </tr>
 </table>
 
+<details>
+<summary>Output</summary>
+
+```txt
+Angle Analysis
+--> Past: True
+--> Future: True
+
+Past Linear Regression
+--> Status: True
+--> Slope: 0.24496415928278734
+--> Intercept: 44.41611343989336
+--> R-Value: 0.9970350725539303
+--> P-Value: 1.2004630598704919e-88
+--> Standard Error: 0.0021406452009797685
+
+Future Linear Regression
+--> Status: True
+--> Slope: 0.11306255384150318
+--> Intercept: 45.41304614404877
+--> R-Value: 0.9736381906284354
+--> P-Value: 9.2965712930775e-23
+--> Standard Error: 0.004610898882940768
+
+Data Analysis
+--> Status: (True, 'Straight Line', 0)
+```
+
+</details>
+<br>
 
 #### DataAnalyzer
 
@@ -193,6 +223,25 @@ index = 1400 (expected straight line, returned straight line)
   </tr>
 </table>
 
+<details>
+<summary>Output</summary>
+
+```txt
+You lost 115 rows of data due to processing. The data loss is supposed to be 115 rows, which can be calculated by adding the ANGLE_FUTURE_THRESHOLD and the ANGLE_PAST_TRESHOLD.
+
+The average accuracy of the AngleAnalyzer algorithm and the past / future tresholds of 80 / 35 for points on a straight line can be defined as follows:
+--> average r_value: 0.87
+--> average p_value: 0.0
+--> average std_err: 0.01
+
+A linear regression can be considered as a good fit if the r_value is close to 1, the p_value is close to 0 and the std_err is close to 0.
+
+The system found 2487 points on straight lines, whereas the amount of points on a curve is 6114. The expected amount of points on a curve is 6114, which can be calculated by subtracting the count of points on a straight line from the total point count.
+
+In total, you lost 71.08% of the data after applying the AngleAnalyzer algorithm as you can only use the points on a straight line for further processing.
+```
+
+</details>
 
 --- 
 
