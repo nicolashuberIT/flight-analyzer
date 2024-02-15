@@ -180,12 +180,19 @@ index = 1400 (expected straight line, returned straight line)
 
 <table>
   <tr>
-    <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-relativer-hoehe-ohne-index_nicolas-huber.png" alt="Punktvariation mit relativer Höhe ohne Index"></td>
-    <br><em>Fig. 5: Point variation with relative index (no index)</em></td>
-    <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-position-und-kategorisierung_nicolas-huber.png" alt="Kategorisierung der Punkte"></td>
-    <br><em>Fig. 6: Point position and categorization</em></td>
+    <td style="width: 50%; text-align: center;">
+      <img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-relativer-hoehe-ohne-index_nicolas-huber.png" alt="Punktvariation mit relativer Höhe ohne Index">
+      <br>
+      <em>Fig. 5: Point variation with relative index (no index)</em>
+    </td>
+    <td style="width: 50%; text-align: center;">
+      <img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-position-und-kategorisierung_nicolas-huber.png" alt="Kategorisierung der Punkte">
+      <br>
+      <em>Fig. 6: Point position and categorization</em>
+    </td>
   </tr>
 </table>
+
 
 --- 
 
