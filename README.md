@@ -147,7 +147,7 @@ index = 1400 (expected straight line, returned straight line)
 <table>
   <tr>
     <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-relativer-hoehe_nicolas-huber.png" alt="Punktvariation mit relativer Höhe"></td>
-    <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-relativer-hoehe_nicolas-huber.png" alt="Punktvariation mit relativer Höhe"></td>
+    <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_winkelvariation_nicolas-huber.png" alt="Winkelvariation"></td>
   </tr>
   <tr>
     <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-linearer-regression-vergangenheit_nicolas-huber.png" alt="Lineare Regression (Vergangenheit)"></td>
