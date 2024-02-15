@@ -166,6 +166,7 @@ index = 1400 (expected straight line, returned straight line)
     <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-relativer-hoehe-ohne-index_nicolas-huber.png" alt="Punktvariation mit relativer Höhe ohne Index"></td>
     <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-position-und-kategorisierung_nicolas-huber.png" alt="Kategorisierung der Punkte"></td>
   </tr>
+</table>
 
 --- 
 
