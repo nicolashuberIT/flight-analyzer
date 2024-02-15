@@ -162,9 +162,10 @@ You can manually execute the `FileConvertor` using [this](/src/executor/execute_
 
 #### AngleAnalyzer
 
-_Description of AngleAnalyzer algorithm class._
+The `AngleAnalyzer` class is designed to analyze flight trajectories at a specific point by examining the angles between successive points. It reads flight data from a CSV file and calculates angles between points, determining if they form a straight line or a curve. Using provided thresholds, it extracts past and future coordinates, filters out zero angles, and performs both angle-based and linear regression analyses. These analyses help classify flight segments as either straight lines or curves. 
 
-[input](/docs/datasets/tracklogs/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv)
+The input for the following examples was [this](/docs/datasets/tracklogs/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv) file.
+The examples used the conditions in the box below:
 
 <details>
 <summary>Conditions</summary>
@@ -182,6 +183,8 @@ ANGLE_THRESHOLD: int = 20  # angle < 20° is considered as straight line
 LINEAR_REGRESSION_THRESHOLD: float = 0.9  # r-value > 0.9 is considered as straight line
 ```
 </details>
+
+This results in the following graphs, which represent the state at a point of index 1400 (example), which can be seen in the `Conditions` box.
 
 <table>
   <tr>
@@ -209,6 +212,8 @@ LINEAR_REGRESSION_THRESHOLD: float = 0.9  # r-value > 0.9 is considered as strai
     </td>
   </tr>
 </table>
+
+As you can easily tell by eye the analysed point lies on a straight line. This can be seen in figure 1. Figure 2 is a visualization of the angle variaton of the analysed points, the blue line representing the analysed points. The data behind this graph is calculated by comparing the angle between the datapoint and other trackpoints of the series within the thresholds. Additionally, as shown in figures 3 and 4, the program also runs a linear regression analysis that is validated against the angle analysis for both the past and future values. These analyses result in a categorization of that specific datapoint, which in this case is:
 
 <details>
 <summary>Output</summary>
@@ -238,6 +243,8 @@ Data Analysis
 --> Status: (True, 'Straight Line', 0)
 ```
 </details>
+
+You can manually execute the `AngleAnalyzer` using [this](/src/executor/execute_angle_analyzer.ipynb) here. The source code of this algorithm can be found [here](/src/algorithms/angle_analyzer.py).
 
 #### DataAnalyzer
 
