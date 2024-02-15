@@ -167,6 +167,7 @@ ANGLE_FUTURE_THRESHOLD: int = (
 ANGLE_THRESHOLD: int = 20  # angle < 20° is considered as straight line
 LINEAR_REGRESSION_THRESHOLD: float = 0.9  # r-value > 0.9 is considered as straight line
 ```
+</details>
 
 <table>
   <tr>
