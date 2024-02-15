@@ -1,6 +1,6 @@
 # flight-analyzer
  
-[![nicolashuberIT - flight-analyzer](https://img.shields.io/static/v1?label=nicolashuberIT&message=flight-analyzer&color=blue&logo=github)](https://github.com/nicolashuberIT/flight-analyzer "Go to GitHub repo")
+[![nicolashuberIT - flight-analyzer](https://img.shields.io/static/v1?label=&message=flight-analyzer&color=blue&logo=github)](https://github.com/nicolashuberIT/flight-analyzer "Go to GitHub repo")
 ![Python](https://img.shields.io/badge/Python-3.9,3.10,3.11,3.12-blue)
 [![License](https://img.shields.io/badge/License-INDIVIDUAL-blue)](#license--intellectual-property)
 ![Testing](https://github.com/nicolashuberIT/flight-analyzer/actions/workflows/testing.yaml/badge.svg)
@@ -9,11 +9,13 @@
 
 ## Overview
 
-The `flight-analyzer` program is part of the scientific paper "Fliegen am Limit - Aktive Sicherheit im Gleitschirmsport", that was first published on 10/24/2022 and is being further developped by 03/31/2024 as of the "Schweizer Jugend forscht 2024" initiative. The application is designed to analyze flight data. The main functionality of the tool is the application of a selection of algorithms to process tracklogs. As part of the scientific paper, this tool is designed to deliver a clean dataset that can be used to conduct and optimize advanced analyses and simulate the stationary flight of a paraglidider. Please find a detailed description of the algorithms in the sections below, in the paper itself or in the code.
+The `flight-analyzer` program is part of the scientific paper "Fliegen am Limit - Aktive Sicherheit im Gleitschirmsport", that was first published on 10/24/2022 and is being further developped by 03/31/2024 as of the "Schweizer Jugend forscht 2024" initiative. The application is designed to analyze flight data. The main functionality of the tool is the application of a selection of algorithms to process this data. As part of the paper, this tool is designed to deliver a clean dataset that can be used to conduct and optimize advanced analyses and simulate the stationary glide of a paraglider. Please find a detailed description of the algorithms in the sections below, in the paper itself or in the code.
 
 The original paper (10/24/2022) can be downloaded here: [nicolas-huber.ch/docs](https://nicolas-huber.ch/docs/20221220_maturitaetsarbeit_fliegen-am-limit_public-version_nicolas-huber.pdf).
 
-As soon as the refined version of the 2022 version has been published, the link will be published here. Until then, please refer to the original paper.
+As soon as the refined version of the 2022 version has been published, the link will be listed here. Until then, please refer to the original paper.
+
+The documentation is available in `.pdf` format and can be downloaded [here](/docs/flight-analyzer.pdf).
 
 ---
 
