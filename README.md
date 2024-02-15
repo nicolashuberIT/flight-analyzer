@@ -9,7 +9,7 @@
 
 ## Overview
 
-The `flight-analyzer` program is part of the scientific paper "Fliegen am Limit - Aktive Sicherheit im Gleitschirmsport", that was first published on 10/24/2022 and is being further developped by 03/31/2024 as of the "Schweizer Jugend forscht 2024" initiative. The application is designed to analyze flight data that was recorded by devices such as variometers or other flight trackers commonly used by the paragliding community. The program provides tools to clean up the input data after it has manually been processed using the utilities [IGC2KML (.igc -> .kml)](https://igc2kml.com/) and [KML2CSV (.kml -> .csv)](https://products.aspose.app/gis/conversion/kml-to-csv) as well as Microsoft Excel. It also allows to combine, filter and sort multiple datasets. The main functionality of the tool is the application of a selection of algorithms to filter the flight data. As part of the scientific paper, this tool is designed to deliver a clean dataset that can be used to do optimized analyses and compare them to the first version of this paper, which was published in 2022. Please find a detailed description of the algorithms in the sections below, in the paper itself or in the code.
+The `flight-analyzer` program is part of the scientific paper "Fliegen am Limit - Aktive Sicherheit im Gleitschirmsport", that was first published on 10/24/2022 and is being further developped by 03/31/2024 as of the "Schweizer Jugend forscht 2024" initiative. The application is designed to analyze flight data that was recorded by devices such as variometers or other flight trackers commonly used by the paragliding community. The program provides tools to clean up the input data after it has manually been processed using the utilities [IGC2KML (.igc -> .kml)](https://igc2kml.com/) and [KML2CSV (.kml -> .csv)](https://products.aspose.app/gis/conversion/kml-to-csv) as well as Microsoft Excel (currently it's not possible to directly parse .igc files). It also allows to combine, filter and sort multiple datasets. The main functionality of the tool is the application of a selection of algorithms to filter the flight data. As part of the scientific paper, this tool is designed to deliver a clean dataset that can be used to do optimized analyses and compare them to the first version of this paper, which was published in 2022. Please find a detailed description of the algorithms in the sections below, in the paper itself or in the code.
 
 The original paper (10/24/2022) can be downloaded here: [nicolas-huber.ch/docs](https://nicolas-huber.ch/docs/20221220_maturitaetsarbeit_fliegen-am-limit_public-version_nicolas-huber.pdf).
 
@@ -21,7 +21,7 @@ As soon as the refined version of V1 has been published, the links will be liste
 
 ### Introduction
 
-The goal of the `flight-analyzer` application is to automatically manipulate large datasets, which contain the track logs of paragliding flights. The program evaluates for each point of the flight if it is on a straight line or not. An executed example for an individual point can be found [here](https://github.com/nicolashuberIT/flight-analyzer/blob/main/src/executor/execute_angle_analyzer.ipynb). The program will output a new dataset containing an index for each point. This allows further analysis and the filtering by position of the point. In addition, the tool offers some helpers such as data visualizers or data animators. 
+The goal of the `flight-analyzer` application is to automatically manipulate large datasets, which contain the track logs of paragliding flights. The program evaluates for each point of the flight if it is on a straight line or not. An executed example for an individual point can be found [here](https://github.com/nicolashuberIT/flight-analyzer/blob/main/src/executor/execute_angle_analyzer.ipynb). The program will output a new dataset containing an index for each point. This allows further analysis and the filtering by position of the point. In addition, the tool offers some helpers such as tools to visualize the manipulated data. 
 
 Detailed descriptions can be found in docstrings and comments within the source code of this project. Please find listed below some important aspects to get started. 
 
@@ -31,7 +31,7 @@ Make sure to install `Python 3.9` or higher on your machine. The code has only b
 
 #### Basic Usage
 
-This section will be added as soon as the development work is completed.
+The main entry point of this application are the `main.py` and `main.ipynb` files. Both the Python file and the Jupyter Notebook output the same result - you can chose the file format that fits you best. 
 
 ### Architecture
 
