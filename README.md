@@ -31,7 +31,7 @@ The documentation is available in `.pdf` format and can be downloaded [here](/do
       - [Preprocessing flight data](#preprocessing-flight-data)
       - [Running main.py / main.ipynb](#running-mainpy--mainipynb)
       - [Run individual analysis](#run-individual-analysis)
-    - [Algorithms](#algorithms)
+    - [Algorithms and helpers](#algorithms-and-helpers)
   - [Development](#development)
     - [Conventions](#conventions)
     - [Contributing](#contributing)
@@ -115,7 +115,7 @@ name,description,altitudeMode,visibility,tessellate,WKT
 </details>
 <br>
 
-Please check your input data before running any of the algorithms in this application to prevent unexpected errors. The preprocessed input is consumed by the `main` scripts in `.csv` or `.xlsx` format. It can also be manually fed into the `FileConvertor` helper class, on which further records can be found [here]().
+Please check your input data before running any of the algorithms in this application to prevent unexpected errors. The preprocessed input is consumed by the `main` scripts in `.csv` or `.xlsx` format. It can also be manually fed into the `FileConvertor` helper class, on which further records can be found [here](#algorithms-and-helpers).
 
 #### Running main.py / main.ipynb
 
@@ -125,7 +125,7 @@ _Further documentation will follow as soon as the `main` script have been develo
 
 #### Run individual analysis
 
-To run a particular algorithm of the `flight-analyzer` application, e.g. to visualize data, please refer to the executor scripts that can be found in `src/executors/`. The algorithms and some examples can be found in the [Algorithms](#algorithms) section.
+To run a particular algorithm of the `flight-analyzer` application, e.g. to visualize data, please refer to the executor scripts that can be found in `src/executors/`. The algorithms and some examples can be found in the [Algorithms](#algorithms-and-helpers) section.
 
 This application provides the following Notebooks:
 
@@ -136,7 +136,7 @@ This application provides the following Notebooks:
 
 Further documentation on the inputs and outputs of these executors can be found in the Notebooks.
 
-### Algorithms
+### Algorithms and helpers
 
 --- 
 
