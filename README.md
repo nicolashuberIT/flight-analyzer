@@ -146,10 +146,13 @@ index = 1400 (expected straight line, returned straight line)
 
 ![Punktvariation mit relativer Höhe](/docs/images/20240215_flight-analyzer_punktvariation-mit-relativer-hoehe_nicolas-huber.png)
 
-<div style="display: flex; width: 100%;">
-    <img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-linearer-regression-vergangenheit_nicolas-huber.png" alt="Lineare Regression (Vergangenheit)" style="width: 50%;">
-    <img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-linearer-regression-zukunft_nicolas-huber.png" alt="Lineare Regression (Zukunft)" style="width: 50%;">
-</div>
+<table>
+  <tr>
+    <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-linearer-regression-vergangenheit_nicolas-huber.png" alt="Lineare Regression (Vergangenheit)"></td>
+    <td style="width: 50%;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-linearer-regression-zukunft_nicolas-huber.png" alt="Lineare Regression (Zukunft)"></td>
+  </tr>
+</table>
+
 
 
 --- 
