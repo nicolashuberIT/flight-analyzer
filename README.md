@@ -80,7 +80,7 @@ The application is structured as follows:
 
 ### Basic Usage
 
-The main entry point of this application are the `main.py` and `main.ipynb` files. Both the Python file and the Jupyter Notebook output the same result - you can chose the file format that fits you best. If you'd like to visualize data or run a specific analysis check out the `/src/executors/` directory, which contains a collection of Jupyter Notebooks. Please find listed below some instructions and examples for the Notebooks in `src/executors/`, the `main` scripts and and some guidenines for preprocessing.
+The main entry points of this application are the `main.py` and `main.ipynb` files. Both the Python file and the Jupyter Notebook output the same result - you can chose the script that fits you best. If you'd like to visualize data or run a specific analysis check out the `src/executors/` directory, which contains a collection of Jupyter Notebooks. Please find listed below some instructions for the Notebooks in `src/executors/`, the `main` scripts and and some guidenines for preprocessing.
 
 #### Preprocessing flight data
 
