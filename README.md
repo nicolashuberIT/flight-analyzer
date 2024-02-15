@@ -155,6 +155,14 @@ index = 1400 (expected straight line, returned straight line)
   </tr>
 </table>
 
+<table style="border-collapse: collapse;">
+  <tr>
+    <td style="width: 50%; border: none;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-linearer-regression-vergangenheit_nicolas-huber.png" alt="Lineare Regression (Vergangenheit)"></td>
+    <td style="width: 50%; border: none;"><img src="/docs/images/20240215_flight-analyzer_punktvariation-mit-linearer-regression-zukunft_nicolas-huber.png" alt="Lineare Regression (Zukunft)"></td>
+  </tr>
+</table>
+
+
 
 
 --- 
