@@ -86,7 +86,7 @@ The main entry points of this application are the `main.py` and `main.ipynb` fil
 
 #### Preprocessing flight data
 
-The flight data consumed by this program is read from `.igc files`, which are written by flight computers such as variometers or similar. Reading these files is currently fully not supported in this program, which is why external applications are used. It's recommended to use [IGC2KML](https://igc2kml.com/) for `.igc` to `.kml` conversion and [KML2CSV](https://products.aspose.app/gis/conversion/kml-to-csv) for `.kml` to `.csv` conversion as well as Microsoft Excel to clean up the raw table data.
+The flight data consumed by this program is read from `.igc files`, which are written by flight computers such as variometers or similar. Reading these files is currently not fully supported in this program, which is why external applications are used. It's recommended to use [IGC2KML](https://igc2kml.com/) for `.igc` to `.kml` conversion and [KML2CSV](https://products.aspose.app/gis/conversion/kml-to-csv) for `.kml` to `.csv` conversion as well as Microsoft Excel to clean up the raw table data.
 
 After processing the tracklog using the linked tools you're dealing with `.csv` data of the following format: 
 
