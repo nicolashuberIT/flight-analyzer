@@ -75,18 +75,6 @@ class FileConverter:
             ["timestamp", "altitude", "horizontal", "vertical", "distance", "WKT"]
         ]
 
-    def remove_static_speeds(self, df: pd.DataFrame) -> pd.DataFrame:
-        """
-        Removes rows with static horizontal speed.
-
-        Parameters:
-        - df: the DataFrame to be filtered
-
-        Returns:
-        - A filtered DataFrame
-        """
-        return df[df["horizontal"] != "0"]
-
     def extract_coordinates_raw(self, row: pd.Series) -> pd.Series:
         """
         Extracts the coordinates from the 'WKT' column of the DataFrame.
@@ -183,6 +171,18 @@ class FileConverter:
         )
         return df
 
+    def remove_static_speeds(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Removes rows with static horizontal speed.
+
+        Parameters:
+        - df: the DataFrame to be filtered
+
+        Returns:
+        - A filtered DataFrame
+        """
+        return df[df["horizontal"] != 0]
+
     def convert_horizontal_speed(self, df: pd.DataFrame) -> pd.DataFrame:
         """
         Converts horizontal speed to meters per second.
@@ -228,10 +228,10 @@ class FileConverter:
         # Process steps
         df = self.filter_dataframe(df)
         df = self.split_and_reorder_columns(df)
-        df = self.remove_static_speeds(df)
         df = self.extract_coordinates(df)
         df = self.extract_coordinates_a(df)
         df = self.remove_units(df)
+        df = self.remove_static_speeds(df)
         df = self.convert_horizontal_speed(df)
         df = self.clean_up_coordinates(df)
 

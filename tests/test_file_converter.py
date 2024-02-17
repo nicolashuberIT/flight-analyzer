@@ -105,26 +105,6 @@ def test_split_and_reorder_columns(converter: FileConverter) -> None:
 
 
 # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
-def test_remove_static_speeds(converter: FileConverter) -> None:
-    """
-    Tests the remove_static_speeds method. Are static  horizontal speeds removed?
-
-    Parameters:
-    - converter: the FileConverter object to be tested
-
-    Returns:
-    - None
-    """
-    df = converter.read_input_file()
-    df = converter.filter_dataframe(df=df)
-    df = converter.split_and_reorder_columns(df=df)
-    df = converter.remove_static_speeds(df=df)
-    assert df[
-        df["horizontal"] == "0"
-    ].empty, "The static horizontal speeds are not removed."
-
-
-# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
 def test_extract_coordinates(converter: FileConverter) -> None:
     """
     Tests the extract_coordinates method. Are the coordinates extracted correctly?
@@ -221,6 +201,26 @@ def test_remove_units(converter: FileConverter) -> None:
         df["vertical"].iloc[0], float
     ), "The vertical speed is not a float."
     assert isinstance(df["distance"].iloc[0], float), "The distance is not a float."
+
+
+# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
+def test_remove_static_speeds(converter: FileConverter) -> None:
+    """
+    Tests the remove_static_speeds method. Are static  horizontal speeds removed?
+
+    Parameters:
+    - converter: the FileConverter object to be tested
+
+    Returns:
+    - None
+    """
+    df = converter.read_input_file()
+    df = converter.filter_dataframe(df=df)
+    df = converter.split_and_reorder_columns(df=df)
+    df = converter.remove_static_speeds(df=df)
+    assert df[
+        df["horizontal"] == 0
+    ].empty, "The static horizontal speeds are not removed."
 
 
 # AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
