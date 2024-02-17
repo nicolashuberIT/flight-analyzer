@@ -56,7 +56,7 @@ class FileConverter:
         Returns:
         - A filtered DataFrame
         """
-        return df[df["altitudeMode"] == "clampToGround"]
+        return df[df["altitudeMode"] != "clampToGround"]
 
     def split_and_reorder_columns(self, df: pd.DataFrame) -> pd.DataFrame:
         """
