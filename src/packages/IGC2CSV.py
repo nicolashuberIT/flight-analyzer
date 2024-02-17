@@ -226,7 +226,8 @@ class IGC2CSV:
         try:
             self.headertypes[line[1:5]](line[5:], flight)
         except KeyError:
-            print("Header (not implemented): {}".format(line[1:]))
+            # print("Header (not implemented): {}".format(line[1:]))
+            pass
         return
 
     # AI content (ChatGPT, 02/17/2024), verified and adapted by Nicolas Huber.
@@ -244,7 +245,7 @@ class IGC2CSV:
         flight["flightdate"] = datetime.date(
             int(line[4:6]) + 2000, int(line[2:4]), int(line[0:2])
         )
-        print("Flight date: {}".format(flight["flightdate"]))
+        # print("Flight date: {}".format(flight["flightdate"]))
 
     # AI content (ChatGPT, 02/17/2024), verified and adapted by Nicolas Huber.
     def logline_I(self, line: str, flight: Dict[str, Any]) -> None:
@@ -305,7 +306,7 @@ class IGC2CSV:
         Returns:
         - None
         """
-        print("Record Type {} not implemented: {}".format(line[0:1], line[1:]))
+        # print("Record Type {} not implemented: {}".format(line[0:1], line[1:]))
         return
 
     # AI content (ChatGPT, 02/17/2024), verified and adapted by Nicolas Huber.
@@ -427,7 +428,7 @@ class IGC2CSV:
 
         if os.path.isfile(fileparam):
             logbook.append({"igcfile": os.path.abspath(fileparam)})
-            print("Single IGC file supplied: {}".format(logbook[-1]["igcfile"]))
+            # print("Single IGC file supplied: {}".format(logbook[-1]["igcfile"]))
         elif os.path.isdir(fileparam):
             for filename in os.listdir(fileparam):
                 fileabs = os.path.join(fileparam, filename)
@@ -438,10 +439,10 @@ class IGC2CSV:
                 if ext.lower() == ".igc".lower():
                     logbook.append({"igcfile": os.path.abspath(fileabs)})
         else:
-            print("Must indicate a file or directory to process")
+            # print("Must indicate a file or directory to process")
             return
 
-        print("{} flights ready to process...".format(len(logbook)))
+        # print("{} flights ready to process...".format(len(logbook)))
 
         for flight in logbook:
             flight = self.parse_igc(flight)
