@@ -125,6 +125,27 @@ class DataVisualizer:
 
         plt.show()
 
+    def visualize_altitude(self, df: pd.DataFrame) -> None:
+        """
+        Visualizes the altitude levels of a flight.
+
+        Parameters:
+        - df: the DataFrame containing the altitude levels
+
+        Returns:
+        - None
+        """
+        fig = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+
+        plt.plot(df.index, df["relative altitude [m]"], label="Höhe")
+
+        plt.xlabel("Index [n]")
+        plt.ylabel("Höhe [m]")
+        plt.title("Höhenvariation")
+        plt.legend(loc="upper right")
+        plt.show()
+
     def visualize_angles(
         self, past_angles: pd.DataFrame, future_angles: pd.DataFrame
     ) -> None:
