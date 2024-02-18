@@ -76,7 +76,7 @@ def test_filter_dataframe(converter: FileConverter) -> None:
     df = converter.read_input_file()
     df = converter.filter_dataframe(df=df)
     assert df[
-        df["altitudeMode"] == "clampToGround"
+        df["altitudeMode"] == "absolute"
     ].empty, "The DataFrame is not filtered correctly."
 
 
