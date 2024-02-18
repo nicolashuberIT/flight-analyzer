@@ -30,6 +30,6 @@ R_VALUE_WEIGHT: float = 0.6  # weight of the r-value in the optimization
 P_VALUE_WEIGHT: float = 0.3  # weight of the p-value in the optimization
 STD_ERROR_WEIGHT: float = 0.1  # weight of the standard error in the optimization
 
-OPTIMIZATION_LIMIT: int = 30  # upper limit of optimization loops
+OPTIMIZATION_LIMIT: int = 100  # upper limit of optimization loops
 OPTIMIZATION_STEPS: int = 5  # step size per optimization loop
 OPTIMIZATION_RUNTIME_ESTIMATION: int = 120  # estimated runtime per loop in seconds
