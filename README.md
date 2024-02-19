@@ -391,7 +391,7 @@ The codebase has been tested using the `pytest` module. The recent CI/CD status 
 
 When running tests using pytest without specifying the test files explicitly, some tests fail with a FileNotFoundError. Interestingly, this issue did not occur with previous versions of the codebase. The reason for this error is unknown, and it appeared unexpectedly. Due to time constraints, the error wasn't further debugged, and the following workaround was implemented to ensure testing could proceed efficiently. 
 
-To address this issue, a workaround involves explicitly specifying the test files to be executed in a shell script. By creating a shell script that lists all test files with their relative paths and then executing this script, pytest can properly locate the test files and run them without encountering FileNotFoundError. This ensures that pytest operates from the correct working directory and resolves file paths accurately.
+To address this issue, the workaround involves explicitly specifying the test files to be executed in a shell script. By creating a shell script that lists all test files with their relative paths and then executing this script, pytest can properly locate the test files and run them without encountering FileNotFoundError. This ensures that pytest operates from the correct working directory and resolves file paths accurately.
 
 For reference, check [testing.sh](/testing.sh), [update_testing.sh](/update_testing.sh) and [testing.yaml](https://github.com/nicolashuberIT/flight-analyzer/blob/main/.github/workflows/testing.yaml).
 

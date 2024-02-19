@@ -1,12 +1,14 @@
 #!/bin/bash
 
+# AI content (ChatGPT, 02/19/2024), verified and adapted by Nicolas Huber.
+
 # Note: This script is a workaround and is used to address an issue where FileNotFoundError occurs
 
 # Issue: FileNotFoundError occurs when running pytest without specifying the test files in the command.
 # The reason for this issue is unknown, but it might be related to the pytest version or the pytest configuration.
 # This problem might be addressed and solved in the future, but for now, this workaround is necessary.
 
-# To avoid this issue: run pytest for a specific test file to avoid FileNotFoundError
+# Avoid issue: run pytest for a specific test file to avoid FileNotFoundError
 # Running pytest without specifying the test files in the command might lead to FileNotFoundError.
 
 # This script is used to update the testing.sh script to include all test files in the tests directory.
