@@ -8,6 +8,15 @@ AUTHOR_URL: str = "https://nicolas-huber.ch"
 GITHUB_URL: str = "https://github.com/nicolashuberIT/flight-analyzer"
 GITHUB_ACTIONS_URL: str = "https://github.com/nicolashuberIT/flight-analyzer/actions"
 
+# data
+
+THEORETICAL_REFERENCE_PATH: str = (
+    "/Users/nicolas/Dropbox/3_Bildung/2_KZO/Stichwortverzeichnis/0 Maturarbeit/6 Wettbewerbe/1_SJf/3_Coaching/2_Projekt/software/flight-analyzer/docs/datasets/reference/theoretical_reference.csv"
+)
+ORIGINAL_REFERENCE_PATH: str = (
+    "/Users/nicolas/Dropbox/3_Bildung/2_KZO/Stichwortverzeichnis/0 Maturarbeit/6 Wettbewerbe/1_SJf/3_Coaching/2_Projekt/software/flight-analyzer/docs/datasets/reference/original_reference.csv"
+)
+
 # algorithms
 
 ANGLE_PAST_THRESHOLD: int = (
@@ -18,6 +27,9 @@ ANGLE_FUTURE_THRESHOLD: int = (
 )
 ANGLE_THRESHOLD: int = 20  # angle < 20° is considered as straight line
 LINEAR_REGRESSION_THRESHOLD: float = 0.9  # r-value > 0.9 is considered as straight line
+
+SAVGOL_WINDOW_LENGTH: int = 3  # window length of the Savitzky-Golay filter
+SAVGOl_POLYNOMIAL_ORDER: int = 2  # polynomial order of the Savitzky-Golay filter
 
 # categories
 
