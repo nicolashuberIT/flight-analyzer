@@ -12,10 +12,29 @@ The `flight-analyzer` program is part of the scientific paper "Fliegen am Limit 
 
 Both the original and updated paper are listed below: 
 
-| Date       | Description    | Link                                                                                                                                    |
-| ---------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| 10/24/2022 | Original paper | [nicolas-huber.ch/docs/...](https://nicolas-huber.ch/docs/20221220_maturitaetsarbeit_fliegen-am-limit_public-version_nicolas-huber.pdf) |
-| 03/31/2024 | Updated paper  | coming soon                                                                                                                             |
+<table style="width:100%">
+  <tr>
+    <th>Date</th>
+    <th>Description</th>
+    <th>Author</th>
+    <th>Supervisor</th>
+    <th>Link</th>
+  </tr>
+  <tr>
+    <td>10/24/2022</td>
+    <td>Original paper</td>
+    <td>Nicolas Huber</td>
+    <td>Albert Kern</td>
+    <td><a href="https://nicolas-huber.ch/docs/20221220_maturitaetsarbeit_fliegen-am-limit_public-version_nicolas-huber.pdf">nicolas-huber.ch/docs/...</a></td>
+  </tr>
+  <tr>
+    <td>03/31/2024</td>
+    <td>Updated paper</td>
+    <td>Nicolas Huber</td>
+    <td>Ronald Luijten</td>
+    <td>coming soon</td>
+  </tr>
+</table>
 
 ---
 
