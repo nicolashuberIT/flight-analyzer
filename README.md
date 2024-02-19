@@ -36,6 +36,7 @@ As soon as the refined version of the 2022 version has been published, the link 
       - [ThresholdOptimizer](#thresholdoptimizer)
   - [Development](#development)
     - [Conventions](#conventions)
+    - [Testing](#testing)
     - [Contributing](#contributing)
     - [Changelog](#changelog)
   - [License \& Intellectual Property](#license--intellectual-property)
@@ -382,7 +383,19 @@ The `ThresholdOptimizer` can be executed using [this](/src/executor/execute_opti
 
 ### Conventions
 
-Please find naming conventions for this project linked here: [click](/docs/docs-conventions.md). In addition, static type annotations are used in this project. The codebase has been tested using the `pytest` module. The recent CI/CD status can be found at the top of this page. Click [here](https://github.com/nicolashuberIT/flight-analyzer/actions) for a detailed overview and unit testing logs. The code is formatted and linted in VS Code using the Black Formatter Extension and Pylint.
+Please find naming conventions for this project linked here: [click](/docs/docs-conventions.md). In addition, static type annotations are used in this project. The code is formatted and linted in VS Code using the Black Formatter Extension and Pylint.
+
+### Testing
+
+The codebase has been tested using the `pytest` module. The recent CI/CD status can be found at the top of this page. Click [here](https://github.com/nicolashuberIT/flight-analyzer/actions) for a detailed overview and unit testing logs. 
+
+When running tests using pytest without specifying the test files explicitly, some tests fail with a FileNotFoundError. Interestingly, this issue did not occur with previous versions of the codebase. The reason for this error is unknown, and it appeared unexpectedly. Due to time constraints, the error wasn't further debugged, and the following workaround was implemented to ensure testing could proceed efficiently. 
+
+To address this issue, a workaround involves explicitly specifying the test files to be executed in a shell script. By creating a shell script that lists all test files with their relative paths and then executing this script, pytest can properly locate the test files and run them without encountering FileNotFoundError. This ensures that pytest operates from the correct working directory and resolves file paths accurately.
+
+For reference, check [testing.sh](/testing.sh), [update_testing.sh](/update_testing.sh) and [testing.yaml](https://github.com/nicolashuberIT/flight-analyzer/blob/main/.github/workflows/testing.yaml).
+
+To run unit tests locally, run `./update_testing.sh` from the base directory of this project and then initialize pytest by running `./testing.sh`.
 
 ### Contributing
 
