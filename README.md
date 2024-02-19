@@ -72,7 +72,7 @@ The application is structured as follows:
 
 ### Basic Usage
 
-Please click [here](/docs/documentation/basic-usage.md) to read the `Basic Usage` documentation
+Please click [here](/docs/documentation/basic-usage.md) to read the `Basic Usage` documentation.
 
 ### Algorithms and helpers
 
