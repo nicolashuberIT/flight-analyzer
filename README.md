@@ -27,7 +27,7 @@ Both the original and updated paper are listed below:
     <td>Nicolas Huber</td>
     <td>Albert Kern</td>
     <td>Kantonsschule Zürcher Oberland (KZO)</td>
-    <td><a href="https://nicolas-huber.ch/docs/20221220_maturitaetsarbeit_fliegen-am-limit_public-version_nicolas-huber.pdf" target="_blank">nicolas-huber.ch/docs/...</a></td>
+    <td><a href="https://nicolas-huber.ch/docs/20221220_maturitaetsarbeit_fliegen-am-limit_public-version_nicolas-huber.pdf" target="_blank">nicolas-huber.ch</a></td>
   </tr>
   <tr>
     <td>03/31/2024</td>
