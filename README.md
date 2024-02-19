@@ -39,6 +39,22 @@ Both the original and updated paper are listed below:
   </tr>
 </table>
 
+If you'd like to use the content of both this documentation and the revised paper, please cite as follows:
+
+<table>
+<tr>
+  <th>Attribution</th>
+</tr>
+<tr>
+  <td>Huber, Nicolas (2024): <i>Fliegen am Limit - Aktive Sicherheit im Gleitschirmsport</i>, Zürich: Kantonsschule Zürcher Oberland (KZO) & Schweizer Jugend forscht (SJf).</td>
+</tr>
+</table>
+
+Thank you for your dedication to proper attribution. Happy reading & always happy landing!
+
+All the best, <br>
+[Nicolas](https://nicolas-huber.ch)
+
 ---
 
 ## Contents
