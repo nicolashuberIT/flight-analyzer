@@ -41,56 +41,6 @@ All software included in this source code license agreement as well as all docum
 
 Nicolas Huber makes no guarantee as to the source code's performance once it has been accepted by the licensee, which is the case as soon as the software is downloaded.
 
-In summary:
-
-<table border="1">
-  <tr>
-    <th>Actions</th>
-    <th>Allowed</th>
-    <th>Restricted</th>
-  </tr>
-  <tr>
-    <td>Incorporating dynamic and statically linked libraries</td>
-    <td>✔️</td>
-    <td>❌</td>
-  </tr>
-  <tr>
-    <td>Developing extensions or changing the original project</td>
-    <td>✔️</td>
-    <td>❌</td>
-  </tr>
-  <tr>
-    <td>Public distribution or use in commercial projects</td>
-    <td>❌</td>
-    <td>✔️</td>
-  </tr>
-  <tr>
-    <td>Merging, compiling, or copying to public projects</td>
-    <td>❌</td>
-    <td>✔️</td>
-  </tr>
-  <tr>
-    <td>Altering or removing notices</td>
-    <td>❌</td>
-    <td>✔️</td>
-  </tr>
-  <tr>
-    <td>Distribution without approval</td>
-    <td>❌</td>
-    <td>✔️</td>
-  </tr>
-  <tr>
-    <td>Disclosure to additional parties</td>
-    <td>❌</td>
-    <td>✔️</td>
-  </tr>
-  <tr>
-    <td>Disassembling, recompiling, or reverse engineering</td>
-    <td>❌</td>
-    <td>✔️</td>
-  </tr>
-</table>
-
 ## 6) Liability
 
 Under no circumstances will Nicolas Huber be held liable for any damage resulting from the use of this software.
