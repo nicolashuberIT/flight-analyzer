@@ -229,28 +229,21 @@ OPTIMIZATION_RUNTIME_ESTIMATION: int = 120  # estimated runtime per loop in seco
 This results in the following plots and results:
 
 <table>
-<tr>
+  <tr>
     <td style="width: 50%; text-align: center;">
       <img src="/docs/images/20240215_flight-analyzer_score-und-datenverlust_nicolas-huber.png" alt="Score und Datenverlust">
       <br>
       <em>Fig. 8: Optimization score and data loss</em>
     </td>
-  </tr>
-  <tr>
-    <td style="width: 50%; text-align: center;">
-      <img src="/docs/images/20240215_flight-analyzer_score-und-datenverlust_nicolas-huber.png" alt="Score und Datenverlust">
-      <br>
-      <em>Fig. 9: Optimization score and data loss</em>
-    </td>
     <td style="width: 50%; text-align: center;">
       <img src="/docs/images/20240215_flight-analyzer_optimierung-der-thresholds_nicolas-huber.png" alt="Optimierung der Thresholds">
       <br>
-      <em>Fig. 10: Threshold optimization</em>
+      <em>Fig. 9: Threshold optimization</em>
     </td>
   </tr>
 </table>
 
-Figure 8 plots both the optimization score and the data loss for this threshold combination on a normalized scale. Figure 9 shows how the 10 relevant linear regression values are weighted for the analysis. This specific run led to the following results:
+Figure 8 plots both the optimization score and the data loss for this threshold combination on a normalized scale. Figure 9 shows how the relevant linear regression values are weighted for the analysis. This specific run led to the following results:
 
 <details>
 <summary>Output</summary>
