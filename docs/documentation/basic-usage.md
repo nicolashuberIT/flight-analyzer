@@ -2,7 +2,7 @@
 
 [README](/README.md) > Docs > Basic Usage
 
-The main entry points of this application is the `main.ipynb` file. If you'd like to visualize data or run a specific analysis check out the `src/executors/` or `src/analysis` directories, which contain a collection of Jupyter Notebooks. Please find listed below some instructions for the Notebooks in `src/executors/`, the `main` scripts and some guidenines for preprocessing.
+The main entry point of this application is the `main.ipynb` file. If you'd like to visualize data or run a specific analysis check out the `src/executors/` or `src/analysis` directories, which contain a collection of Jupyter Notebooks. Please find listed below some instructions for the Notebooks in `src/executors/`, the `main` script and some guidelines for preprocessing.
 
 ## Contents
 
@@ -43,6 +43,8 @@ name,description,altitudeMode,visibility,tessellate,WKT
 12:25:30 0m 5kmh 0m/s 0km,,clampToGround,,TRUE,"LINESTRING Z (7.530683 46.213083 2612, 7.5307 46.213083 2612)"
 12:25:31 1m 0kmh +1m/s 0km,,clampToGround,,TRUE,"LINESTRING Z (7.5307 46.213083 2612, 7.5307 46.213083 2612)"
 ```
+
+This data can then be preprocessed using the `FileConvertor` tool, which is linked [here](/src/helpers/file_convertor.py).
 
 </details>
 
