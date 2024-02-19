@@ -14,7 +14,7 @@
 
 ## Conventions
 
-Please find naming conventions for this project linked here: [click](/docs/documentation/docs-conventions.md). In addition, static type annotations are used in this project. The code is formatted and linted in VS Code using the Black Formatter Extension and Pylint.
+Please find naming conventions for this project linked here: [click](/docs/documentation/conventions.md). In addition, static type annotations are used in this project. The code is formatted and linted in VS Code using the Black Formatter Extension and Pylint.
 
 ## Testing
 

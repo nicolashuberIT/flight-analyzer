@@ -1,10 +1,10 @@
-# Python Naming Conventions
+# Conventions
 
-[README](/README.md) > Docs > [Development](/docs/documentation/) Python Naming Conventions
+[README](/README.md) > Docs > [Development](/docs/documentation/) > Conventions
 
 ## Contents
 
-- [Python Naming Conventions](#python-naming-conventions)
+- [Conventions](#conventions)
   - [Contents](#contents)
   - [Modules](#modules)
   - [Classes](#classes)
