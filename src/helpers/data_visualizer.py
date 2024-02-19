@@ -1,6 +1,10 @@
+import numpy as np
 import pandas as pd
+from typing import Tuple
 import matplotlib.pyplot as plt
+from scipy.integrate import simps
 from scipy.stats import linregress
+from scipy.interpolate import CubicSpline
 from matplotlib.colors import ListedColormap
 
 
@@ -444,3 +448,222 @@ class DataVisualizer:
         plt.title("Score und Datenverlust")
         plt.legend(handles, labels)
         plt.show()
+
+    def visualize_raw_speed_data(
+        self,
+        experimental_data: pd.DataFrame,
+        theoretical_data: pd.DataFrame,
+        std_error: float,
+        title: str,
+    ) -> None:
+        """
+        Plots the experimental and theoretical speed data and also includes the standard error for the experimental data.
+
+        Parameters:
+        - experimental_data: the DataFrame containing the experimental speed data
+        - theoretical_data: the DataFrame containing the theoretical speed data
+        - std_error: the standard error of the experimental speed data
+        - title: the title of the plot
+
+        Returns:
+        - None
+        """
+        fig = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+
+        # experimental data
+        sorted_horizontal_experimental: pd.Series = experimental_data[
+            "horizontal velocity [m/s]"
+        ].sort_values()
+        sorted_vertical_experimental: pd.Series = experimental_data[
+            "vertical velocity [m/s]"
+        ].loc[sorted_horizontal_experimental.index]
+
+        cs_experimental: CubicSpline = CubicSpline(
+            sorted_horizontal_experimental, sorted_vertical_experimental
+        )
+
+        x_values_experimental: np.ndarray = np.linspace(
+            sorted_horizontal_experimental.min(),
+            sorted_horizontal_experimental.max(),
+            100,
+        )
+
+        plt.plot(
+            x_values_experimental,
+            cs_experimental(x_values_experimental),
+            color="grey",
+            label="Experimentelle Geschwindigkeitsdaten",
+        )
+
+        # std error for experimental data
+        upper_bound = cs_experimental(x_values_experimental) + std_error
+        lower_bound = cs_experimental(x_values_experimental) - std_error
+        plt.fill_between(
+            x_values_experimental,
+            upper_bound,
+            lower_bound,
+            color="lightblue",
+            alpha=0.5,
+            label=f"Standardfehler ({std_error:.2f} m/s)",
+        )
+
+        # polynomial fit for experimental data (2nd degree)
+        coefficients = np.polyfit(
+            sorted_horizontal_experimental, sorted_vertical_experimental, 2
+        )
+        polynomial = np.poly1d(coefficients)
+        x_values_experimental = np.linspace(
+            sorted_horizontal_experimental.min(),
+            sorted_horizontal_experimental.max(),
+            100,
+        )
+        plt.plot(
+            x_values_experimental,
+            polynomial(x_values_experimental),
+            color="blue",
+            label="Experimentelle Geschwindigkeitspolare",
+        )
+
+        # cubic spline interpolation for theoretical data
+        sorted_theoretical = theoretical_data.sort_values(
+            by="horizontal velocity [m/s]"
+        )
+        cs_theoretical = CubicSpline(
+            sorted_theoretical["horizontal velocity [m/s]"],
+            sorted_theoretical["vertical velocity [m/s]"],
+        )
+        x_values_theoretical = np.linspace(
+            sorted_theoretical["horizontal velocity [m/s]"].min(),
+            sorted_theoretical["horizontal velocity [m/s]"].max(),
+            100,
+        )
+        plt.plot(
+            x_values_theoretical,
+            cs_theoretical(x_values_theoretical),
+            color="green",
+            label="Theoretische Geschwindigkeitspolare",
+        )
+
+        plt.xlim(8.0, 15.7)
+        plt.ylim(-2.75, -0.4)
+
+        plt.title(title)
+        plt.xlabel("Horizontalgeschwindigkeit [m/s]")
+        plt.ylabel("Vertikalgeschwindigkeit [m/s]")
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+
+    def visualize_speed_deviation(
+        self,
+        experimental_data: pd.DataFrame,
+        theoretical_data: pd.DataFrame,
+        speed_analyzer: object,
+        title: str,
+    ) -> Tuple[float, float, float, float]:
+        """
+        Plots the deviation between the experimental and theoretical speed data.
+
+        Parameters:
+        - experimental_data: the DataFrame containing the experimental speed data
+        - theoretical_data: the DataFrame containing the theoretical speed data
+        - title: the title of the plot
+        - speed_analyzer: the SpeedAnalyzer object
+
+        Returns:
+        - Tuple[float, float, float, float]: mean_deviation, max_deviation, rms_deviation, area
+        """
+        fig: plt.Figure = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+
+        # experimental data
+        sorted_horizontal_experimental = experimental_data[
+            "horizontal velocity [m/s]"
+        ].sort_values()
+        sorted_vertical_experimental = experimental_data["vertical velocity [m/s]"].loc[
+            sorted_horizontal_experimental.index
+        ]
+
+        coefficients = np.polyfit(
+            sorted_horizontal_experimental, sorted_vertical_experimental, 2
+        )
+        polynomial = np.poly1d(coefficients)
+        x_values_experimental = np.linspace(
+            sorted_horizontal_experimental.min(),
+            sorted_horizontal_experimental.max(),
+            100,
+        )
+
+        plt.plot(
+            x_values_experimental,
+            polynomial(x_values_experimental),
+            color="blue",
+            label="Experimentelle Geschwindigkeitspolare",
+        )
+
+        # theoretical data
+        sorted_theoretical = theoretical_data.sort_values(
+            by="horizontal velocity [m/s]"
+        )
+        cs_theoretical = CubicSpline(
+            sorted_theoretical["horizontal velocity [m/s]"],
+            sorted_theoretical["vertical velocity [m/s]"],
+        )
+        x_values_theoretical = np.linspace(
+            sorted_theoretical["horizontal velocity [m/s]"].min(),
+            sorted_theoretical["horizontal velocity [m/s]"].max(),
+            100,
+        )
+
+        plt.plot(
+            x_values_theoretical,
+            cs_theoretical(x_values_theoretical),
+            color="green",
+            label="Theoretische Geschwindigkeitspolare",
+        )
+
+        # deviation area
+        intersection_x = x_values_experimental
+        intersection_y = polynomial(x_values_experimental)
+        experimental_mask = (x_values_experimental >= 8) & (x_values_experimental <= 16)
+        theoretical_mask = (x_values_theoretical >= 8) & (x_values_theoretical <= 16)
+
+        area = simps(
+            speed_analyzer.absolute_difference(
+                x_values_experimental[experimental_mask],
+                polynomial(x_values_experimental[experimental_mask]),
+                x_values_theoretical[theoretical_mask],
+                cs_theoretical(x_values_theoretical[theoretical_mask]),
+            ),
+            x_values_experimental[experimental_mask],
+        )
+
+        plt.fill_between(
+            intersection_x,
+            intersection_y,
+            cs_theoretical(intersection_x),
+            color="orange",
+            alpha=0.5,
+            label=f"Abweichungsbereich: {area:.2f}",
+        )
+
+        # deviation metrics
+        deviations = np.abs(
+            polynomial(x_values_experimental) - cs_theoretical(x_values_experimental)
+        )
+        mean_deviation = np.mean(deviations)
+        max_deviation = np.max(deviations)
+        rms_deviation = np.sqrt(np.mean(deviations**2))
+
+        plt.xlim(8.0, 15.7)
+        plt.ylim(-2.75, -0.4)
+
+        plt.title(title)
+        plt.xlabel("Horizontalgeschwindigkeit [m/s]")
+        plt.ylabel("Vertikalgeschwindigkeit [m/s]")
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+
+        return mean_deviation, max_deviation, rms_deviation, area
