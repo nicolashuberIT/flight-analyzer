@@ -53,7 +53,7 @@ If you'd like to use the content of both this documentation and the revised pape
 Thank you for your dedication to proper attribution. Happy reading & always happy landing!
 
 All the best, <br>
-[Nicolas](https://nicolas-huber.ch)
+Nicolas
 
 ---
 
