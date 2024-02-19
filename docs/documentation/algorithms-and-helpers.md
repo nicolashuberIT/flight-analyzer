@@ -15,7 +15,7 @@ Some key aspects of the program's algorithms are described below. Note that the 
 
 ## FileConvertor
 
-The `FileConvertor` is a helper class that converts the manually preprocessed data, which is documented [here](#preprocessing-flight-data), to data that can be consumed by the algorithms of this application. Additionally, this class filters the raw data: It removes entries where the `altitudeMode` property is set to `clampToGround` and it removes entries of horizontal speed 0. The input data is in form of `.csv` or `.xlsx` and in the following structure:
+The `FileConvertor` is a helper class that converts the manually preprocessed data, which is documented [here](/docs/documentation/basic-usage.md#preprocessing-flight-data), to data that can be consumed by the algorithms of this application. Additionally, this class filters the raw data: It removes entries where the `altitudeMode` property is set to `clampToGround` and it removes entries of horizontal speed 0. The input data is in form of `.csv` or `.xlsx` and in the following structure:
 
 ```txt
 name,description,altitudeMode,visibility,tessellate,WKT
@@ -37,8 +37,7 @@ You can manually execute the `FileConvertor` using [this](/src/executor/execute_
 
 The `AngleAnalyzer` class is designed to analyze flight trajectories at a specific point by examining the angles between successive points. It reads flight data from a CSV file and calculates angles between points, determining if they form a straight line or a curve. Using provided thresholds, it extracts past and future coordinates, filters out zero angles, and performs both angle-based and linear regression analyses. These analyses help classify flight segments as either straight lines or curves. 
 
-The input for the following examples was [this](/docs/datasets/tracklogs/1_examples/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv) file.
-The examples used the conditions in the box below:
+The input for the following examples was [this](/docs/datasets/example/20211016_tracklog-normalized_nicolas-huber.csv) file. The examples used the conditions in the box below:
 
 <details>
 <summary>Conditions</summary>
@@ -123,8 +122,7 @@ You can manually execute the `AngleAnalyzer` using [this](/src/executor/execute_
 
 The `DataAnalyzer` class conducts thorough analysis of flight trajectory data by systematically applying the `AngleAnalyzer` class to every single trackpoint. This process enables the determination of whether each point lies on a straight line or a curve. It reads flight data from a CSV file, processes it by extracting past and future coordinates for each point, and performs angle-based and linear regression analyses. The analysis results, including the classification of each point as belonging to a straight-line segment or a curved segment, are appended to the dataset. Finally, the processed data, enriched with analysis outcomes, is exported to a new CSV file. This systematic approach empowers the identification of different trajectory characteristics throughout the flight path.
 
-The input for the following examples was [this](/docs/datasets/tracklogs/1_examples/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv) file.
-The examples used the conditions in the box below:
+The input for the following examples was [this](/docs/datasets/example/20211016_tracklog-normalized_nicolas-huber.csv) file. The examples used the conditions in the box below:
 
 <details>
 <summary>Conditions</summary>
@@ -181,8 +179,7 @@ You can manually execute the `DataAnalyzer` using [this](/src/executor/execute_d
 
 The `ThresholdOptimizer` class optimizes thresholds for the `AngleAnalyzer` algorithm by systematically testing different combinations and scoring them based on specified criteria. It iteratively evaluates threshold combinations using a `DataAnalyzer` object, calculating scores derived from linear regression values and weighted metrics. The class then selects the best-scoring threshold combinations and exports the tested combinations to a CSV file. By providing insights into the trade-offs between different threshold settings, this class enables the fine-tuning of the `AngleAnalyzer` to achieve optimal performance.
 
-The input for the following examples was [this](/docs/datasets/tracklogs/1_examples/2_normalized/20211016_tracklog-normalized_nicolas-huber.csv) file.
-The examples used the conditions in the box below:
+The input for the following examples was [this](/docs/datasets/example/20211016_tracklog-normalized_nicolas-huber.csv) file. The examples used the conditions in the box below:
 
 <details>
 <summary>Conditions</summary>
