@@ -10,7 +10,6 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 import src.algorithms.speed_analyzer as speed_analyzer
 
-EXAMPLE_FILE_PATH: str = "tests/assets/speed_analyzer/test_speed_analyzer.csv"
 TEST_DATA: List[List[float]] = [
     [7.5, -1],
     [7.777777778, -2],
