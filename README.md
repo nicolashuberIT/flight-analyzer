@@ -18,6 +18,7 @@ Both the original and updated paper are listed below:
     <th>Description</th>
     <th>Author</th>
     <th>Supervisor</th>
+    <th>Context</th>
     <th>Link</th>
   </tr>
   <tr>
@@ -25,13 +26,15 @@ Both the original and updated paper are listed below:
     <td>Original paper</td>
     <td>Nicolas Huber</td>
     <td>Albert Kern</td>
-    <td><a href="https://nicolas-huber.ch/docs/20221220_maturitaetsarbeit_fliegen-am-limit_public-version_nicolas-huber.pdf">nicolas-huber.ch/docs/...</a></td>
+    <td>Kantonsschule Zürcher Oberland (KZO)</td>
+    <td><a href="https://nicolas-huber.ch/docs/20221220_maturitaetsarbeit_fliegen-am-limit_public-version_nicolas-huber.pdf" target="_blank">nicolas-huber.ch/docs/...</a></td>
   </tr>
   <tr>
     <td>03/31/2024</td>
     <td>Updated paper</td>
     <td>Nicolas Huber</td>
-    <td>Ronald Luijten</td>
+    <td>Albert Kern, Ronald Luijten</td>
+    <td>Schweizer Jugend forscht (SJf)</td>
     <td>coming soon</td>
   </tr>
 </table>
