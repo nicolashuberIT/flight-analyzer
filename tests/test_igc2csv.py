@@ -15,11 +15,28 @@ REFERENCE_FILE = "tests/assets/igc2csv/test_igc2csv.csv"
 
 @pytest.fixture
 def igc2csv() -> IGC2CSV:
+    """
+    Fixture to create a IGC2CSV object.
+
+    Args:
+    - None
+
+    Returns:
+    - igc2csv (IGC2CSV): IGC2CSV instance."""
     return IGC2CSV()
 
 
 @pytest.fixture
 def reference(reference_file: str = REFERENCE_FILE) -> pd.DataFrame:
+    """
+    Fixture to create a reference DataFrame.
+
+    Args:
+    - reference_file (str): Path to the reference file.
+
+    Returns:
+    - reference (pd.DataFrame): Reference DataFrame.
+    """
     reference: pd.DataFrame = pd.read_csv(reference_file)
     return reference
 

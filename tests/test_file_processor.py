@@ -16,6 +16,15 @@ FILE_EXTENSION: str = ".csv"
 
 @pytest.fixture
 def processor() -> file_processor.FileProcessor:
+    """
+    Fixture to create a FileProcessor object.
+
+    Args:
+    - None.
+
+    Returns:
+    - processor (file_processor.FileProcessor): FileProcessor instance.
+    """
     return file_processor.FileProcessor()
 
 
