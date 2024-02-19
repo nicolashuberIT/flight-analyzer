@@ -44,9 +44,9 @@ name,description,altitudeMode,visibility,tessellate,WKT
 12:25:31 1m 0kmh +1m/s 0km,,clampToGround,,TRUE,"LINESTRING Z (7.5307 46.213083 2612, 7.5307 46.213083 2612)"
 ```
 
-This data can then be preprocessed using the `FileConvertor` tool, which is linked [here](/src/helpers/file_convertor.py).
-
 </details>
+
+This data can then be preprocessed using the `FileConvertor` tool, which is linked [here](/src/helpers/file_convertor.py).
 
 ## Running main.ipynb
 
