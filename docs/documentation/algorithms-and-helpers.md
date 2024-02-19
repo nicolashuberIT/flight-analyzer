@@ -1,5 +1,7 @@
 # Algorithms and Helpers
 
+[README](/README.md) > Docs > Algorithms and Helpers
+
 Some key aspects of the program's algorithms are described below. Note that the detailed documentation can be found in the docstrings and in comments in the code. Please note that the data and plots below are merely examples and the exact results can be found in the version of the paper dated 03/31/2024.
 
 ## Contents

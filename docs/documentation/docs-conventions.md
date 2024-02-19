@@ -1,6 +1,23 @@
 # Python Naming Conventions
 
-[README](/README.md) > Python Naming Conventions
+[README](/README.md) > Docs > [Development](/docs/documentation/) Python Naming Conventions
+
+## Contents
+
+- [Python Naming Conventions](#python-naming-conventions)
+  - [Contents](#contents)
+  - [Modules](#modules)
+  - [Classes](#classes)
+  - [Functions and Variables](#functions-and-variables)
+  - [Constants](#constants)
+  - [Global Variables](#global-variables)
+  - [Arguments](#arguments)
+  - [Instance Variables](#instance-variables)
+  - [Private Methods](#private-methods)
+  - [Class Attributes](#class-attributes)
+  - [Method Names](#method-names)
+  - [Reference](#reference)
+
 
 ## Modules
 - Module names should be short, lowercase, and descriptive.
