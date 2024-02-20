@@ -18,7 +18,6 @@ Happy reading!
       - [Run 1 - Limit 100 \& Step 5](#run-1---limit-100--step-5)
       - [Run 2 - Limit 150 \& Step 5](#run-2---limit-150--step-5)
       - [Run 3 - Limit 200 \& Step 5](#run-3---limit-200--step-5)
-      - [Run 4 - Limit 250 \& Step 5](#run-4---limit-250--step-5)
     - [Optimization Matrix](#optimization-matrix)
     - [Summary](#summary)
   - [Flight Data Analysis](#flight-data-analysis)
@@ -69,12 +68,11 @@ The basis for this optimization is the track log visualized below. The raw file 
 
 ### Optimization Runs
 
-Because the optimization parameters have a large effect on the resolution of the data (the larger the cartesian product, the more high-performance combinations are potentially lost in the set), four different calculation runs were performed, each under the following conditions:
+Because the optimization parameters have a large effect on the resolution of the data (the larger the cartesian product, the more high-performance combinations are potentially lost in the set), three different calculation runs were performed, each under the following conditions:
 
 - Run 1: `OPTIMIZATION_LIMIT` = 100, `OPTIMIZATION_STEP` = 5
 - Run 2: `OPTIMIZATION_LIMIT` = 150, `OPTIMIZATION_STEP` = 5
 - Run 3: `OPTIMIZATION_LIMIT` = 200, `OPTIMIZATION_STEP` = 5
-- Run 4: `OPTIMIZATION_LIMIT` = 250, `OPTIMIZATION_STEP` = 5
 
 The findings of each run can be found below.
 
@@ -243,11 +241,7 @@ A detailed report on this optimization run including imformation about runtime e
 
 #### Run 3 - Limit 200 & Step 5
 
-_Documentation follows as soon as optimization run has executed._
-
-#### Run 4 - Limit 250 & Step 5
-
-_Documentation follows as soon as optimization run has executed._
+This optimization run isn't further documented as it resolved in exactly the same result as runs 1 and 2.
 
 ### Optimization Matrix
 
@@ -279,6 +273,10 @@ _Documentation follows as soon as optimization run has executed._
         <br>
         <em>Fig. 9: Track log visualisation by ratio (10 & 50, run 2)</em>
     </td>
+</tr>
+<tr>
+  <td>...</td>
+  <td>...</td>
 </tr>
 </table>
 
