@@ -139,7 +139,7 @@ Why the effort, you're asking?
 </tr>
 <tr>
   <td>
-    <img src="/docs/optimization/input/20240220_SJf_threshold-optimization_flight-visualisation_nicolas-huber.png" alt="Tracklog">
+    <img src="/docs/images/20230618_SJf_cover-image_daniela-arslan.jpg" alt="Cover">
       <br>
       <em>Fig. 1: Cover (Daniela Arslan, 2023)</em>
     </td>
