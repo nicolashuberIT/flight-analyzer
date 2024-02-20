@@ -68,6 +68,7 @@ Nicolas
     - [Architecture](#architecture)
     - [Basic Usage](#basic-usage)
     - [Algorithms and helpers](#algorithms-and-helpers)
+  - [Research](#research)
   - [Development](#development)
   - [License \& Intellectual Property](#license--intellectual-property)
   - [Disclaimer](#disclaimer)
@@ -124,7 +125,13 @@ Please click [here](/docs/documentation/basic-usage.md) to read the `Basic Usage
 
 Please click [here](/docs/documentation/algorithms-and-helpers.md) to read the `Algorithms and Helpers` documentation.
 
---- 
+---
+
+## Research
+
+Please click [here](/docs/research/research-report.md) to read the `Research Report`, which contains documentation about the process of creating the analyses that can be found in the paper.
+
+---
 
 ## Development
 
