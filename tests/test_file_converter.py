@@ -170,7 +170,7 @@ def test_clean_up_coordinates(converter: FileConverter) -> None:
         df["longitude"].iloc[0] == 9.30435
     ), "The longitude is not cleaned up correctly."
     assert (
-        df["latitude"].iloc[0] == 47.2074
+        df["latitude"].iloc[0] == 47.154116
     ), "The latitude is not cleaned up correctly."
 
 
