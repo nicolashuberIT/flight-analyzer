@@ -43,7 +43,8 @@ At this time, the `flight-analyzer` project is not open for community contributi
 
 I would like to give credit and express my gratitude to the following individuals and organizations for their contributions:
 
-**[OverlaudUT](https://github.com/OverloadUT/IGC2CSV)**: Author of [IGC2CSV](https://github.com/nicolashuberIT/IGC2CSV), which was forked and extended by Nicolas Huber
+- **[OverlaudUT](https://github.com/OverloadUT/IGC2CSV)**: Author of [IGC2CSV](https://github.com/nicolashuberIT/IGC2CSV), which was forked and extended by Nicolas Huber
+- **Daniela Arslan**: Photographer of the cover image in `README.md`
 
 ---
 

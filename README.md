@@ -131,6 +131,23 @@ Please click [here](/docs/documentation/algorithms-and-helpers.md) to read the `
 
 Please click [here](/docs/research/research-report.md) to read the `Research Report`, which contains documentation about the process of creating the analyses that can be found in the paper.
 
+Why the effort, you're asking? 
+
+<table>
+<tr>
+  <th>Because paragliding is beautiful!</th>
+</tr>
+<tr>
+  <td>
+    <img src="/docs/optimization/input/20240220_SJf_threshold-optimization_flight-visualisation_nicolas-huber.png" alt="Tracklog">
+      <br>
+      <em>Fig. 1: Cover (Daniela Arslan, 2023)</em>
+    </td>
+</tr>
+</table>
+
+Always happy landing.
+
 ---
 
 ## Development
