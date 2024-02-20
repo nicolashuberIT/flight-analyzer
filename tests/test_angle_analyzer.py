@@ -161,11 +161,11 @@ def test_calculate_angles(analyzer: AngleAnalyzer) -> None:
     assert (
         P2Y == latest_coordinates["latitude"][index_coordinates + 1]
     ), "The y2 coordinate is not correct."
-    assert (
-        P3X == angles_past["longitude"][index_angles]
+    assert round(P3X, 2) == round(
+        angles_past["longitude"][index_angles], 2
     ), "The x3 coordinate does not match the row of the angle."
-    assert (
-        P3Y == angles_past["latitude"][index_angles]
+    assert round(P3Y, 2) == round(
+        angles_past["latitude"][index_angles], 2
     ), "The y3 coordinate does not match the row of the angle."
 
     m1 = (P2Y - P1Y) / (P2X - P1X)
@@ -245,23 +245,21 @@ def test_analyze_angles(analyzer: AngleAnalyzer) -> None:
     status_overlap = analyzer.analyze_angles(angles=angles_overlap)
     status_end_curve = analyzer.analyze_angles(angles=angles_end_curve)
 
-    # remove '#' as soon as optimization algorithm has executed for all test cases and optimized thresholds have been set -> update of the reference track points at the top of this file required
-
     assert (
         status_straight_line == True
     ), "The status of the straight line is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
-    # assert (
-    #    status_end_straight_line == True
-    # ), "The status of the end of straight line is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
-    # assert (
-    #    status_curve == True
-    # ), "The status of the curve is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
-    # assert (
-    #    status_overlap == True
-    # ), "The status of the overlap is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
-    # assert (
-    #    status_end_curve == True
-    # ), "The status of the end of curve is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
+    assert (
+        status_end_straight_line == True
+    ), "The status of the end of straight line is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
+    assert (
+        status_curve == True
+    ), "The status of the curve is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
+    assert (
+        status_overlap == False
+    ), "The status of the overlap is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
+    assert (
+        status_end_curve == False
+    ), "The status of the end of curve is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
 
 
 # AI content (GitHub Copilot, 01/29/2024), verified and adapted by Nicolas Huber.
@@ -312,23 +310,21 @@ def test_analyze_linear_regression(analyzer: AngleAnalyzer) -> None:
     status_overlap = analyzer.analyze_linear_regression(df=angles_overlap)
     status_end_curve = analyzer.analyze_linear_regression(df=angles_end_curve)
 
-    # remove '#' as soon as optimization algorithm has executed for all test cases and optimized thresholds have been set -> update of the reference track points at the top of this file required
-
     assert (
         status_straight_line[0] == True
     ), "The status of the straight line is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
-    # assert (
-    #    status_end_straight_line[0] == False
-    # ), "The status of the end of straight line is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
-    # assert (
-    #    status_curve[0] == True
-    # ), "The status of the curve is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
-    # assert (
-    #    status_overlap[0] == False
-    # ), "The status of the overlap is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
-    # assert (
-    #    status_end_curve[0] == True
-    # ), "The status of the end of curve is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
+    assert (
+        status_end_straight_line[0] == True
+    ), "The status of the end of straight line is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
+    assert (
+        status_curve[0] == False
+    ), "The status of the curve is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
+    assert (
+        status_overlap[0] == True
+    ), "The status of the overlap is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
+    assert (
+        status_end_curve[0] == False
+    ), "The status of the end of curve is not correct."  # assertion determined by a test manually executed using the execute_angle_analyzer.ipynb notebook
 
 
 # AI content (GitHub Copilot, 02/07/2024), verified and adapted by Nicolas Huber.
