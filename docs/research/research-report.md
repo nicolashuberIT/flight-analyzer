@@ -19,7 +19,7 @@ Happy reading!
       - [Run 2 - Limit 150 \& Step 5](#run-2---limit-150--step-5)
       - [Run 3 - Limit 200 \& Step 5](#run-3---limit-200--step-5)
       - [Run 4 - Limit 250 \& Step 5](#run-4---limit-250--step-5)
-    - [Result Matrix](#result-matrix)
+    - [Optimization Matrix](#optimization-matrix)
     - [Summary](#summary)
   - [Flight Data Analysis](#flight-data-analysis)
     - [Generate Experimental Polars](#generate-experimental-polars)
@@ -89,7 +89,8 @@ The test ended with the following result (see figures 2 and 3 and the report bel
 
 <table>
 <tr>
-  <th>Result of optimization run 1</th>
+    <th>Thresholds</th>
+    <th>Linear regression</th>
 </tr>
 <tr>
     <td>
@@ -146,12 +147,12 @@ For reference, the optimized thresholds result in the following track log analys
     <td>
         <img src="/docs/optimization/limit-100-step-5/20240220_SJf_threshold-optimization_limit-100-step-5_tracklog-analysis_95-90_nicolas-huber.png" alt="Optimization by score">
         <br>
-        <em>Fig. 4: Track log visualisation by score (run 1)</em>
+        <em>Fig. 4: Track log visualisation by score (95 & 90, run 1)</em>
     </td>
     <td>
         <img src="/docs/optimization/limit-100-step-5/20240220_SJf_threshold-optimization_limit-100-step-5_tracklog-analysis_10-50_nicolas-huber.png" alt="Optimization by ratio">
         <br>
-        <em>Fig. 5: Track log visualisation by ratio (run 1)</em>
+        <em>Fig. 5: Track log visualisation by ratio (10 & 50, run 1)</em>
     </td>
 </tr>
 </table>
@@ -168,7 +169,7 @@ _Documentation follows as soon as optimization run has executed._
 
 _Documentation follows as soon as optimization run has executed._
 
-### Result Matrix
+### Optimization Matrix
 
 <table>
 <tr>
@@ -179,19 +180,19 @@ _Documentation follows as soon as optimization run has executed._
     <td>
         <img src="/docs/optimization/limit-100-step-5/20240220_SJf_threshold-optimization_limit-100-step-5_tracklog-analysis_95-90_nicolas-huber.png" alt="Optimization by score">
         <br>
-        <em>Fig. 4: Track log visualisation by score (run 1)</em>
+        <em>Fig. 4: Track log visualisation by score (95 & 90, run 1)</em>
     </td>
     <td>
         <img src="/docs/optimization/limit-100-step-5/20240220_SJf_threshold-optimization_limit-100-step-5_tracklog-analysis_10-50_nicolas-huber.png" alt="Optimization by ratio">
         <br>
-        <em>Fig. 5: Track log visualisation by ratio (run 1)</em>
+        <em>Fig. 5: Track log visualisation by ratio (10 & 50, run 1)</em>
     </td>
 </tr>
 </table>
 
 ### Summary
 
-_Summary will follow as soon as optimization process is completed.
+_Summary will follow as soon as optimization process is completed._
 
 ## Flight Data Analysis
 
