@@ -282,7 +282,16 @@ This optimization run isn't further documented as it resolved in exactly the sam
 
 ### Summary
 
-_Summary will follow as soon as optimization process is completed._
+Three calculation runs were carried out with different parameters to optimize the thresholds. All runs produced the same result. The optimization algorithm recommends the following thresholds for further analyses:
+
+- By score:
+  - `OPTIMIZATION_LIMIT` = 95
+  - `OPTIMIZATION_STEP` = 90
+- By ratio:
+  - `OPTIMIZATION_LIMIT` = 10
+  - `OPTIMIZATION_STEP` = 50
+
+Now the question arises as to which of the combinations works better in practice. Some tests based on the `SpeedAnalyzer` algorithm have shown that the Thresholds by score are the better combination. The combination 95 & 90 produces the best results. This high-performance threshold pair is therefore the basis for all further analyses.
 
 ## Flight Data Analysis
 
