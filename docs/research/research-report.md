@@ -267,6 +267,8 @@ _Documentation follows as soon as optimization run has executed._
         <br>
         <em>Fig. 5: Track log visualisation by ratio (10 & 50, run 1)</em>
     </td>
+</tr>
+<tr>
     <td>
         <img src="/docs/optimization/limit-150-step-5/20240220_SJf_threshold-optimization_limit-150-step-5_tracklog-analysis_95-90_nicolas-huber.png" alt="Optimization by score">
         <br>
