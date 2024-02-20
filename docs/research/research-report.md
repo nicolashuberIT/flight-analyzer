@@ -14,6 +14,11 @@ Happy reading!
   - [Testing](#testing)
   - [Algorithm Optimization](#algorithm-optimization)
     - [Overview](#overview)
+    - [Optimization Runs](#optimization-runs)
+      - [Run 1 - Limit 100 \& Step 5](#run-1---limit-100--step-5)
+      - [Run 2 - Limit 150 \& Step 5](#run-2---limit-150--step-5)
+      - [Run 3 - Limit 200 \& Step 5](#run-3---limit-200--step-5)
+      - [Run 4 - Limit 250 \& Step 5](#run-4---limit-250--step-5)
 
 ## Empiric Dataset
 
@@ -35,25 +40,73 @@ The analysis of the flight data is based on some constant values that must be se
 
 There are two parameters for optimizing the `AngleAnalyzer` algorithm: 
 
-- `OPTIMIZATION_LIMIT` - defines the highest threshold that's to be tested
+- `OPTIMIZATION_LIMIT` - defines the highest threshold that's to be tested, starts from threshold 10
 - `OPTIMIZATION_STEPS` - defines the step size between the tested thresholds
 
-When the optimization is performed for these parameters, the algorithm forms a cartesian product of all combinations for `ANGLE_PAST_THRESHOLD` and `ANGLE_FUTURE_THRESHOLD` and calculates how well this combination performs in the analysis of the flight data.
+When the optimization is performed for these parameters, the algorithm forms a cartesian product of all combinations for `ANGLE_PAST_THRESHOLD` and `ANGLE_FUTURE_THRESHOLD` within the specified range and calculates how well this combination performs in the analysis of the flight data.
 
 The basis for this optimization is the track log visualized below. The raw file can be found [here](/docs/datasets/empiric-study/1_raw/20240216_SJf_skytraxx-2.1-export_flight-nr-22.igc), the corresponding `.csv` file can be found [here](/docs/datasets/empiric-study/2_csv/20240216_SJf_skytraxx-2.1-export_flight-nr-22.csv).
 
 <table>
 <tr>
-  <th>Analyzed track log</th>
+  <th>Analyzed track log (optimization)</th>
 </tr>
 <tr>
   <td>
     <img src="/docs/optimization/input/20240220_SJf_threshold-optimization_flight-visualisation_nicolas-huber.png" alt="Tracklog">
       <br>
-      <em>Fig. 1: Track log visualisation</em>
+      <em>Fig. 1: Track log visualisation (optimization)</em>
     </td>
 </tr>
 </table>
+
+### Optimization Runs
+
+Because the optimization parameters have a large effect on the resolution of the data (the larger the cartesian product, the more high-performance combinations are potentially lost in the set), four different calculation runs were performed, each under the following conditions:
+
+- Run 1: `OPTIMIZATION_LIMIT` = 100, `OPTIMIZATION_STEP` = 5
+- Run 2: `OPTIMIZATION_LIMIT` = 150, `OPTIMIZATION_STEP` = 5
+- Run 3: `OPTIMIZATION_LIMIT` = 200, `OPTIMIZATION_STEP` = 5
+- Run 4: `OPTIMIZATION_LIMIT` = 250, `OPTIMIZATION_STEP` = 5
+
+The findings of each run can be found below.
+
+#### Run 1 - Limit 100 & Step 5
+
+Run wan as executed for the following conditions:
+
+- `OPTIMIZATION_LIMIT` = 100
+- `OPTIMIZATION_STEP` = 5
+
+The test ended with the following result (see figures 2 and 3 and the report below).
+
+<table>
+<tr>
+  <th>Result of optimization run 1</th>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/optimization/limit-100-step-5/20240220_SJf_threshold-optimization_limit-100-step-5_best-thresholds_nicolas-huber.png" alt="Tracklog">
+        <br>
+        <em>Fig. 2: Best thresholds (run 1)</em>
+    </td>
+    <td>
+        <img src="/docs/optimization/limit-100-step-5/20240220_SJf_threshold-optimization_limit-100-step-5_score-linear-regression-values_nicolas-huber.png" alt="Tracklog">
+        <br>
+        <em>Fig. 3: Linear regression values (run 1)</em>
+    </td>
+</tr>
+</table>
+
+#### Run 2 - Limit 150 & Step 5
+
+
+
+#### Run 3 - Limit 200 & Step 5
+
+
+
+#### Run 4 - Limit 250 & Step 5
 
 ---
 
