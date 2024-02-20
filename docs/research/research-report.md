@@ -19,6 +19,13 @@ Happy reading!
       - [Run 2 - Limit 150 \& Step 5](#run-2---limit-150--step-5)
       - [Run 3 - Limit 200 \& Step 5](#run-3---limit-200--step-5)
       - [Run 4 - Limit 250 \& Step 5](#run-4---limit-250--step-5)
+    - [Result Matrix](#result-matrix)
+    - [Summary](#summary)
+  - [Flight Data Analysis](#flight-data-analysis)
+    - [Generate Experimental Polars](#generate-experimental-polars)
+    - [Generate Experimental c-value Model](#generate-experimental-c-value-model)
+    - [Generate Experimental Pressure Model](#generate-experimental-pressure-model)
+  - [Summary](#summary-1)
 
 ## Empiric Dataset
 
@@ -98,15 +105,113 @@ The test ended with the following result (see figures 2 and 3 and the report bel
 </tr>
 </table>
 
+Check out the report of this optimization run:
+
+<details>
+<summary>Show Report</summary>
+
+```txt
+Individual thresholds with the best score:
+--> past_threshold_optimized: 95
+--> future_threshold_optimized: 90
+
+Below is a tabular overview of the 5 best scores and their thresholds. This information is more meaningful here, as in the analysis later for the evaluation of a point, both the future and the past are taken into account, and thus the score considers the interaction of the two thresholds.
+
+<<< LISTING >>>
+
+The best performing thresholds are 95 (angle_past_threshold) and 90 (angle_future_threshold) with a score of 0.5949858988489289.
+
+Another good performing set of thresholds can be found by comparing the data loss relative to the scores, which are directly related to the thresholds. In this case, the best performing thresholds are 10 (angle_past_threshold) and 50 (angle_future_threshold) with a score of 0.5696515553401256 and a data loss of 43.728813559322035. The bigger the difference between the score and the data loss, the better the thresholds are. This is the case because the precison of the thresholds is overall better if less data is lost, even if there is a small decrease in the score.
+```
+
+</details>
+
+In summary, the optimization run for limit 100 and step size 5 resolved in the following result:
+
+- Best performing thresholds by score: 
+  - `ANGLE_PAST_THRESHOLD` = 95
+  - `ANGLE_FUTURE_THRESHOLD` = 90
+- Best performing thesholds by score-data-loss-ratio: 
+  - `ANGLE_PAST_THRESHOLD` = 10
+  - `ANGLE_FUTURE_THRESHOLD` = 50
+
+For reference, the optimized thresholds result in the following track log analyses:
+
+<table>
+<tr>
+  <th>Track log visualisation by score</th>
+  <th>Track log visualisation by ratio</th>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/optimization/limit-100-step-5/20240220_SJf_threshold-optimization_limit-100-step-5_tracklog-analysis_95-90_nicolas-huber.png" alt="Optimization by score">
+        <br>
+        <em>Fig. 4: Track log visualisation by score (run 1)</em>
+    </td>
+    <td>
+        <img src="/docs/optimization/limit-100-step-5/20240220_SJf_threshold-optimization_limit-100-step-5_tracklog-analysis_10-50_nicolas-huber.png" alt="Optimization by ratio">
+        <br>
+        <em>Fig. 5: Track log visualisation by ratio (run 1)</em>
+    </td>
+</tr>
+</table>
+
 #### Run 2 - Limit 150 & Step 5
 
-
+_Documentation follows as soon as optimization run has executed._
 
 #### Run 3 - Limit 200 & Step 5
 
-
+_Documentation follows as soon as optimization run has executed._
 
 #### Run 4 - Limit 250 & Step 5
+
+_Documentation follows as soon as optimization run has executed._
+
+### Result Matrix
+
+<table>
+<tr>
+  <th>Track log visualisation by score</th>
+  <th>Track log visualisation by ratio</th>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/optimization/limit-100-step-5/20240220_SJf_threshold-optimization_limit-100-step-5_tracklog-analysis_95-90_nicolas-huber.png" alt="Optimization by score">
+        <br>
+        <em>Fig. 4: Track log visualisation by score (run 1)</em>
+    </td>
+    <td>
+        <img src="/docs/optimization/limit-100-step-5/20240220_SJf_threshold-optimization_limit-100-step-5_tracklog-analysis_10-50_nicolas-huber.png" alt="Optimization by ratio">
+        <br>
+        <em>Fig. 5: Track log visualisation by ratio (run 1)</em>
+    </td>
+</tr>
+</table>
+
+### Summary
+
+_Summary will follow as soon as optimization process is completed.
+
+## Flight Data Analysis
+
+_Coming soon._
+
+### Generate Experimental Polars
+
+_Coming soon._
+
+### Generate Experimental c-value Model
+
+_Coming soon._
+
+### Generate Experimental Pressure Model
+
+_Coming soon._
+
+## Summary
+
+_Coming soon._
 
 ---
 
