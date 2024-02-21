@@ -4,14 +4,17 @@ import pytest
 import numpy as np
 import pandas as pd
 
-# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
-src_directory: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-sys.path.append(src_directory)
+# AI content (ChatGPT, 02/21/2024), verified and adapted by Nicolas Huber.
+current_directory = os.path.dirname(__file__)
+flight_analyzer_directory = os.path.abspath(os.path.join(current_directory, ".."))
+sys.path.insert(0, flight_analyzer_directory)
 
 import src.constants as constants
 import src.helpers.data_analyzer as dataanalyzer
 
-CSV_FILE_IN: str = "tests/assets/data_analyzer/test_data_analyzer.csv"
+CSV_FILE_IN: str = (
+    f"{flight_analyzer_directory}/tests/assets/data_analyzer/test_data_analyzer.csv"
+)
 
 
 @pytest.fixture()
