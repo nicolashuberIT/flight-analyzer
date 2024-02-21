@@ -4,8 +4,10 @@ import pytest
 import pandas as pd
 from typing import List
 
-# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+# AI content (ChatGPT, 02/21/2024), verified and adapted by Nicolas Huber.
+current_directory = os.path.dirname(__file__)
+flight_analyzer_directory = os.path.abspath(os.path.join(current_directory, ".."))
+sys.path.insert(0, flight_analyzer_directory)
 
 from src.helpers.file_convertor import FileConverter
 
@@ -22,8 +24,8 @@ def converter() -> FileConverter:
     - A FileConverter object
     """
     return FileConverter(
-        input_file="tests/assets/file_converter/test_file_convertor.xlsx",
-        output_file="tests/assets/file_converter/test_file_convertor_output.csv",
+        input_file=f"{flight_analyzer_directory}/tests/assets/file_converter/test_file_convertor.xlsx",
+        output_file=f"{flight_analyzer_directory}/tests/assets/file_converter/test_file_convertor_output.csv",
     )
 
 
