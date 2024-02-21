@@ -31,6 +31,14 @@ LINEAR_REGRESSION_THRESHOLD: float = 0.9  # r-value > 0.9 is considered as strai
 SAVGOL_WINDOW_LENGTH: int = 3  # window length of the Savitzky-Golay filter
 SAVGOl_POLYNOMIAL_ORDER: int = 2  # polynomial order of the Savitzky-Golay filter
 
+# simulation
+
+ALTITUDE: float = 2000  # altitude of the paraglider in flight [m]
+MASS: float = 90  # mass of the paraglider in flight [kg]
+GRAVITY: float = 9.81  # gravitational accelaration in Zurich, Switzerland [m/s^2]
+AIR_DENSITY: float = 1.0065  # air density in Zurich, Switzerland [kg/m^3]
+WING_AREA: float = 23.1  # wing area of the paraglider [m^2]
+
 # categories
 
 INDEX_STRAIGHT_LINE: Tuple[bool, str, int] = True, "Straight Line", 0

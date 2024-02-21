@@ -4,6 +4,7 @@ from typing import Tuple
 import matplotlib.pyplot as plt
 from scipy.integrate import simps
 from scipy.stats import linregress
+from scipy.interpolate import interp1d
 from scipy.interpolate import CubicSpline
 from matplotlib.colors import ListedColormap
 
@@ -662,6 +663,250 @@ class DataVisualizer:
         plt.title(title)
         plt.xlabel("Horizontalgeschwindigkeit [m/s]")
         plt.ylabel("Vertikalgeschwindigkeit [m/s]")
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+
+        return mean_deviation, max_deviation, rms_deviation, area
+
+    def visualize_c_values_theoretical(
+        self,
+        theoretical_data: pd.DataFrame,
+        key: str,
+        title: str,
+    ) -> None:
+        """
+        Plots the C values of the experimental and theoretical speed data.
+
+        Parameters:
+        - experimental_data: the DataFrame containing the experimental speed data
+        - theoretical_data: the DataFrame containing the theoretical speed data
+        - key: the key of the c values (either Ca [0.5] or Cw [1.0])
+        - title: the title of the plot
+
+        Returns:
+        - None
+        """
+        fig = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+
+        airspeed: pd.Series = theoretical_data["airspeed [m/s]"].sort_values()
+        c_value: pd.Series = theoretical_data[key].loc[airspeed.index]
+
+        cs: CubicSpline = CubicSpline(airspeed, c_value)
+
+        x_values: np.ndarray = np.linspace(
+            airspeed.min(),
+            airspeed.max(),
+            100,
+        )
+
+        plt.plot(
+            x_values,
+            cs(x_values),
+            color="green",
+            label=f"Theoretische C-Werte ({key})",
+        )
+
+        plt.xlim(8.0, 15.7)
+        if key == "Cw [0.5]":
+            plt.ylim(0.0, 0.13)
+        else:
+            plt.ylim(0.0, 0.6)
+
+        plt.title(title)
+        plt.xlabel("Anströmgeschwindigkeit [m/s]")
+        plt.ylabel("C-Wert [0.5]")
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+
+    # AI content (ChatGPT, 02/21/2024), verified and adapted by Nicolas Huber.
+    def visualize_c_values(
+        self,
+        experimental_data: pd.DataFrame,
+        theoretical_data: pd.DataFrame,
+        key: str,
+        title: str,
+    ) -> None:
+        """
+        Plots the C values of the experimental and theoretical speed data.
+
+        Parameters:
+        - experimental_data: the DataFrame containing the experimental speed data
+        - theoretical_data: the DataFrame containing the theoretical speed data
+        - key: the key of the c values (either Ca [0.5] or Cw [1.0])
+        - title: the title of the plot
+
+        Returns:
+        - None
+        """
+        fig = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+
+        # experimental data
+        x_exp = experimental_data["horizontal velocity [m/s]"]
+        y_exp = experimental_data[key]
+        plt.scatter(
+            x_exp,
+            y_exp,
+            color="grey",
+            label=f"Experimentelle C-Werte ({key})",
+            s=3,
+        )
+
+        # power-law trendline for experimental data
+        log_x = np.log10(x_exp)
+        log_y = np.log10(y_exp)
+        coeffs = np.polyfit(log_x, log_y, 1)
+        poly = np.poly1d(coeffs)
+        y_fit = lambda x: np.power(10, poly(np.log10(x)))
+        plt.plot(x_exp, y_fit(x_exp), "b-", label="Annäherung der c-Werte")
+
+        # theoretical data
+        airspeed: pd.Series = theoretical_data["airspeed [m/s]"].sort_values()
+        c_value: pd.Series = theoretical_data[key].loc[airspeed.index]
+
+        cs: CubicSpline = CubicSpline(airspeed, c_value)
+
+        x_values: np.ndarray = np.linspace(
+            airspeed.min(),
+            airspeed.max(),
+            100,
+        )
+
+        plt.plot(
+            x_values,
+            cs(x_values),
+            color="green",
+            label=f"Theoretische C-Werte ({key})",
+        )
+
+        plt.xlim(8.0, 15.7)
+        if key == "Cw [0.5]":
+            plt.ylim(0.0, 0.13)
+        else:
+            plt.ylim(0.0, 0.6)
+
+        plt.title(title)
+        plt.xlabel("Anströmgeschwindigkeit [m/s]")
+        plt.ylabel("C-Wert [0.5]")
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+
+    # AI content (ChatGPT, 02/21/2024), verified and adapted by Nicolas Huber.
+    def visualize_c_values_deviation(
+        self,
+        experimental_data: pd.DataFrame,
+        theoretical_data: pd.DataFrame,
+        key: str,
+        title: str,
+    ) -> Tuple[float, float, float, float]:
+        """
+        Plots the deviation between the experimental and theoretical C values, and calculates the deviation metrics.
+
+        Parameters:
+        - experimental_data: the DataFrame containing the experimental speed data
+        - theoretical_data: the DataFrame containing the theoretical speed data
+        - key: the key of the c values (either Ca [0.5] or Cw [1.0])
+        - title: the title of the plot
+
+        Returns:
+        - Tuple[float, float, float, float]: mean_deviation, max_deviation, rms_deviation, area
+        """
+        fig: plt.Figure = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+
+        # experimental data
+        x_exp = experimental_data["horizontal velocity [m/s]"]
+        y_exp = experimental_data[key]
+        plt.scatter(
+            x_exp,
+            y_exp,
+            color="grey",
+            label=f"Experimentelle C-Werte ({key})",
+            s=3,
+        )
+
+        # power-law trendline for experimental data
+        log_x = np.log10(x_exp)
+        log_y = np.log10(y_exp)
+        coeffs = np.polyfit(log_x, log_y, 1)
+        poly = np.poly1d(coeffs)
+        y_fit = lambda x: np.power(10, poly(np.log10(x)))
+        plt.plot(x_exp, y_fit(x_exp), "b-", label="Annäherung der c-Werte")
+
+        power_law_equation = f"c(x) = {10**coeffs[1]:.2f} * x^{coeffs[0]:.2f}"
+        plt.text(
+            0.05,
+            0.05,
+            power_law_equation,
+            transform=plt.gca().transAxes,
+            fontsize=14,
+            verticalalignment="bottom",
+        )
+
+        # theoretical data
+        airspeed: pd.Series = theoretical_data["airspeed [m/s]"].sort_values()
+        c_value: pd.Series = theoretical_data[key].loc[airspeed.index]
+
+        cs: CubicSpline = CubicSpline(airspeed, c_value)
+
+        x_values: np.ndarray = np.linspace(
+            airspeed.min(),
+            airspeed.max(),
+            100,
+        )
+
+        plt.plot(
+            x_values,
+            cs(x_values),
+            color="green",
+            label=f"Theoretische C-Werte ({key})",
+        )
+
+        # deviation area
+        intersection_x = x_exp
+        intersection_y = y_fit(x_exp)
+        experimental_mask = (x_exp >= 8) & (x_exp <= 16)
+        theoretical_mask = (x_values >= 8) & (x_values <= 16)
+
+        y_fit_func = interp1d(x_exp, y_fit(x_exp), fill_value="extrapolate")
+        y_fit_theoretical_mask = y_fit_func(x_values[theoretical_mask])
+
+        area = simps(
+            np.abs(y_fit_theoretical_mask - cs(x_values[theoretical_mask])),
+            x_values[theoretical_mask],
+        )
+
+        # deviation metrics
+        y_fit_func = interp1d(x_exp, y_fit(x_exp), fill_value="extrapolate")
+        y_fit_all = y_fit_func(x_values)
+
+        deviations = np.abs(y_fit_all - cs(x_values))
+        mean_deviation = np.mean(deviations)
+        max_deviation = np.max(deviations)
+        rms_deviation = np.sqrt(np.mean(deviations**2))
+
+        plt.fill_between(
+            intersection_x,
+            intersection_y,
+            cs(intersection_x),
+            color="orange",
+            alpha=0.5,
+            label=f"Abweichungsbereich: {area:.2f}",
+        )
+
+        plt.xlim(8.0, 15.7)
+        if key == "Cw [0.5]":
+            plt.ylim(0.0, 0.13)
+        else:
+            plt.ylim(0.0, 0.6)
+
+        plt.title(title)
+        plt.xlabel("Anströmgeschwindigkeit [m/s]")
+        plt.ylabel("c(x) [0.5]")
         plt.grid(True)
         plt.legend()
         plt.show()
