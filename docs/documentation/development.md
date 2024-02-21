@@ -8,7 +8,6 @@
   - [Contents](#contents)
   - [Conventions](#conventions)
   - [Testing](#testing)
-    - [Issues and Workaround](#issues-and-workaround)
   - [Contributing](#contributing)
   - [Changelog](#changelog)
   - [Attributions](#attributions)
@@ -21,15 +20,9 @@ Please find naming conventions for this project linked here: [click](/docs/docum
 
 The codebase has been tested using the `pytest` module. The recent CI/CD status can be found at the top of this page. Click [here](https://github.com/nicolashuberIT/flight-analyzer/actions) for a detailed overview and unit testing logs. 
 
-### Issues and Workaround
+*Please note:*
 
-When running tests using pytest without specifying the test files explicitly, some tests fail with a FileNotFoundError. Interestingly, this issue did not occur with previous versions of the codebase. The reason for this error is unknown, and it appeared unexpectedly. Due to time constraints, the error wasn't further debugged, and the following workaround was implemented to ensure testing could proceed efficiently. 
-
-To address this issue, the workaround involves explicitly specifying the test files to be executed in a shell script. By creating a shell script that lists all test files with their relative paths and then executing this script, pytest can properly locate the test files and run them without encountering FileNotFoundError. This ensures that pytest operates from the correct working directory and resolves file paths accurately.
-
-For reference, check [testing.sh](/testing.sh), [update_testing.sh](/update_testing.sh) and [testing.yaml](https://github.com/nicolashuberIT/flight-analyzer/blob/main/.github/workflows/testing.yaml).
-
-To run unit tests locally, run `./update_testing.sh` from the base directory of this project and then initialize pytest by running `./testing.sh`.
+*The issue regarding some tests failing with a FileNotFoundError when running pytest without specifying test files explicitly has been resolved, but the option to run tests using the `testing.sh` script persists; this workaround involves explicitly listing test files with their relative paths in a shell script and executing it to ensure pytest can locate and run the tests without encountering errors. For more details, refer to [testing.sh](/testing.sh), [update_testing.sh](/update_testing.sh), and [testing.yaml](https://github.com/nicolashuberIT/flight-analyzer/blob/main/.github/workflows/testing.yaml).*
 
 ## Contributing
 
