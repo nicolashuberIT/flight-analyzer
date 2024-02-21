@@ -3,14 +3,15 @@ import sys
 import pytest
 from typing import List
 
-# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
-src_directory: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-sys.path.append(src_directory)
+# AI content (ChatGPT, 02/21/2024), verified and adapted by Nicolas Huber.
+current_directory = os.path.dirname(__file__)
+flight_analyzer_directory = os.path.abspath(os.path.join(current_directory, ".."))
+sys.path.insert(0, flight_analyzer_directory)
 
 import src.constants as constants
 import src.helpers.file_processor as file_processor
 
-DIRECTORY: str = "tests/assets/file_processor/"
+DIRECTORY: str = f"{flight_analyzer_directory}/tests/assets/file_processor/"
 FILE_EXTENSION: str = ".csv"
 
 
