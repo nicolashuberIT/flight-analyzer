@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 from typing import List
 
-# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
+# AI content (ChatGPT, 02/21/2024), verified and adapted by Nicolas Huber.
 current_directory = os.path.dirname(__file__)
 flight_analyzer_directory = os.path.abspath(os.path.join(current_directory, ".."))
 sys.path.insert(0, flight_analyzer_directory)
