@@ -4,13 +4,15 @@ import pytest
 import numpy as np
 import pandas as pd
 
-# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+# AI content (ChatGPT, 02/21/2024), verified and adapted by Nicolas Huber.
+current_directory = os.path.dirname(__file__)
+flight_analyzer_directory = os.path.abspath(os.path.join(current_directory, ".."))
+sys.path.insert(0, flight_analyzer_directory)
 
 from src.packages.IGC2CSV import IGC2CSV
 
-TEST_FILE = "tests/assets/igc2csv/test_igc2csv.igc"
-REFERENCE_FILE = "tests/assets/igc2csv/test_igc2csv.csv"
+TEST_FILE = f"{flight_analyzer_directory}/tests/assets/igc2csv/test_igc2csv.igc"
+REFERENCE_FILE = f"{flight_analyzer_directory}/tests/assets/igc2csv/test_igc2csv.csv"
 
 
 @pytest.fixture
