@@ -4,13 +4,17 @@ import math
 import pytest
 import pandas as pd
 
-# AI content (GitHub Copilot, 01/25/2024), verified and adapted by Nicolas Huber.
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+# AI content (ChatGPT, 02/21/2024), verified and adapted by Nicolas Huber.
+current_directory = os.path.dirname(__file__)
+flight_analyzer_directory = os.path.abspath(os.path.join(current_directory, ".."))
+sys.path.insert(0, flight_analyzer_directory)
 
 import src.constants as constants
 from src.algorithms.angle_analyzer import AngleAnalyzer
 
-PATH = "tests/assets/angle_analyzer/test_angle_analyzer.csv"
+PATH = (
+    f"{flight_analyzer_directory}/tests/assets/angle_analyzer/test_angle_analyzer.csv"
+)
 INDEX_STRAIGHT_LINE = 1400
 INDEX_CURVE = 270
 INDEX_OVERLAP = 400
