@@ -968,6 +968,7 @@ class DataVisualizer:
         plt.legend()
         plt.show()
 
+    # AI content (ChatGPT, 02/22/2024), verified and adapted by Nicolas Huber.
     def visualize_pressure_deviation(self, experimental_data, theoretical_data, title) -> Tuple[float, float, float, float]:
         """
         Plots the deviation between the experimental and theoretical pressure data.
@@ -1035,6 +1036,36 @@ class DataVisualizer:
         plt.title(title)
         plt.xlabel("Anströmgeschwindigkeit [m/s]")
         plt.ylabel("Staudruck [N/m^2]")
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+
+    # AI content (ChatGPT, 02/22/2024), verified and adapted by Nicolas Huber.
+    def visualize_quality_deviation(self, deviation_data: pd.DataFrame, title: str) -> None:
+        """
+        Plots the airspeed on the x axis, the deviation in newton on the y axis and the deviation percentage on the second y axis. The axis are normalized to the same range.
+        
+        Parameters:
+        - deviation_data: the DataFrame containing the deviation data
+        - title: the title of the plot
+        
+        Returns:
+        - None
+        """
+        fig = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+
+        plt.plot(
+            deviation_data["airspeed [m/s]"],
+            abs(deviation_data["deviation [N]"]),
+            label="Abweichung [N]",
+            color="orange",
+        )
+        plt.ylabel("Abweichung [N]")
+        plt.tick_params(axis="y")
+
+        plt.title(title)
+        plt.xlabel("Anströmgeschwindigkeit [m/s]")
         plt.grid(True)
         plt.legend()
         plt.show()
