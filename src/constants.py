@@ -38,6 +38,7 @@ MASS: float = 90  # mass of the paraglider in flight [kg]
 GRAVITY: float = 9.81  # gravitational accelaration in Zurich, Switzerland [m/s^2]
 AIR_DENSITY: float = 1.0065  # air density in Zurich, Switzerland [kg/m^3]
 WING_AREA: float = 23.1  # wing area of the paraglider [m^2]
+STATIC_PRESSURE: float = 10000  # static air pressure at altitude [N/m^2]
 
 # categories
 

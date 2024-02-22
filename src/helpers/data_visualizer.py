@@ -912,3 +912,52 @@ class DataVisualizer:
         plt.show()
 
         return mean_deviation, max_deviation, rms_deviation, area
+
+    # AI content (ChatGPT, 02/21/2024), verified and adapted by Nicolas Huber.
+    def visualize_pressure(
+        self,
+        experimental_data: pd.DataFrame,
+        theoretical_data: pd.DataFrame,
+        title: str,
+    ) -> None:
+        """
+        Plots the pressure data.
+
+        Parameters:
+        - experimental_data: the DataFrame containing the experimental pressure data
+        - theoretical_data: the DataFrame containing the theoretical pressure data
+        - title: the title of the plot
+
+        Returns:
+        - None
+        """
+        fig = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+
+        # experimental data
+        x_exp = experimental_data["airspeed [m/s]"]
+        y_exp = experimental_data["dynamic pressure [N/m^2]"]
+        plt.plot(x_exp, y_exp, color="grey", label="Experimenteller Staudruck")
+
+        # theoretical data
+        airspeed: pd.Series = theoretical_data["airspeed [m/s]"].sort_values()
+        pressure: pd.Series = theoretical_data["dynamic pressure [N/m^2]"].loc[
+            airspeed.index
+        ]
+
+        cs: CubicSpline = CubicSpline(airspeed, pressure)
+
+        x_values: np.ndarray = np.linspace(
+            airspeed.min(),
+            airspeed.max(),
+            100,
+        )
+
+        plt.plot(x_values, cs(x_values), color="green", label="Theoretischer Staudruck")
+
+        plt.title(title)
+        plt.xlabel("Anströmgeschwindigkeit [m/s]")
+        plt.ylabel("Staudruck [N/m^2]")
+        plt.grid(True)
+        plt.legend()
+        plt.show()
