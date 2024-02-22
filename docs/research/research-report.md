@@ -18,9 +18,9 @@ Happy reading!
       - [Run 1 - Limit 100 \& Step 5](#run-1---limit-100--step-5)
       - [Run 2 - Limit 150 \& Step 5](#run-2---limit-150--step-5)
       - [Run 3 - Limit 200 \& Step 5](#run-3---limit-200--step-5)
-    - [Optimization Matrix](#optimization-matrix)
     - [Summary](#summary)
   - [Flight Data Analysis](#flight-data-analysis)
+    - [Track Log Matrix](#track-log-matrix)
     - [Generate Experimental Polars](#generate-experimental-polars)
     - [Generate Experimental c-value Model](#generate-experimental-c-value-model)
     - [Generate Experimental Pressure Model](#generate-experimental-pressure-model)
@@ -600,7 +600,24 @@ The following analyses are based on the flight data mentioned [here](#empiric-da
     <td>
         <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-28_nicolas-huber.png" alt="Altitude variation">
         <br>
-        <em>Fig. 65: Altitude variation (flight 71)</em>
+        <em>Fig. 65: Altitude variation- [Research Report](#research-report)
+  - [Contents](#contents)
+  - [Empiric Dataset](#empiric-dataset)
+  - [Testing](#testing)
+  - [Algorithm Optimization](#algorithm-optimization)
+    - [Overview](#overview)
+    - [Optimization Runs](#optimization-runs)
+      - [Run 1 - Limit 100 \& Step 5](#run-1---limit-100--step-5)
+      - [Run 2 - Limit 150 \& Step 5](#run-2---limit-150--step-5)
+      - [Run 3 - Limit 200 \& Step 5](#run-3---limit-200--step-5)
+    - [Summary](#summary)
+  - [Flight Data Analysis](#flight-data-analysis)
+    - [Track Log Matrix](#track-log-matrix)
+    - [Generate Experimental Polars](#generate-experimental-polars)
+    - [Generate Experimental c-value Model](#generate-experimental-c-value-model)
+    - [Generate Experimental Pressure Model](#generate-experimental-pressure-model)
+  - [Summary](#summary-1)
+ (flight 71)</em>
     </td>
 </tr>
 <tr>
