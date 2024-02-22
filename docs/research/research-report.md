@@ -243,43 +243,6 @@ A detailed report on this optimization run including imformation about runtime e
 
 This optimization run isn't further documented as it resolved in exactly the same result as runs 1 and 2.
 
-### Optimization Matrix
-
-<table>
-<tr>
-  <th>Track log visualisation by score</th>
-  <th>Track log visualisation by ratio</th>
-</tr>
-<tr>
-    <td>
-        <img src="/docs/optimization/limit-100-step-5/20240220_SJf_threshold-optimization_limit-100-step-5_tracklog-analysis_95-90_nicolas-huber.png" alt="Optimization by score">
-        <br>
-        <em>Fig. 4: Track log visualisation by score (95 & 90, run 1)</em>
-    </td>
-    <td>
-        <img src="/docs/optimization/limit-100-step-5/20240220_SJf_threshold-optimization_limit-100-step-5_tracklog-analysis_10-50_nicolas-huber.png" alt="Optimization by ratio">
-        <br>
-        <em>Fig. 5: Track log visualisation by ratio (10 & 50, run 1)</em>
-    </td>
-</tr>
-<tr>
-    <td>
-        <img src="/docs/optimization/limit-150-step-5/20240220_SJf_threshold-optimization_limit-150-step-5_tracklog-analysis_95-90_nicolas-huber.png" alt="Optimization by score">
-        <br>
-        <em>Fig. 8: Track log visualisation by score (95 & 90, run 2)</em>
-    </td>
-    <td>
-        <img src="/docs/optimization/limit-150-step-5/20240220_SJf_threshold-optimization_limit-150-step-5_tracklog-analysis_10-50_nicolas-huber.png" alt="Optimization by ratio">
-        <br>
-        <em>Fig. 9: Track log visualisation by ratio (10 & 50, run 2)</em>
-    </td>
-</tr>
-<tr>
-  <td>...</td>
-  <td>...</td>
-</tr>
-</table>
-
 ### Summary
 
 Three calculation runs were carried out with different parameters to optimize the thresholds. All runs produced the same result. The optimization algorithm recommends the following thresholds for further analyses:
@@ -295,7 +258,269 @@ Now the question arises as to which of the combinations works better in practice
 
 ## Flight Data Analysis
 
-_Coming soon._
+### Track Log Matrix
+
+The following analyses are based on the flight data mentioned [here](#empiric-dataset). Below is a visualization of all these flights.
+
+<table>
+<tr>
+  <th>Track log visualisation</th>
+  <th>Altitude variation</th>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-1_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 10: Track log visualisation (flight 1)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-1_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 11: Altitude variation (flight 1)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-2_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 12: Track log visualisation (flight 5)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-2_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 13: Altitude variation (flight 5)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-3_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 14: Track log visualisation (flight 10)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-3_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 15: Altitude variation (flight 10)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-4_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 16: Track log visualisation (flight 12)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-4_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 17: Altitude variation (flight 12)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-5_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 18: Track log visualisation (flight 15)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-5_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 19: Altitude variation (flight 15)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-6_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 20: Track log visualisation (flight 16)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-6_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 21: Altitude variation (flight 16)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-7_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 22: Track log visualisation (flight 17)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-7_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 23: Altitude variation (flight 17)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-8_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 24: Track log visualisation (flight 18)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-8_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 25: Altitude variation (flight 18)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-9_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 26: Track log visualisation (flight 20)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-9_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 27: Altitude variation (flight 20)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-10_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 28: Track log visualisation (flight 21)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-10_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 29: Altitude variation (flight 21)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-11_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 30: Track log visualisation (flight 22)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-11_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 31: Altitude variation (flight 22)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-12_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 32: Track log visualisation (flight 23)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-12_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 33: Altitude variation (flight 23)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-13_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 34: Track log visualisation (flight 24)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-13_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 35: Altitude variation (flight 24)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-14_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 36: Track log visualisation (flight 31)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-14_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 37: Altitude variation (flight 31)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-15_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 38: Track log visualisation (flight 33)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-15_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 39: Altitude variation (flight 33)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-16_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 40: Track log visualisation (flight 35)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-16_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 41: Altitude variation (flight 35)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-17_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 42: Track log visualisation (flight 36)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-17_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 43: Altitude variation (flight 36)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-18_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 44: Track log visualisation (flight 37)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-18_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 45: Altitude variation (flight 37)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-19_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 46: Track log visualisation (flight 40)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-19_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 47: Altitude variation (flight 40)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-20_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 48: Track log visualisation (flight 44)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-20_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 49: Altitude variation (flight 44)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/tracks/map/20240222_SJf_track-log-visualisation_map-21_nicolas-huber.png" alt="Track log visualisation">
+        <br>
+        <em>Fig. 50: Track log visualisation (flight 45)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/tracks/altitude/20240222_SJf_track-log-visualisation_altitude-21_nicolas-huber.png" alt="Altitude variation">
+        <br>
+        <em>Fig. 51: Altitude variation (flight 45)</em>
+    </td>
+</tr>
+
+</table>
 
 ### Generate Experimental Polars
 
