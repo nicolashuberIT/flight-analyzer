@@ -935,9 +935,15 @@ class DataVisualizer:
         fig.set_facecolor("#F2F2F2")
 
         # experimental data
-        x_exp = experimental_data["airspeed [m/s]"]
+        x_exp = experimental_data["airspeed [m/s]"].sort_values()
         y_exp = experimental_data["dynamic pressure [N/m^2]"]
         plt.plot(x_exp, y_exp, color="grey", label="Experimenteller Staudruck")
+
+        # match curve to experimental data
+        coefficients = np.polyfit(x_exp, y_exp, 2)
+        polynomial = np.poly1d(coefficients)
+        x_values = np.linspace(x_exp.min(), x_exp.max(), 100)
+        plt.plot(x_values, polynomial(x_values), color="blue", label="Annäherung des Staudrucks")
 
         # theoretical data
         airspeed: pd.Series = theoretical_data["airspeed [m/s]"].sort_values()
@@ -954,6 +960,77 @@ class DataVisualizer:
         )
 
         plt.plot(x_values, cs(x_values), color="green", label="Theoretischer Staudruck")
+
+        plt.title(title)
+        plt.xlabel("Anströmgeschwindigkeit [m/s]")
+        plt.ylabel("Staudruck [N/m^2]")
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+
+    def visualize_pressure_deviation(self, experimental_data, theoretical_data, title) -> Tuple[float, float, float, float]:
+        """
+        Plots the deviation between the experimental and theoretical pressure data.
+
+        Parameters:
+        - experimental_data: the DataFrame containing the experimental pressure data
+        - theoretical_data: the DataFrame containing the theoretical pressure data
+        - title: the title of the plot
+
+        Returns:
+        - Tuple[float, float, float, float]: mean_deviation, max_deviation, rms_deviation, area
+        """
+        fig = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+
+        # experimental data
+        x_exp = experimental_data["airspeed [m/s]"].sort_values()
+        y_exp = experimental_data["dynamic pressure [N/m^2]"]
+
+        # match curve to experimental data
+        coefficients = np.polyfit(x_exp, y_exp, 2)
+        polynomial = np.poly1d(coefficients)
+        x_values = np.linspace(x_exp.min(), x_exp.max(), 100)
+        plt.plot(x_values, polynomial(x_values), color="blue", label="Annäherung des Staudrucks")
+
+        # theoretical data
+        airspeed_theoretical = theoretical_data["airspeed [m/s]"].sort_values()
+        pressure_theoretical = theoretical_data["dynamic pressure [N/m^2]"].loc[
+            airspeed_theoretical.index
+        ]
+
+        cs: CubicSpline = CubicSpline(airspeed_theoretical, pressure_theoretical)
+
+        x_values_theoretical = np.linspace(
+            airspeed_theoretical.min(),
+            airspeed_theoretical.max(),
+            100,
+        )
+
+        plt.plot(x_values_theoretical, cs(x_values_theoretical), color="green", label="Theoretischer Staudruck")
+
+        # deviation area
+        intersection_x = x_exp
+        intersection_y = polynomial(x_exp)
+        experimental_mask = (x_exp >= 8) & (x_exp <= 16)
+        theoretical_mask = (x_values_theoretical >= 8) & (x_values_theoretical <= 16)
+
+        y_fit = interp1d(x_exp, polynomial(x_exp), fill_value="extrapolate")
+        y_fit_theoretical_mask = y_fit(x_values_theoretical[theoretical_mask])
+
+        area = simps(
+            np.abs(y_fit_theoretical_mask - cs(x_values_theoretical[theoretical_mask])),
+            x=x_values_theoretical[theoretical_mask],
+        )
+
+        plt.fill_between(
+            intersection_x,
+            intersection_y,
+            cs(intersection_x),
+            color="orange",
+            alpha=0.5,
+            label=f"Abweichungsbereich: {area:.2f}",
+        )
 
         plt.title(title)
         plt.xlabel("Anströmgeschwindigkeit [m/s]")

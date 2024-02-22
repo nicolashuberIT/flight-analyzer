@@ -19,10 +19,11 @@ class PressureAnalyzer:
         """
         Initialize the PressureAnalyzer class.
         """
+        pass
 
     def calculate_force_resultant(self, airspeed: float, Ca: float, Cw: float) -> float:
         """
-        Calculate resultant force at a paraglider wing.
+        Calculate resultant force at a paraglider wing (based on simplified algorithm)
 
         Args:
         - airspeed (float): The airspeed at the paraglider wing.
@@ -36,8 +37,8 @@ class PressureAnalyzer:
             constants.AIR_DENSITY
             * constants.WING_AREA
             * (airspeed**2)
-            * ((Ca**2) + (Cw**2))
-        ) ** 0.5
+            * (Ca + Cw)
+        )
 
     def calculate_dynamic_pressure(
         self, airspeed: float, Ca: float, Cw: float
