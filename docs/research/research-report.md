@@ -629,6 +629,8 @@ The following analyses are based on the flight data mentioned [here](#empiric-da
 </tr>
 </table>
 
+If you're looking for a specific track log, go to `docs/datasets/empiric-study/` and then either `1_raw` or `2_csv`. The files are named `20240216_SJf_skytraxx-2.1-export_flight-nr-1`, so just search for the `flight-nr-n` tag you're looking for.
+
 ### Generate Experimental Polars
 
 _Coming soon._
