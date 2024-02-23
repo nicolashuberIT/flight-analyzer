@@ -20,6 +20,7 @@ Happy reading!
       - [Run 3 - Limit 200 \& Step 5](#run-3---limit-200--step-5)
     - [Summary](#summary)
   - [Flight Data Analysis](#flight-data-analysis)
+    - [Conditions](#conditions)
     - [Track Log Matrix](#track-log-matrix)
     - [Generate Experimental Polars](#generate-experimental-polars)
     - [Generate Experimental c-value Model](#generate-experimental-c-value-model)
@@ -257,6 +258,45 @@ Three calculation runs were carried out with different parameters to optimize th
 Now the question arises as to which of the combinations works better in practice. Some tests based on the `SpeedAnalyzer` algorithm have shown that the Thresholds by score are the better combination. The combination 95 & 90 produces the best results. This high-performance threshold pair is therefore the basis for all further analyses.
 
 ## Flight Data Analysis
+
+### Conditions
+
+The analyses presented in the paper **Fliegen am Limit - Aktive Sicherheit im Gleitschirmsport**, dated 03/31/2024, have been conducted for the following conditions, which can be found in the [constants.py](/src/constants.py) file.
+
+<details>
+<summary>Show Conditions</summary>
+
+```Python
+# algorithms
+
+ANGLE_PAST_THRESHOLD: int = (
+    95  # number of points in the past that are considered for the angle evaluation
+)
+ANGLE_FUTURE_THRESHOLD: int = (
+    90  # number of points in the future that are considered for the angle evaluation
+)
+ANGLE_THRESHOLD: int = 20  # angle < 20° is considered as straight line
+LINEAR_REGRESSION_THRESHOLD: float = 0.9  # r-value > 0.9 is considered as straight line
+
+SAVGOL_WINDOW_LENGTH: int = 3  # window length of the Savitzky-Golay filter
+SAVGOl_POLYNOMIAL_ORDER: int = 2  # polynomial order of the Savitzky-Golay filter
+
+# simulation
+
+ALTITUDE: float = 2000  # altitude of the paraglider in flight [m]
+MASS: float = 90  # mass of the paraglider in flight [kg]
+GRAVITY: float = 9.81  # gravitational accelaration in Zurich, Switzerland [m/s^2]
+AIR_DENSITY: float = 1.0065  # air density at altitude 2000m [kg/m^3]
+WING_AREA: float = 23.1  # wing area of the paraglider [m^2]
+STATIC_PRESSURE: float = 79495.22  # static air pressure at altitude [N/m^2], ICAO standard atmosphere, 15°C at altitude 2000m
+```
+
+</details>
+
+Additionally, the following two reference datasets are imported:
+
+- theoretical reference: [This](/docs/datasets/reference/theoretical_reference.csv) contains theoretical speed data for the Ozone Alpina 4 in size MS, provided by Ozone Gliders LTD.
+- original reference: [This](/docs/datasets/reference/original_reference.csv) contains experimental speed data that has been used for the analyses presented in the original paper **Fliegen am Limit - Aktive Sicherheit im Gleitschirmsport**, dated 10/24/2022.
 
 ### Track Log Matrix
 
