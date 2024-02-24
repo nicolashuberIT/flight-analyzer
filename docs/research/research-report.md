@@ -772,7 +772,20 @@ Report:
 
 The initial 20,000 data points were filtered and grouped to create an optimized data set of 52 points. The summarized data set represents the approximation of the theoretical speed data.
 
+According to the median of the distances between the theoretical and experimental velocity polars, the optimized data set is 30% more accurate than the data set from the original version of this paper.
+
+According to the deviation area, however, the increase in quality of the velocity data is as much as 40%. This is particularly relevant for the reason that these data can be used for applied models.
+
 #### Data Analysis Conclusion
+
+Thanks to the filtering and grouping of the raw data, the quality of the speed data improved by 30% or 40% compared to the original paper **Flying at the Limit**, depending on the criterion. This increase in quality is welcome because all models based on it benefit from it.
+
+However, the speed data is not perfect. Although the experimentally determined polar curve is much closer to the theoretical one than the original one thanks to the optimized pre-processing, the inaccuracies are twofold:
+
+- Firstly, it is noticeable that the experimental polar curve for low horizontal velocities is significantly lower than the theoretical one. This is due to the fact that, despite careful filtering of the raw data, flights with significant wind influences were probably included in this analysis. Wind primarily changes the speed relative to the ground, i.e. the horizontal speed. The flow speed on the wing changed by the wind also has an effect on the vertical speed according to the theoretical polar curve; in the case of headwinds (as in this analysis, for example), this drops drastically. This phenomenon can be prevented in future analyses by collecting an empirical data set in which even greater attention is paid to the wind conditions.
+- Secondly, it is noticeable that the raw data in the high speed range shows a significantly greater scatter than for lower speeds. This is due to the fact that these speeds are reached much less frequently and therefore the number of data points for this speed range is low. The certainty of the approximation of the theoretical polar curve decreases in this range, but this has no significant effect in this specific case when comparing the theoretical and experimental polar curve.
+
+In summary, while there are two aspects that limit the accuracy of this analysis in this specific case, the approximated polarization based on d 
 
 ### C Value Modelling
 
