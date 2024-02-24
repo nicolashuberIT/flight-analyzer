@@ -22,9 +22,11 @@ Happy reading!
   - [Flight Data Analysis](#flight-data-analysis)
     - [Conditions](#conditions)
     - [Track Log Matrix](#track-log-matrix)
-    - [Generate Experimental Polars](#generate-experimental-polars)
-    - [Generate Experimental c-value Model](#generate-experimental-c-value-model)
-    - [Generate Experimental Pressure Model](#generate-experimental-pressure-model)
+    - [Speed Data Analysis](#speed-data-analysis)
+      - [Speed Data Data pre-processing](#speed-data-data-pre-processing)
+    - [C Value Modelling](#c-value-modelling)
+    - [Dynamic Pressure Modelling](#dynamic-pressure-modelling)
+    - [Quality Analysis](#quality-analysis)
   - [Summary](#summary-1)
 
 ## Empiric Dataset
@@ -289,6 +291,10 @@ GRAVITY: float = 9.81  # gravitational accelaration in Zurich, Switzerland [m/s^
 AIR_DENSITY: float = 1.0065  # air density at altitude 2000m [kg/m^3]
 WING_AREA: float = 23.1  # wing area of the paraglider [m^2]
 STATIC_PRESSURE: float = 79495.22  # static air pressure at altitude [N/m^2], ICAO standard atmosphere, 15°C at altitude 2000m
+
+# simulation quality
+
+MASS_TRESHOLD: int = 8  # mass threshold for the quality analysis to account for variations in the pilot's weight
 ```
 
 </details>
@@ -296,7 +302,7 @@ STATIC_PRESSURE: float = 79495.22  # static air pressure at altitude [N/m^2], IC
 Additionally, the following two reference datasets are imported:
 
 - theoretical reference: [This](/docs/datasets/reference/theoretical_reference.csv) contains theoretical speed data for the Ozone Alpina 4 in size MS, provided by Ozone Gliders LTD.
-- original reference: [This](/docs/datasets/reference/original_reference.csv) contains experimental speed data that has been used for the analyses presented in the original paper **Fliegen am Limit - Aktive Sicherheit im Gleitschirmsport**, dated 10/24/2022.
+- original reference: [This](/docs/datasets/reference/original_reference.csv) contains experimental speed data that has been used for the analyses presented in the original paper **Fliegen am Limit - Aktive Sicherheit im Gleitschirmsport**, dated 10/24/2022. The data is normalized by horizontal speed to match the analyses of the revised paper, dated 03/31/2024.
 
 ### Track Log Matrix
 
@@ -671,15 +677,46 @@ The following analyses are based on the flight data mentioned [here](#empiric-da
 
 If you're looking for a specific track log, go to `docs/datasets/empiric-study/` and then either `1_raw` or `2_csv`. The files are named `20240216_SJf_skytraxx-2.1-export_flight-nr-n`, so just search for the `flight-nr-n` tag you're looking for.
 
-### Generate Experimental Polars
+### Speed Data Analysis
+
+#### Speed Data Data pre-processing
+
+The speed data analysis is based on the raw input data, which is read in from the `.igc` files. This data must first be filtered and cleaned so that it can be processed.
+
+The system filters out all horizontal speeds that are not available for comparison in the theoretical reference data set. In addition, data points that lie on a curve or have been flagged as unusable for other reasons are filtered out. The system also ensures that only negative vertical velocities are included in the data set. In this way, disruptive factors such as thermals are excluded as far as possible. 
+
+The report of this process can be found below:
+
+<details>
+<summary>Show Report</summary>
+
+```txt
+Filtered data:
+--> Data points for filtered theoretical reference: 6 (lost 0)
+--> Data points for filtered original reference: 27 (lost 8)
+--> Data points for filtered tracklogs: 2335 (lost 17591)
+
+Please note:
+--> Why are so many raw data points lost? This is due to the fact that the system filters out all data point that are not on a straight line. This is done to ensure that the data is as accurate as possible.
+
+Data smoothing:
+--> During smoothing, the raw data points were reduced from 2335 to 2335 (lost 0).
+--> During grouping, the smoothed data points were reduced from 2335 to 52 (lost 2283).
+```
+
+</details>
+
+As described in the report, many data points are lost during pre-processing of the raw data. However, this ensures that the data set is as clean as possible and disruptive factors are removed. In addition, the data is converted into a form that is useful for further modeling. The data is smoothed and grouped according to horizontal velocity. This is the basis for all further analysis.
+
+### C Value Modelling
 
 _Coming soon._
 
-### Generate Experimental c-value Model
+### Dynamic Pressure Modelling
 
 _Coming soon._
 
-### Generate Experimental Pressure Model
+### Quality Analysis
 
 _Coming soon._
 
