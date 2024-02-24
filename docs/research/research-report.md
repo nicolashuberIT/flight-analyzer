@@ -25,6 +25,8 @@ Happy reading!
     - [Speed Data Analysis](#speed-data-analysis)
       - [Speed Data Data pre-processing](#speed-data-data-pre-processing)
       - [Speed Data Visualisation](#speed-data-visualisation)
+      - [Data Analysis Report](#data-analysis-report)
+      - [Data Analysis Conclusion](#data-analysis-conclusion)
     - [C Value Modelling](#c-value-modelling)
     - [Dynamic Pressure Modelling](#dynamic-pressure-modelling)
     - [Quality Analysis](#quality-analysis)
@@ -688,7 +690,7 @@ The speed data analysis is based on the raw input data, which is read in from th
 
 The system filters out all horizontal speeds that are not available for comparison in the theoretical reference data set. In addition, data points that lie on a curve or have been flagged as unusable for other reasons are filtered out. The system also ensures that only negative vertical velocities are included in the data set. In this way, disruptive factors such as thermals are excluded as far as possible. 
 
-The report of this process can be found below:
+The automatically generated report of this process can be found below:
 
 <details>
 <summary>Show Report</summary>
@@ -745,6 +747,32 @@ Below is a matrix with the visualized results of this analysis.
     </td>
 </tr>
 </table>
+
+#### Data Analysis Report
+
+The final report of the data analysis step can be seen below.
+
+<details>
+<summary>Show Report</summary>
+
+
+```txt
+Filtered data:
+Report:
+--> Optimized dataset is closer to the theoretical curve.
+----> The precision (deviation of theoretical polar) of this dataset improved by 30.78% compared to the original dataset.
+----> The area between the graphs within the limits 8 to 16 is smaller (better) by 42.84% compared to the original dataset.
+
+--> Number of processed datapoints: 
+----> Original dataset (before processing): 35 & after processing: 27
+----> Optimized dataset (before processing): 19926 & after processing: 52
+```
+
+</details>
+
+The initial 20,000 data points were filtered and grouped to create an optimized data set of 52 points. The summarized data set represents the approximation of the theoretical speed data.
+
+#### Data Analysis Conclusion
 
 ### C Value Modelling
 
