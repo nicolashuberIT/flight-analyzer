@@ -1096,13 +1096,14 @@ Quality analysis:
 ----> The mean deviation percentage of the expected resulting force is 8.99 %.
 ```
 
+</details>
+
+
 This analysis leads to the result that the new model with a deviation of 0.4% on average is very close to reality and thus generates a realistic image of the stationary glide. It should be noted at this point that the original model in the original paper shows a deviation of around 1.5% (in an exemplary sample calculation). However, the original paper did not check the quality of the entire data set, which partly explains the deviation between the versions in this analysis. Above all, however, it should be mentioned that the data pre-processing has improved significantly between the two versions of this paper. An important part of the accuracy of the optimized models is the improved data processing. In order to create a realistic comparison between the versions, the old model with the old conditions was confronted with the new model and the adjusted conditions, leading to this result and a quality difference of 8% when looking at this exemplary quality analysis.
 
 Not only have the individual components of this model improved, but the improvement can also be seen in applied applications.
 
 Great news!
-
-</details>
 
 ## Summary
 
