@@ -1042,7 +1042,7 @@ Please find listed below some graphs that visualize the dynamic pressure at the 
     <td>
         <img src="/docs/research/images/pressure/20240224_SJf_experimentelle-modellierung-des-staudrucks_nicolas-huber.png" alt="Experimentelle Modellierung des Staudrucks">
         <br>
-        <em>Fig. 94: Experimentall Model of Dynamic Pressure</em>
+        <em>Fig. 94: Experimental Model of Dynamic Pressure</em>
     </td>
     <td>
         <img src="/docs/research/images/pressure/20240224_SJf_abweichung-des-staudrucks_nicolas-huber.png" alt="Tracklog">
@@ -1098,16 +1098,15 @@ Quality analysis:
 
 </details>
 
-
 This analysis leads to the result that the new model with a deviation of 0.4% on average is very close to reality and thus generates a realistic image of the stationary glide. It should be noted at this point that the original model in the original paper shows a deviation of around 1.5% (in an exemplary sample calculation). However, the original paper did not check the quality of the entire data set, which partly explains the deviation between the versions in this analysis. Above all, however, it should be mentioned that the data pre-processing has improved significantly between the two versions of this paper. An important part of the accuracy of the optimized models is the improved data processing. In order to create a realistic comparison between the versions, the old model with the old conditions was confronted with the new model and the adjusted conditions, leading to this result and a quality difference of 8% when looking at this exemplary quality analysis.
 
 Not only have the individual components of this model improved, but the improvement can also be seen in applied applications.
 
-Great news!
-
 ## Summary
 
-_Coming soon._
+The `flight-analyzer` application led to a general improvement in the quality of the evaluations and analyses of the paper Compared to the original version of this paper, the experimental velocity polars could be improved and thus the basis for applied models could be strengthened. This can be seen, for example, in the quality analysis for the calculation of lift and drag forces as well as c-coefficients. In addition, the new analyses offer great potential for new models and simulations thanks to the increase in quality. One example of this is the modeling of the dynamic pressure at the wing and the transfer of the concept to the prediction of collapses. Most importantly, however, this system automates the entire analysis process. The relevance of this point becomes particularly clear if you want to transfer the concepts of the paper to a paraglider that does not correspond to the Ozone Alpina 4. The `flight-analyzer` application changes this and makes it possible to calculate simulations and models for any glider in no time at all - based on an empiric set of flight data - and, after a few adjustments to the software, to output prediction models for collapses for any glider in the future. In summary, this tool increases the quality of the analyses compared to the original, fully automates them, creates scope for new algorithms and thus ensures accessibility for all gliders and pilots.
+
+Great news!
 
 ---
 
