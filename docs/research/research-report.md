@@ -850,24 +850,24 @@ For reference the theoretical plots for both the original and optimized c-algori
 </tr>
 <tr>
     <td>
-        <img src="/docs/research/images/coefficients/20240224_SJf_theoretische-ca-werte-vereinfacht_nicolas-huber" alt="Theoretical Ca coefficients">
+        <img src="/docs/research/images/coefficients/20240224_SJf_theoretische-ca-werte-vereinfacht_nicolas-huber.png" alt="Theoretical Ca coefficients">
         <br>
         <em>Fig 74: Theoretical Ca coefficients (original c-algorithm)</em>
     </td>
     <td>
-        <img src="/docs/research/images/coefficients/20240224_SJf_theoretische-cw-werte-vereinfacht_nicolas-huber" alt="Theoretical Cw coefficients">
+        <img src="/docs/research/images/coefficients/20240224_SJf_theoretische-cw-werte-vereinfacht_nicolas-huber.png" alt="Theoretical Cw coefficients">
         <br>
         <em>Fig 75: Theoretical Cw coefficients (original c-algorithm)</em>
     </td>
 </tr>
 <tr>
     <td>
-        <img src="/docs/research/images/coefficients/20240224_SJf_theoretische-ca-werte-optimiert_nicolas-huber" alt="Theoretical Ca coefficients">
+        <img src="/docs/research/images/coefficients/20240224_SJf_theoretische-ca-werte-optimiert_nicolas-huber.png" alt="Theoretical Ca coefficients">
         <br>
         <em>Fig 76: Theoretical Ca coefficients (optimized c-algorithm)</em>
     </td>
     <td>
-        <img src="/docs/research/images/coefficients/20240224_SJf_theoretische-cw-werte-optimiert_nicolas-huber" alt="Theoretical Cw coefficients">
+        <img src="/docs/research/images/coefficients/20240224_SJf_theoretische-cw-werte-optimiert_nicolas-huber.png" alt="Theoretical Cw coefficients">
         <br>
         <em>Fig 77: Theoretical Cw coefficients (optimized c-algorithm)</em>
     </td>
