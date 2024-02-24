@@ -40,6 +40,10 @@ AIR_DENSITY: float = 1.0065  # air at altitude 2000m [kg/m^3]
 WING_AREA: float = 23.1  # wing area of the paraglider [m^2]
 STATIC_PRESSURE: float = 79495.22  # static air pressure at altitude [N/m^2], ICAO standard atmosphere, 15°C at altitude 2000m
 
+# simulation quality
+
+MASS_TRESHOLD: int = 8  # mass threshold for the quality analysis to account for variations in the pilot's weight
+
 # categories
 
 INDEX_STRAIGHT_LINE: Tuple[bool, str, int] = True, "Straight Line", 0

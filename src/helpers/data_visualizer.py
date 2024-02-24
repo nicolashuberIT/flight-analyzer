@@ -837,7 +837,7 @@ class DataVisualizer:
         y_fit = lambda x: np.power(10, poly(np.log10(x)))
         plt.plot(x_exp, y_fit(x_exp), "b-", label="Annäherung der c-Werte")
 
-        power_law_equation = f"c(x) = {10**coeffs[1]:.2f} * x^{coeffs[0]:.2f}"
+        power_law_equation = f"c(x) = {10**coeffs[1]:.4f} * x^{coeffs[0]:.4f}"
         plt.text(
             0.05,
             0.05,
@@ -1063,6 +1063,8 @@ class DataVisualizer:
         )
         plt.ylabel("Abweichung [N]")
         plt.tick_params(axis="y")
+
+        plt.xlim(8.0, 15.7)
 
         plt.title(title)
         plt.xlabel("Anströmgeschwindigkeit [m/s]")
