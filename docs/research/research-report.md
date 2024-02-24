@@ -941,48 +941,48 @@ Additionally, below is a matrix of plots that visualize the deviation of the exp
 </tr>
 <tr>
     <td>
-        <img src="/docs/research/images/coefficients/" alt="Experimental Ca coefficients">
+        <img src="/docs/research/images/coefficients/20240224_SJf_abweichung-ca-werte-vereinfacht-original_nicolas-huber.png" alt="Experimental Ca coefficients">
         <br>
         <em>Fig 86: Deviation of Ca approximation (original c-algorithm, original data)</em>
     </td>
     <td>
-        <img src="/docs/research/images/coefficients/" alt="Experimental Cw coefficients">
+        <img src="/docs/research/images/coefficients/20240224_SJf_abweichung-cw-werte-vereinfacht-original_nicolas-huber.png" alt="Experimental Cw coefficients">
         <br>
         <em>Fig 87: Deviation of Cw approximation (original c-algorithm, original data)</em>
     </td>
 </tr>
 <tr>
     <td>
-        <img src="/docs/research/images/coefficients/" alt="Experimental Ca coefficients">
+        <img src="/docs/research/images/coefficients/20240224_SJf_abweichung-ca-werte-vereinfacht-optimiert_nicolas-huber.png" alt="Experimental Ca coefficients">
         <br>
         <em>Fig 88: Deviation of Ca approximation (original c-algorithm, optimized data)</em>
     </td>
     <td>
-        <img src="/docs/research/images/coefficients/" alt="Experimental Cw coefficients">
+        <img src="/docs/research/images/coefficients/20240224_SJf_abweichung-cw-werte-vereinfacht-optimiert_nicolas-huber.png" alt="Experimental Cw coefficients">
         <br>
         <em>Fig 89: Deviation of Cw approximation (original c-algorithm, optimized data)</em>
     </td>
 </tr>
 <tr>
     <td>
-        <img src="/docs/research/images/coefficients/" alt="Experimental Ca coefficients">
+        <img src="/docs/research/images/coefficients/20240224_SJf_abweichung-ca-werte-optimiert-original_nicolas-huber.png" alt="Experimental Ca coefficients">
         <br>
         <em>Fig 90: Deviation of Ca approximation (optimized c-algorithm, original data)</em>
     </td>
     <td>
-        <img src="/docs/research/images/coefficients/" alt="Experimental Cw coefficients">
+        <img src="/docs/research/images/coefficients/20240224_SJf_abweichung-cw-werte-optimiert-original_nicolas-huber.png" alt="Experimental Cw coefficients">
         <br>
         <em>Fig 91: Deviation of Cw approximation (optimized c-algorithm, original data)</em>
     </td>
 </tr>
 <tr>
     <td>
-        <img src="/docs/research/images/coefficients/" alt="Experimental Ca coefficients">
+        <img src="/docs/research/images/coefficients/20240224_SJf_abweichung-ca-werte-optimiert-optimiert_nicolas-huber.png" alt="Experimental Ca coefficients">
         <br>
         <em>Fig 92: Deviation of Ca approximation (optimized c-algorithm, optimized data)</em>
     </td>
     <td>
-        <img src="/docs/research/images/coefficients/" alt="Experimental Cw coefficients">
+        <img src="/docs/research/images/coefficients/20240224_SJf_abweichung-cw-werte-optimiert-optimiert_nicolas-huber.png" alt="Experimental Cw coefficients">
         <br>
         <em>Fig 93: Deviation of Cw approximation (optimized c-algorithm, optimized data)</em>
     </td>
