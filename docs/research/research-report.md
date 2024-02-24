@@ -1056,7 +1056,51 @@ This exemplary visualization brings together the various concepts and algorithms
 
 ### Quality Analysis
 
-_Coming soon._
+The `flight-analyzer` tool introduces many different new concepts for modeling the stationary glide of a paraglider or for predicting dangerous flight situations. Nevertheless, it should be seen as a further development of the concepts presented in the original paper **Flying at the Limit** dated 10/24/2022. In order to create comparable results and evaluations, a quality analysis is appropriate at the end of this research report.
+
+In the original work, the quality of the modeling of the stationary glide was checked by comparing the force resultant of lift and drag forces calculated by the model, which contains all previously processed variables such as velocity data, approximation functions and coefficients, with the expected weight force. In stationary glide in an unaccelerated, stable state, the weight force and the force resultant must cancel each other out. More on this can be found in the paper, but this relationship is the basis for the quality test.
+
+Please find below a visualisation of the quality check:
+
+<table>
+<tr>
+    <th>Original Model</th>
+    <th>Optimized Model</th>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/quality/20240224_SJf_quality-original_nicolas-huber.png" alt="Quality Check">
+        <br>
+        <em>Fig. 96: Original Model Deviation</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/quality/20240224_SJf_quality-optimiert_nicolas-huber.png" alt="Quality Check">
+        <br>
+        <em>Fig. 97: Optimized Model Deviation</em>
+    </td>
+</tr>
+</table>
+
+The quality analysis resolved with the following report:
+
+<details>
+<summary>Show Report</summary>
+
+```txt
+Quality analysis:
+--> The reference calculations are conducted for all datapoints of the experimental dataset.
+----> The mean deviation of the expected resulting force is 3.89 N.
+----> The mean deviation percentage of the expected resulting force is 0.4 %.
+--> The reference calculations are conducted for all datapoints of the original reference dataset using the approximation model of the original paper (p. 40, fig. 56)
+----> The mean deviation of the expected resulting force is 86.39 N.
+----> The mean deviation percentage of the expected resulting force is 8.99 %.
+```
+
+This analysis leads to the result that the new model with a deviation of 0.4% on average is very close to reality and thus generates a realistic image of the stationary glide. It should be noted at this point that the original model in the original paper shows a deviation of around 1.5% (in an exemplary sample calculation). However, original paper did not check the quality of the entire data set, which partly explains the deviation between the versions in this analysis. Above all, however, it should be mentioned that the data pre-processing has improved significantly between the two versions of this paper. An important part of the accuracy of the optimized models is the improved data processing. In order to create a realistic comparison between the versions, the old model with the old conditions was confronted with the new model and the adjusted conditions, leading to this result and a quality difference of 8% when looking at this exemplary quality analysis.
+
+Great news!
+
+</details>
 
 ## Summary
 
