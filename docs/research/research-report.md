@@ -1025,11 +1025,34 @@ Final Score:
 
 </details>
 
-The modeling of the c-values shows a pleasing result: Compared to the original model in the paper of 10/24/2022, there has been an increase in quality of 20%+, which benefits models based on it, such as the modeling of dynamic pressure. The difference between the simplified and the optimized full c-algorithm is minimal, but the difference between the original and optimized data is very noticeable. The more accurate these models are, especially the modeling of these coefficients, the better algorithms based on them will work. For example, the simulation of the pressure situation on the wing offers great potential. Ultimately, the aim is to prevent dangerous flight attitudes, especially collapses, through accurate numerical prediction and these models bring this goal within reach. 
+The modeling of the c-values shows a pleasing result: Compared to the original model in the paper of 10/24/2022, there has been an increase in quality of 20%+, which benefits models based on it, such as the modeling of dynamic pressure. The difference between the simplified and the optimized full c-algorithm is minimal, but the difference between the original and optimized data is very noticeable. The more accurate these models are, especially the modeling of these coefficients, the better algorithms based on them will work. For example, the simulation of the pressure situation on the wing offers great potential. Ultimately, the aim is to prevent dangerous states in flight, especially collapses, through accurate numerical prediction and these models bring this goal within reach. 
 
 ### Dynamic Pressure Modelling
 
-_Coming soon._
+One example of this is the simulation of the dynamic pressure on the wing. One of the decisive factors for the pressure situation inside the paraglider is the dynamic pressure. This is modeled below to demonstrate the potential of this tool. 
+
+Please find listed below some graphs that visualize the dynamic pressure at the wing of an Ozone Alpina 4 paraglider.
+
+<table>
+<tr>
+    <th>Dynamic Pressure</th>
+    <th>Deviation</th>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/pressure/20240224_SJf_experimentelle-modellierung-des-staudrucks_nicolas-huber.png" alt="Experimentelle Modellierung des Staudrucks">
+        <br>
+        <em>Fig. 94: Experimentall Model of Dynamic Pressure</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/pressure/20240224_SJf_abweichung-des-staudrucks_nicolas-huber.png" alt="Tracklog">
+        <br>
+        <em>Fig. 95: Deviation of Dynamic Pressure</em>
+    </td>
+</tr>
+</table>
+
+This exemplary visualization brings together the various concepts and algorithms of the `flight-analyzer` tool and shows where this idea could lead. The ability to model a wing so accurately based on experimental data opens up many exciting possibilities for predicting dangerous flight situations such as collapses.
 
 ### Quality Analysis
 
