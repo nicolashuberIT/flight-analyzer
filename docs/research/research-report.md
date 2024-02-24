@@ -731,6 +731,8 @@ Below is a matrix with the visualized results of this analysis.
         <br>
         <em>Fig 71: Deviation of Speed Data, original (10/24/2022)</em>
     </td>
+</tr>
+<tr>
     <td>
         <img src="/docs/research/images/speed/20240224_SJf_experimentelle-geschwindigkeitsdaten-optimiert_nicolas-huber.png" alt="Experimental Speed Data">
         <br>
