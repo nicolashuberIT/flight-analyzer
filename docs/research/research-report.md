@@ -1056,7 +1056,7 @@ This exemplary visualization brings together the various concepts and algorithms
 
 ### Quality Analysis
 
-The `flight-analyzer` tool introduces many different new concepts for modeling the stationary glide of a paraglider or for predicting dangerous flight situations. Nevertheless, it should be seen as a further development of the concepts presented in the original paper **Flying at the Limit** dated 10/24/2022. In order to create comparable results and evaluations, a quality analysis is appropriate at the end of this research report.
+The `flight-analyzer` tool introduces many different new concepts for modeling the stationary glide of a paraglider or for predicting dangerous flight situations. Nevertheless, it should be seen as a further development of the concepts presented in the original paper **Fliegen am Limit** dated 10/24/2022. In order to create comparable results and evaluations, a quality analysis is appropriate at the end of this research report.
 
 In the original work, the quality of the modeling of the stationary glide was checked by comparing the force resultant of lift and drag forces calculated by the model, which contains all previously processed variables such as velocity data, approximation functions and coefficients, with the expected weight force. In stationary glide in an unaccelerated, stable state, the weight force and the force resultant must cancel each other out. More on this can be found in the paper, but this relationship is the basis for the quality test.
 
@@ -1096,7 +1096,9 @@ Quality analysis:
 ----> The mean deviation percentage of the expected resulting force is 8.99 %.
 ```
 
-This analysis leads to the result that the new model with a deviation of 0.4% on average is very close to reality and thus generates a realistic image of the stationary glide. It should be noted at this point that the original model in the original paper shows a deviation of around 1.5% (in an exemplary sample calculation). However, original paper did not check the quality of the entire data set, which partly explains the deviation between the versions in this analysis. Above all, however, it should be mentioned that the data pre-processing has improved significantly between the two versions of this paper. An important part of the accuracy of the optimized models is the improved data processing. In order to create a realistic comparison between the versions, the old model with the old conditions was confronted with the new model and the adjusted conditions, leading to this result and a quality difference of 8% when looking at this exemplary quality analysis.
+This analysis leads to the result that the new model with a deviation of 0.4% on average is very close to reality and thus generates a realistic image of the stationary glide. It should be noted at this point that the original model in the original paper shows a deviation of around 1.5% (in an exemplary sample calculation). However, the original paper did not check the quality of the entire data set, which partly explains the deviation between the versions in this analysis. Above all, however, it should be mentioned that the data pre-processing has improved significantly between the two versions of this paper. An important part of the accuracy of the optimized models is the improved data processing. In order to create a realistic comparison between the versions, the old model with the old conditions was confronted with the new model and the adjusted conditions, leading to this result and a quality difference of 8% when looking at this exemplary quality analysis.
+
+Not only have the individual components of this model improved, but the improvement can also be seen in applied applications.
 
 Great news!
 
