@@ -2,7 +2,7 @@
 
 [README](/README.md) > Docs > Research Report
 
-This report describes how the analyses presented in the scientific paper **Fliegen am Limit - Aktive Sicherheit im Gleitschirmsport** came about. This includes the preprocessing as well as the optimization of the algorithms and finally the evaluation of the data. 
+This report describes how the analyses presented in the scientific paper **Fliegen am Limit - Aktive Sicherheit im Gleitschirmsport** came about. This includes the preprocessing as well as the optimization of the algorithms and finally the evaluation of the data. Detailed documentation of the algorithms used and the concepts and objectives behind them can be found in the [technical documentation](/README.md#algorithms-and-helpers) and in the paper dated 03/31/2024.
 
 Happy reading!
 
