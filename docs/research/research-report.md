@@ -24,6 +24,7 @@ Happy reading!
     - [Track Log Matrix](#track-log-matrix)
     - [Speed Data Analysis](#speed-data-analysis)
       - [Speed Data Data pre-processing](#speed-data-data-pre-processing)
+      - [Speed Data Visualisation](#speed-data-visualisation)
     - [C Value Modelling](#c-value-modelling)
     - [Dynamic Pressure Modelling](#dynamic-pressure-modelling)
     - [Quality Analysis](#quality-analysis)
@@ -679,6 +680,8 @@ If you're looking for a specific track log, go to `docs/datasets/empiric-study/`
 
 ### Speed Data Analysis
 
+A detailed report for the speed data analysis can be found [here](/docs/research/reports/20240224_SJf_data-analysis_nicolas-huber.html). Please find listed below some further documentation on the individual processing steps.
+
 #### Speed Data Data pre-processing
 
 The speed data analysis is based on the raw input data, which is read in from the `.igc` files. This data must first be filtered and cleaned so that it can be processed.
@@ -707,6 +710,39 @@ Data smoothing:
 </details>
 
 As described in the report, many data points are lost during pre-processing of the raw data. However, this ensures that the data set is as clean as possible and disruptive factors are removed. In addition, the data is converted into a form that is useful for further modeling. The data is smoothed and grouped according to horizontal velocity. This is the basis for all further analysis.
+
+#### Speed Data Visualisation
+
+Below is a matrix with the visualized results of this analysis.
+
+<table>
+<tr>
+  <th>Experimental Speed Data</th>
+  <th>Deviation of Speed Data</th>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/speed/20240224_SJf_experimentelle-geschwindigkeitsdaten-original_nicolas-huber.png" alt="Experimental Speed Data">
+        <br>
+        <em>Fig. 70: Experimental Speed Data, original (10/24/2022)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/speed/20240224_SJf_abweichung-experimentelle-geschwindigkeitsdaten-original_nicolas-huber.png" alt="Deviation of Speed Data">
+        <br>
+        <em>Fig 71: Deviation of Speed Data, original (10/24/2022)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/speed/20240224_SJf_experimentelle-geschwindigkeitsdaten-optimiert_nicolas-huber.png" alt="Experimental Speed Data">
+        <br>
+        <em>Fig 72: Experimental Speed Data, optimized (03/31/2024)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/speed/20240224_SJf_abweichung-experimentelle-geschwindigkeitsdaten-optimiert_nicolas-huber.png" alt="Deviation of Speed Data">
+        <br>
+        <em>Fig 73: Deviationof Speed Data, optimized (03/31/2024)</em>
+    </td>
+</tr>
+</table>
 
 ### C Value Modelling
 
