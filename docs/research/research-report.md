@@ -29,6 +29,7 @@ Happy reading!
       - [Speed Data Analysis Conclusion](#speed-data-analysis-conclusion)
     - [C Value Modelling](#c-value-modelling)
       - [Model Data Processing](#model-data-processing)
+      - [Model Data Visualisation](#model-data-visualisation)
     - [Dynamic Pressure Modelling](#dynamic-pressure-modelling)
     - [Quality Analysis](#quality-analysis)
   - [Summary](#summary-1)
@@ -837,6 +838,51 @@ The environmental conditions assumed for this model are of particular importance
 - Takeoff mass: 90kg (mean value)
 
 The following visualisation is based on the model ran for these conditions.
+
+#### Model Data Visualisation
+
+For reference the theoretical plots for both the original and optimized c-algorithm can be found below.
+
+<table>
+<tr>
+  <th>Theoretical Ca coefficients</th>
+  <th>Theoretical Cw coefficients</th>
+</tr>
+<tr>
+    <td>
+        <img src="20240224_SJf_theoretische-ca-werte-vereinfacht_nicolas-huber" alt="Theoretical Ca coefficients">
+        <br>
+        <em>Fig 74: Theoretical Ca coefficients (original c-algorithm)</em>
+    </td>
+    <td>
+        <img src="20240224_SJf_theoretische-cw-werte-vereinfacht_nicolas-huber" alt="Theoretical Cw coefficients">
+        <br>
+        <em>Fig 75: Theoretical Cw coefficients (original c-algorithm)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="20240224_SJf_theoretische-ca-werte-optimiert_nicolas-huber" alt="Theoretical Ca coefficients">
+        <br>
+        <em>Fig 76: Theoretical Ca coefficients (optimized c-algorithm)</em>
+    </td>
+    <td>
+        <img src="20240224_SJf_theoretische-cw-werte-optimiert_nicolas-huber" alt="Theoretical Cw coefficients">
+        <br>
+        <em>Fig 77: Theoretical Cw coefficients (optimized c-algorithm)</em>
+    </td>
+</tr>
+</table>
+
+
+Below is a matrix with the visualized results of this analysis.
+
+<table>
+<tr>
+  <th>Experimental Coefficient Approximation</th>
+  <th>Deviation of Coefficients</th>
+</tr>
+</table>
 
 ### Dynamic Pressure Modelling
 
