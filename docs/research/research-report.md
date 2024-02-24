@@ -889,7 +889,7 @@ Below is a matrix with the visualized results of this analysis, plotted against 
         <em>Fig 78: Experimental Ca coefficients (original c-algorithm, original data)</em>
     </td>
     <td>
-        <img src="/docs/research/images/20240224_SJf_experimentelle-cw-werte-vereinfacht-original_nicolas-huber.png">
+        <img src="/docs/research/images/coefficients/20240224_SJf_experimentelle-cw-werte-vereinfacht-original_nicolas-huber.png">
         <br>
         <em>Fig 79: Experimental Cw coefficients (original c-algorithm, original data)</em>
     </td>
