@@ -937,7 +937,7 @@ class DataVisualizer:
         # experimental data
         x_exp = experimental_data["airspeed [m/s]"].sort_values()
         y_exp = experimental_data["dynamic pressure [N/m^2]"]
-        plt.plot(x_exp, y_exp, color="grey", label="Experimenteller Staudruck")
+        plt.scatter(x_exp, y_exp, color="grey", label="Experimenteller Staudruck", s=3)
 
         # match curve to experimental data
         coefficients = np.polyfit(x_exp, y_exp, 2)
