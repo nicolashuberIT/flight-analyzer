@@ -875,12 +875,117 @@ For reference the theoretical plots for both the original and optimized c-algori
 </table>
 
 
-Below is a matrix with the visualized results of this analysis.
+Below is a matrix with the visualized results of this analysis, plotted against the theoretical curve of the optimized c-algorithm.
 
 <table>
 <tr>
-  <th>Experimental Coefficient Approximation</th>
-  <th>Deviation of Coefficients</th>
+  <th>Experimental Ca Approximation</th>
+  <th>Experimental Cw Approximation</th>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/coefficients/" alt="Experimental Ca coefficients">
+        <br>
+        <em>Fig 78: Experimental Ca coefficients (original c-algorithm, original data)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/coefficients/" alt="Experimental Cw coefficients">
+        <br>
+        <em>Fig 79: Experimental Cw coefficients (original c-algorithm, original data)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/coefficients/" alt="Experimental Ca coefficients">
+        <br>
+        <em>Fig 80: Experimental Ca coefficients (original c-algorithm, optimized data)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/coefficients/" alt="Experimental Cw coefficients">
+        <br>
+        <em>Fig 81: Experimental Cw coefficients (original c-algorithm, optimized data)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/coefficients/" alt="Experimental Ca coefficients">
+        <br>
+        <em>Fig 82: Experimental Ca coefficients (optimized c-algorithm, original data)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/coefficients/" alt="Experimental Cw coefficients">
+        <br>
+        <em>Fig 83: Experimental Cw coefficients (optimized c-algorithm, original data)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/coefficients/" alt="Experimental Ca coefficients">
+        <br>
+        <em>Fig 84: Experimental Ca coefficients (optimized c-algorithm, optimized data)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/coefficients/" alt="Experimental Cw coefficients">
+        <br>
+        <em>Fig 85: Experimental Cw coefficients (optimized c-algorithm, optimized data)</em>
+    </td>
+</tr>
+</table>
+
+Additionally, below is a matrix of plots that visualize the deviation of the experimental curves.
+
+<table>
+<tr>
+  <th>Ca Deviation</th>
+  <th>Cw Deviation</th>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/coefficients/" alt="Experimental Ca coefficients">
+        <br>
+        <em>Fig 86: Deviation of Ca approximation (original c-algorithm, original data)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/coefficients/" alt="Experimental Cw coefficients">
+        <br>
+        <em>Fig 87: Deviation of Cw approximation (original c-algorithm, original data)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/coefficients/" alt="Experimental Ca coefficients">
+        <br>
+        <em>Fig 88: Deviation of Ca approximation (original c-algorithm, optimized data)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/coefficients/" alt="Experimental Cw coefficients">
+        <br>
+        <em>Fig 89: Deviation of Cw approximation (original c-algorithm, optimized data)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/coefficients/" alt="Experimental Ca coefficients">
+        <br>
+        <em>Fig 90: Deviation of Ca approximation (optimized c-algorithm, original data)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/coefficients/" alt="Experimental Cw coefficients">
+        <br>
+        <em>Fig 91: Deviation of Cw approximation (optimized c-algorithm, original data)</em>
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="/docs/research/images/coefficients/" alt="Experimental Ca coefficients">
+        <br>
+        <em>Fig 92: Deviation of Ca approximation (optimized c-algorithm, optimized data)</em>
+    </td>
+    <td>
+        <img src="/docs/research/images/coefficients/" alt="Experimental Cw coefficients">
+        <br>
+        <em>Fig 93: Deviation of Cw approximation (optimized c-algorithm, optimized data)</em>
+    </td>
 </tr>
 </table>
 
