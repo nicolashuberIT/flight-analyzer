@@ -1025,7 +1025,7 @@ Final Score:
 
 </details>
 
-The modeling of the c-values shows a pleasing result: Compared to the original model in the work of 10/24/2022, there has been an increase in quality of 20%+, which benefits models based on it, such as the modeling of dynamic pressure. The difference between the simplified and the optimized full c-algorithm is minimal, but the difference between the original and optimized data is very noticeable. The more accurate these models are, especially the modeling of these coefficients, the better algorithms based on them will work. For example, the simulation of the pressure situation on the wing offers great potential. Ultimately, the aim is to prevent dangerous flight attitudes, especially collapses, through accurate numerical prediction and these models bring this goal within reach. 
+The modeling of the c-values shows a pleasing result: Compared to the original model in the paper of 10/24/2022, there has been an increase in quality of 20%+, which benefits models based on it, such as the modeling of dynamic pressure. The difference between the simplified and the optimized full c-algorithm is minimal, but the difference between the original and optimized data is very noticeable. The more accurate these models are, especially the modeling of these coefficients, the better algorithms based on them will work. For example, the simulation of the pressure situation on the wing offers great potential. Ultimately, the aim is to prevent dangerous flight attitudes, especially collapses, through accurate numerical prediction and these models bring this goal within reach. 
 
 ### Dynamic Pressure Modelling
 
