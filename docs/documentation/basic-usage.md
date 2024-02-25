@@ -52,7 +52,7 @@ This data can then be preprocessed using the `FileConvertor` tool, which is link
 
 In order to run the main script of the `flight-analyzer` application make sure to prepare all necessary files and properly preprocess them. Please find instructions on preprocessing [here](#preprocessing-flight-data).
 
-_Further documentation will follow as soon as the `main` script has been developped and properly tested._
+_Further documentation will follow._
 
 ## Run individual analysis
 
