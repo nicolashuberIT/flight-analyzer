@@ -18,22 +18,22 @@ Happy reading!
       - [Run 1 - Limit 100 \& Step 5](#run-1---limit-100--step-5)
       - [Run 2 - Limit 150 \& Step 5](#run-2---limit-150--step-5)
       - [Run 3 - Limit 200 \& Step 5](#run-3---limit-200--step-5)
-    - [Summary](#summary)
+    - [Optimization Summary](#optimization-summary)
   - [Flight Data Analysis](#flight-data-analysis)
     - [Conditions](#conditions)
     - [Track Log Matrix](#track-log-matrix)
     - [Speed Data Analysis](#speed-data-analysis)
-      - [Speed Data Data Processing](#speed-data-data-processing)
+      - [Speed Data Processing](#speed-data-processing)
       - [Speed Data Visualisation](#speed-data-visualisation)
       - [Speed Data Analysis Report](#speed-data-analysis-report)
       - [Speed Data Analysis Conclusion](#speed-data-analysis-conclusion)
-    - [C Value Modelling](#c-value-modelling)
+    - [C Value Modeling](#c-value-modeling)
       - [C Model Data Processing](#c-model-data-processing)
       - [C Model Data Visualisation](#c-model-data-visualisation)
       - [C Model Report](#c-model-report)
-    - [Dynamic Pressure Modelling](#dynamic-pressure-modelling)
+    - [Dynamic Pressure Modeling](#dynamic-pressure-modeling)
     - [Quality Analysis](#quality-analysis)
-  - [Summary](#summary-1)
+  - [Summary](#summary)
 
 ## Empiric Dataset
 
@@ -58,7 +58,7 @@ There are two parameters for optimizing the `AngleAnalyzer` algorithm:
 - `OPTIMIZATION_LIMIT` - defines the highest threshold that's to be tested, starts from threshold 10
 - `OPTIMIZATION_STEPS` - defines the step size between the tested thresholds
 
-When the optimization is performed for these parameters, the algorithm forms a cartesian product of all combinations for `ANGLE_PAST_THRESHOLD` and `ANGLE_FUTURE_THRESHOLD` within the specified range and calculates how well this combination performs in the analysis of the flight data.
+When the optimization is performed for these parameters, the algorithm forms a cartesian product of all combinations for `ANGLE_PAST_THRESHOLD` and `ANGLE_FUTURE_THRESHOLD` within the specified range and calculates how well these combinations perform in the analysis of the flight data.
 
 The basis for this optimization is the track log visualized below. The raw file can be found [here](/docs/datasets/empiric-study/1_raw/20240216_SJf_skytraxx-2.1-export_flight-nr-22.igc), the corresponding `.csv` file can be found [here](/docs/datasets/empiric-study/2_csv/20240216_SJf_skytraxx-2.1-export_flight-nr-22.csv).
 
@@ -87,7 +87,7 @@ The findings of each run can be found below.
 
 #### Run 1 - Limit 100 & Step 5
 
-Run wan as executed for the following conditions:
+Run one was executed for the following conditions:
 
 - `OPTIMIZATION_LIMIT` = 100
 - `OPTIMIZATION_STEP` = 5
@@ -168,7 +168,7 @@ A detailed report on this optimization run including imformation about runtime e
 
 #### Run 2 - Limit 150 & Step 5
 
-Run wan as executed for the following conditions:
+Run two was executed for the following conditions:
 
 - `OPTIMIZATION_LIMIT` = 150
 - `OPTIMIZATION_STEP` = 5
@@ -252,7 +252,7 @@ A detailed report on this optimization run including imformation about runtime e
 
 This optimization run isn't further documented as it resolved in exactly the same result as runs 1 and 2.
 
-### Summary
+### Optimization Summary
 
 Three calculation runs were carried out with different parameters to optimize the thresholds. All runs produced the same result. The optimization algorithm recommends the following thresholds for further analyses:
 
@@ -687,7 +687,7 @@ If you're looking for a specific track log, go to `docs/datasets/empiric-study/`
 
 A detailed report for the speed data analysis can be found [here](/docs/research/reports/20240224_SJf_data-analysis_nicolas-huber.html). Please find listed below some further documentation on the individual processing steps.
 
-#### Speed Data Data Processing
+#### Speed Data Processing
 
 The speed data analysis is based on the raw input data, which is read in from the `.igc` files. This data must first be filtered and cleaned so that it can be processed.
 
@@ -714,7 +714,7 @@ Data smoothing:
 
 </details>
 
-As described in the report, many data points are lost during pre-processing of the raw data. However, this ensures that the data set is as clean as possible and disruptive factors are removed. In addition, the data is converted into a form that is useful for further modeling. The data is smoothed and grouped according to horizontal velocity. This is the basis for all further analysis.
+As described in the report, many data points are lost during pre-processing of the raw data. However, this ensures that the data set is as clean as possible and disruptive factors are removed. In addition, the data is converted into a form that is useful for further modeling. The data is smoothed and grouped according to the horizontal velocity. This is the basis for all further analysis.
 
 #### Speed Data Visualisation
 
@@ -746,7 +746,7 @@ Below is a matrix with the visualized results of this analysis.
     <td>
         <img src="/docs/research/images/speed/20240224_SJf_abweichung-experimentelle-geschwindigkeitsdaten-optimiert_nicolas-huber.png" alt="Deviation of Speed Data">
         <br>
-        <em>Fig 73: Deviationof Speed Data, optimized (03/31/2024)</em>
+        <em>Fig 73: Deviation of Speed Data, optimized (03/31/2024)</em>
     </td>
 </tr>
 </table>
@@ -777,26 +777,26 @@ The initial 20,000 data points were filtered and grouped to create an optimized 
 
 According to the median of the distances between the theoretical and experimental velocity polars, the optimized data set is 30% more accurate than the data set from the original version of this paper.
 
-According to the deviation area, however, the increase in quality of the velocity data is as much as 40%. This is particularly relevant for the reason that these data can be used for applied models.
+According to the deviation area, however, the increase in quality of the velocity data is as much as 40%. This is particularly relevant for the reason that this data can be used for applied models.
 
 #### Speed Data Analysis Conclusion
 
-Thanks to the filtering and grouping of the raw data, the quality of the speed data improved by 30% or 40% compared to the original paper **Flying at the Limit**, depending on the criterion. This increase in quality is welcome because all models based on it benefit from it.
+Thanks to the filtering and grouping of the raw data, the quality of the speed data improved by 30% or 40% compared to the original paper **Fliegen am Limit**, depending on the criterion. This increase in quality is welcome because all models based on it benefit from it.
 
 However, the speed data is not perfect. Although the experimentally determined polar curve is much closer to the theoretical one than the original one thanks to the optimized pre-processing, the inaccuracies are twofold:
 
-- Firstly, it is noticeable that the experimental polar curve for low horizontal velocities is significantly lower than the theoretical one. This is due to the fact that, despite careful filtering of the raw data, flights with significant wind influences were probably included in this analysis. Wind primarily changes the speed relative to the ground, i.e. the horizontal speed. The airspeed the wing (True Airspeed, TAS) changed by the wind also has an effect on the vertical speed according to the theoretical polar curve; in the case of headwinds (as in this analysis, for example), this drops drastically. This phenomenon can be prevented in future analyses by collecting an empirical data set in which even greater attention is paid to the wind conditions.
-- Secondly, it is noticeable that the raw data in the high speed range shows a significantly greater scatter than for lower speeds. This is due to the fact that these speeds are reached much less frequently and therefore the number of data points for this speed range is low. The certainty of the approximation of the theoretical polar curve decreases in this range, but this has no significant effect in this specific case when comparing the theoretical and experimental polar curve.
+- Firstly, it is noticeable that the experimental polar curve for low horizontal velocities is significantly lower than the theoretical one. This is due to the fact that, despite careful filtering of the raw data, flights with significant wind influences were probably included in this analysis. Wind primarily changes the speed relative to the ground, i.e. the horizontal speed. The airspeed at the wing (True Airspeed, TAS) changed by the wind also has an effect on the vertical speed according to the theoretical polar curve; in the case of headwinds (as in this analysis, for example), the vertical speed drops drastically. This phenomenon can be prevented in future analyses by collecting an empirical data set in which even greater attention is paid to the wind conditions.
+- Secondly, it is noticeable that the raw data in the high speed range shows a greater scatter than for lower speeds. This is due to the fact that these speeds are reached much less frequently and therefore the number of data points for this speed range is low. The certainty of the approximation of the theoretical polar curve decreases in this range, but this has no significant effect in this specific case when comparing the theoretical and experimental polar curve.
 
 In summary, although there are two aspects that limit the accuracy of this analysis in this specific case, the approximated polar curve based on the optimized pre-processing is significantly more accurate and reliable, especially as the scatter of the data is greatly reduced compared to the original data set. The clear advantages of the new analysis are therefore the reduced area between the two curves and the reduced standard error.
 
-### C Value Modelling
+### C Value Modeling
 
-This analysis is based on the data set generated by the speed data analysis. A detailed report for the c value modelling step can be found [here](/docs/research/reports/20240224_SJf_data-analysis_nicolas-huber.html). Please find listed below some further documentation on the individual processing steps.
+This analysis is based on the data set generated by the speed data analysis. A detailed report for the c value modeling step can be found [here](/docs/research/reports/20240224_SJf_data-analysis_nicolas-huber.html). Please find listed below some further documentation on the individual processing steps.
 
 #### C Model Data Processing
 
-In this step, the c-values for modelling the stationary glide are calculated for the entire optimized data set. This was concluded with the following report: 
+In this step, the c-values for modeling the stationary glide are calculated for the entire optimized data set. This was concluded with the following report: 
 
 <details>
 <summary>Show Report</summary>
@@ -1025,11 +1025,11 @@ Final Score:
 
 </details>
 
-The modeling of the c-values shows a pleasing result: Compared to the original model in the paper of 10/24/2022, there has been an increase in quality of 20%+, which benefits models based on it, such as the modeling of dynamic pressure. The difference between the simplified and the optimized full c-algorithm is minimal, but the difference between the original and optimized data is very noticeable. The more accurate these models are, especially the modeling of these coefficients, the better algorithms based on them will work. For example, the simulation of the pressure situation on the wing offers great potential. Ultimately, the aim is to prevent dangerous states in flight, especially collapses, through accurate numerical prediction and these models bring this goal within reach. 
+The modeling of the c-values shows a pleasing result: Compared to the original model in the paper of 10/24/2022, there has been an increase in quality of 20%+, which benefits models based on it, such as the modeling of the dynamic pressure. The difference between the simplified and the optimized c-algorithm is minimal, but the difference between the original and optimized data is very noticeable. The more accurate these models are, especially the modeling of these coefficients, the better algorithms based on them will work. For example, the simulation of the pressure situation on the wing offers great potential. Ultimately, the aim is to prevent dangerous states in flight, especially collapses, through accurate numerical prediction and these models bring this goal within reach. 
 
-### Dynamic Pressure Modelling
+### Dynamic Pressure Modeling
 
-One example of this is the simulation of the dynamic pressure on the wing. One of the decisive factors for the pressure situation inside the paraglider is the dynamic pressure. This is modeled below to demonstrate the potential of this tool. 
+One example of this is the simulation of the dynamic pressure at the wing. One of the decisive factors for the pressure situation inside the paraglider, which is relevant for predicting dangerous flight situations such as collapses, is the dynamic pressure. This is modeled below to demonstrate the potential of this tool. 
 
 Please find listed below some graphs that visualize the dynamic pressure at the wing of an Ozone Alpina 4 paraglider.
 
@@ -1052,13 +1052,13 @@ Please find listed below some graphs that visualize the dynamic pressure at the 
 </tr>
 </table>
 
-This exemplary visualization brings together the various concepts and algorithms of the `flight-analyzer` tool and shows where this idea could lead. The ability to model a wing so accurately based on experimental data opens up many exciting possibilities for predicting dangerous flight situations such as collapses.
+This exemplary visualization brings together the various concepts and algorithms of the `flight-analyzer` tool and shows where this idea could lead to. The ability to model a wing so accurately based on experimental data opens up many exciting possibilities for predicting dangerous flight situations such as collapses.
 
 ### Quality Analysis
 
-The `flight-analyzer` tool introduces many different new concepts for modeling the stationary glide of a paraglider or for predicting dangerous flight situations. Nevertheless, it should be seen as a further development of the concepts presented in the original paper **Fliegen am Limit** dated 10/24/2022. In order to create comparable results and evaluations, a quality analysis is appropriate at the end of this research report.
+The `flight-analyzer` tool introduces many different new concepts for modeling the stationary glide of a paraglider or for predicting dangerous flight situations. Nevertheless, it should be seen as a tool built on the concepts presented in the original paper **Fliegen am Limit** dated 10/24/2022. In order to create comparable results and evaluations, a quality analysis is appropriate at the end of this research report.
 
-In the original work, the quality of the modeling of the stationary glide was checked by comparing the force resultant of lift and drag forces calculated by the model, which contains all previously processed variables such as velocity data, approximation functions and coefficients, with the expected weight force. In stationary glide in an unaccelerated, stable state, the weight force and the force resultant must cancel each other out. More on this can be found in the paper, but this relationship is the basis for the quality test.
+In the original paper, the quality of the modeling of the stationary glide was checked by comparing the force resultant of lift and drag forces calculated by the model, which contains all previously processed variables such as velocity data, approximation functions and coefficients, with the expected weight force. In stationary glide in an unaccelerated, stable state, the weight force and the force resultant must cancel each other out. More on this can be found in the paper, but this relationship is the basis for the quality test.
 
 Please find below a visualisation of the quality check:
 
@@ -1098,13 +1098,13 @@ Quality analysis:
 
 </details>
 
-This analysis leads to the result that the new model with a deviation of 0.4% on average is very close to reality and thus generates a realistic image of the stationary glide. It should be noted at this point that the original model in the original paper shows a deviation of around 1.5% (in an exemplary sample calculation). However, the original paper did not check the quality of the entire data set, which partly explains the deviation between the versions in this analysis. Above all, however, it should be mentioned that the data pre-processing has improved significantly between the two versions of this paper. An important part of the accuracy of the optimized models is the improved data processing. In order to create a realistic comparison between the versions, the old model with the old conditions was confronted with the new model and the adjusted conditions, leading to this result and a quality difference of 8% when looking at this exemplary quality analysis.
+This analysis leads to the result that the new model with a deviation of 0.4% on average is very close to reality and thus generates a realistic image of the stationary glide. It should be noted at this point that the original model in the original paper shows a deviation of around 1.5% (in an exemplary sample calculation at a specific point in the dataset). However, the original paper did not check the quality of the entire data set, which partly explains the deviation between the versions in this analysis. Above all, however, it should be mentioned that the data pre-processing has improved significantly between the two versions of this paper. An important part of the accuracy of the optimized models is the improved data processing. In order to create a realistic comparison between the versions, the old model with the old conditions was confronted with the new model and the adjusted conditions, leading to this result and a quality difference of 8% when looking at this exemplary quality analysis.
 
 Not only have the individual components of this model improved, but the improvement can also be seen in applied applications.
 
 ## Summary
 
-The `flight-analyzer` application led to a general improvement in the quality of the evaluations and analyses of the paper compared to the original version of this paper. First, the experimental velocity polars could be improved and thus the basis for applied models could be strengthened. This can be seen, for example, in the quality analysis for the calculation of lift and drag forces as well as c-coefficients. In addition, the new analyses offer great potential for new models and simulations thanks to the increase in quality. One example of this is the modeling of the dynamic pressure at the wing and the transfer of the concept to the prediction of collapses. Most importantly, however, this system automates the entire analysis process. The relevance of this point becomes particularly clear if you want to transfer the concepts of the paper to a paraglider that does not correspond to the Ozone Alpina 4. The `flight-analyzer` application changes the challenge of modelling different gliders and makes it possible to calculate simulations and models for any glider in no time at all - based on an empiric set of flight data - and, after a few adjustments to the software, to output prediction models for collapses for any glider in the future. In summary, this tool increases the quality of the analyses compared to the original, fully automates them, creates scope for new algorithms and thus ensures accessibility for all gliders and pilots, while automating the whole process.
+The `flight-analyzer` application led to a general improvement in the quality of the evaluations and analyses of the paper compared to the original version of this paper. First, the experimental velocity polars could be improved and thus the basis for applied models could be strengthened. This can be seen, for example, in the quality analysis for the calculation of lift and drag forces as well as c-coefficients. In addition, the new analyses offer great potential for new models and simulations thanks to the increase in quality. One example of this is the modeling of the dynamic pressure at the wing and the application of the concept for the prediction of collapses. Most importantly, however, this system automates the entire analysis process. The relevance of this point becomes particularly clear if you want to apply the concepts of the paper to a paraglider that does not correspond to the Ozone Alpina 4. The `flight-analyzer` application changes the challenge of modelling different gliders and makes it possible to calculate simulations and models for any glider in no time at all - based on an empiric set of flight data - and, after a few adjustments to the software, to output prediction models for collapses for any glider in the future. In summary, this tool increases the quality of the analyses compared to the original, fully automates them, creates a scope for new algorithms and thus ensures accessibility for all gliders and pilots, while automating the whole process.
 
 Great news!
 
