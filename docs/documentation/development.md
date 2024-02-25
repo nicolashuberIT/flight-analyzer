@@ -18,11 +18,11 @@ Please find naming conventions for this project linked here: [click](/docs/docum
 
 ## Testing
 
-The codebase has been tested using the `pytest` module. The recent CI/CD status can be found at the top of this page. Click [here](https://github.com/nicolashuberIT/flight-analyzer/actions) for a detailed overview and unit testing logs. 
+The codebase has been tested using the `pytest` module. The recent CI/CD status can be found below. Click [here](https://github.com/nicolashuberIT/flight-analyzer/actions) for a detailed overview and unit testing logs. 
 
-*Please note:*
+![Testing](https://github.com/nicolashuberIT/flight-analyzer/actions/workflows/testing.yaml/badge.svg)
 
-*The issue regarding some tests failing with a FileNotFoundError when running pytest without specifying test files explicitly has been resolved, but the option to run tests using the `testing.sh` script persists; this workaround involves explicitly listing test files with their relative paths in a shell script and executing it to ensure pytest can locate and run the tests without encountering errors. For more details, refer to [testing.sh](/testing.sh), [update_testing.sh](/update_testing.sh), and [testing.yaml](https://github.com/nicolashuberIT/flight-analyzer/blob/main/.github/workflows/testing.yaml).*
+*Please note: An issue regarding some tests failing with a FileNotFoundError when running pytest without specifying test files explicitly has been resolved, but the option to run tests using the `testing.sh` script persists; this workaround involves explicitly listing test files with their relative paths in a shell script and executing it to ensure pytest can locate and run the tests without encountering errors. For more details, refer to [testing.sh](/testing.sh), [update_testing.sh](/update_testing.sh), and [testing.yaml](https://github.com/nicolashuberIT/flight-analyzer/blob/main/.github/workflows/testing.yaml).*
 
 ## Contributing
 
