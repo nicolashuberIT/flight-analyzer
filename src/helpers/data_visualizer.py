@@ -504,7 +504,7 @@ class DataVisualizer:
             x_values_experimental,
             upper_bound,
             lower_bound,
-            color="lightblue",
+            color="orange",
             alpha=0.5,
             label=f"Standardfehler ({std_error:.2f} m/s)",
         )
