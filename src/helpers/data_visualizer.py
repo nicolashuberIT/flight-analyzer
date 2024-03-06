@@ -472,6 +472,8 @@ class DataVisualizer:
         fig = plt.figure(figsize=(12, 6))
         fig.set_facecolor("#F2F2F2")
 
+        ax1 = fig.add_subplot(111)
+
         # experimental data
         sorted_horizontal_experimental: pd.Series = experimental_data[
             "horizontal velocity [m/s]"
@@ -490,7 +492,7 @@ class DataVisualizer:
             100,
         )
 
-        plt.plot(
+        ax1.plot(
             x_values_experimental,
             cs_experimental(x_values_experimental),
             color="grey",
@@ -500,7 +502,7 @@ class DataVisualizer:
         # std error for experimental data
         upper_bound = cs_experimental(x_values_experimental) + std_error
         lower_bound = cs_experimental(x_values_experimental) - std_error
-        plt.fill_between(
+        ax1.fill_between(
             x_values_experimental,
             upper_bound,
             lower_bound,
@@ -519,7 +521,7 @@ class DataVisualizer:
             sorted_horizontal_experimental.max(),
             100,
         )
-        plt.plot(
+        ax1.plot(
             x_values_experimental,
             polynomial(x_values_experimental),
             color="blue",
@@ -539,21 +541,36 @@ class DataVisualizer:
             sorted_theoretical["horizontal velocity [m/s]"].max(),
             100,
         )
-        plt.plot(
+        ax1.plot(
             x_values_theoretical,
             cs_theoretical(x_values_theoretical),
             color="green",
             label="Theoretische Geschwindigkeitspolare",
         )
 
-        plt.xlim(8.0, 15.7)
-        plt.ylim(-2.75, -0.4)
+        ax1.set_xlim(8.0, 15.7)
+        ax1.set_ylim(-2.75, -0.4)
 
-        plt.title(title)
-        plt.xlabel("Horizontalgeschwindigkeit [m/s]")
-        plt.ylabel("Vertikalgeschwindigkeit [m/s]")
-        plt.grid(True)
-        plt.legend()
+        ax1.set_title(title)
+        ax1.set_xlabel("Horizontalgeschwindigkeit [m/s & km/h]")
+        ax1.set_ylabel("Vertikalgeschwindigkeit [m/s]")
+        ax1.grid(True)
+        ax1.legend()
+
+        # Convert x-axis to km/h
+        def mps_to_kmph(x):
+            return x * 3.6
+
+        def kmph_to_mps(x):
+            return x / 3.6
+
+        # Set secondary x-axis tick labels
+        mps_ticks = np.linspace(8.0, 15.7, 6)
+        kmph_ticks = mps_to_kmph(mps_ticks)
+        combined_labels = [f"{mps:.0f} m/s\n{kmph:.1f} km/h" for mps, kmph in zip(mps_ticks, kmph_ticks)]
+        ax1.set_xticks(mps_ticks)
+        ax1.set_xticklabels(combined_labels)
+        
         plt.show()
 
     def visualize_speed_deviation(
