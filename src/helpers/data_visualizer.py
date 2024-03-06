@@ -450,6 +450,30 @@ class DataVisualizer:
         plt.legend(handles, labels)
         plt.show()
 
+    def visualize_data_distribution(self, speed_data: pd.DataFrame) -> None:
+        """
+        Visualizes the distribution of the datapoints along the x-axis.
+        
+        Parameters:
+        - speed_data: the DataFrame containing the experimental data
+        
+        Returns:
+        - None
+        """
+        fig = plt.figure(figsize=(12, 6))
+        fig.set_facecolor("#F2F2F2")
+
+        unique_speeds, counts = np.unique(speed_data['horizontal velocity [m/s]'], return_counts=True)
+
+        plt.bar(unique_speeds, counts, color='lightblue') 
+        plt.xlabel('Horizontalgeschwindigkeit [m/s]')
+        plt.ylabel('Anzahl Datenpunkte [1]')
+        plt.title('Verteilung der Datenpunkte anhand der Horizontalgeschwindigkeit')
+
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+
     def visualize_raw_speed_data(
         self,
         experimental_data: pd.DataFrame,
@@ -552,24 +576,21 @@ class DataVisualizer:
         ax1.set_ylim(-2.75, -0.4)
 
         ax1.set_title(title)
-        ax1.set_xlabel("Horizontalgeschwindigkeit [m/s & km/h]")
+        ax1.set_xlabel("Horizontalgeschwindigkeit [m/s]")
         ax1.set_ylabel("Vertikalgeschwindigkeit [m/s]")
         ax1.grid(True)
         ax1.legend()
 
-        # Convert x-axis to km/h
         def mps_to_kmph(x):
             return x * 3.6
 
-        def kmph_to_mps(x):
-            return x / 3.6
-
-        # Set secondary x-axis tick labels
-        mps_ticks = np.linspace(8.0, 15.7, 6)
+        ax2 = ax1.twiny()
+        
+        mps_ticks = np.linspace(8.0, 15.7, 4)
         kmph_ticks = mps_to_kmph(mps_ticks)
-        combined_labels = [f"{mps:.0f} m/s\n{kmph:.1f} km/h" for mps, kmph in zip(mps_ticks, kmph_ticks)]
-        ax1.set_xticks(mps_ticks)
-        ax1.set_xticklabels(combined_labels)
+        ax2.set_xticks(mps_ticks)
+        ax2.set_xticklabels([f"{kmph:.1f} km/h" for kmph in kmph_ticks])
+        ax2.set_xlim(ax1.get_xlim())  
         
         plt.show()
 
