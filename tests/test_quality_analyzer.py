@@ -70,12 +70,12 @@ def test_calculate_cA_approximation(analyzer):
     Returns:
     - None
     """
-    assert round(35.86 * (10 ** (-1.99)), 4) == 0.367
-    assert analyzer.calculate_cA_approximation(10) == 35.86 * (10 ** (-1.99))
-    assert analyzer.calculate_cA_approximation(20) == 35.86 * (20 ** (-1.99))
-    assert analyzer.calculate_cA_approximation(30) == 35.86 * (30 ** (-1.99))
-    assert analyzer.calculate_cA_approximation(40) == 35.86 * (40 ** (-1.99))
-    assert analyzer.calculate_cA_approximation(50) == 35.86 * (50 ** (-1.99))
+    assert round(35.8588 * (10 ** (-1.9862)), 4) == 0.3702
+    assert analyzer.calculate_cA_approximation(10) == 35.8588 * (10 ** (-1.9862))
+    assert analyzer.calculate_cA_approximation(20) == 35.8588 * (20 ** (-1.9862))
+    assert analyzer.calculate_cA_approximation(30) == 35.8588 * (30 ** (-1.9862))
+    assert analyzer.calculate_cA_approximation(40) == 35.8588 * (40 ** (-1.9862))
+    assert analyzer.calculate_cA_approximation(50) == 35.8588 * (50 ** (-1.9862))
 
 def test_calculate_cW_approximation(analyzer):
     """
@@ -87,9 +87,9 @@ def test_calculate_cW_approximation(analyzer):
     Returns:
     - None
     """
-    assert round(15.56 * (10 ** (-2.51)), 4) == 0.0481
-    assert analyzer.calculate_cW_approximation(10) == 15.56 * (10 ** (-2.51))
-    assert analyzer.calculate_cW_approximation(20) == 15.56 * (20 ** (-2.51))
-    assert analyzer.calculate_cW_approximation(30) == 15.56 * (30 ** (-2.51))
-    assert analyzer.calculate_cW_approximation(40) == 15.56 * (40 ** (-2.51))
-    assert analyzer.calculate_cW_approximation(50) == 15.56 * (50 ** (-2.51))
+    assert round(15.5624 * (10 ** (-2.5126)), 4) == 0.0478
+    assert analyzer.calculate_cW_approximation(10) == 15.5624 * (10 ** (-2.5126))
+    assert analyzer.calculate_cW_approximation(20) == 15.5624 * (20 ** (-2.5126))
+    assert analyzer.calculate_cW_approximation(30) == 15.5624 * (30 ** (-2.5126))
+    assert analyzer.calculate_cW_approximation(40) == 15.5624 * (40 ** (-2.5126))
+    assert analyzer.calculate_cW_approximation(50) == 15.5624 * (50 ** (-2.5126))
