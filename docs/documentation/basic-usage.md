@@ -52,7 +52,7 @@ This data can then be preprocessed using the `FileConvertor` tool, which is link
 
 In order to run the main script of the `flight-analyzer` application make sure to prepare all necessary files and properly preprocess them. Please find instructions on preprocessing [here](#preprocessing-flight-data).
 
-_Further documentation will follow._
+Documentation on using this notebook can be found at the top of the Jupyter Notebook, which can be found [here](/main.ipynb).
 
 ## Run individual analysis
 
