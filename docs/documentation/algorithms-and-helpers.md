@@ -86,7 +86,7 @@ LINEAR_REGRESSION_THRESHOLD: float = 0.9  # r-value > 0.9 is considered as strai
 ```
 </details>
 
-This results in the following graphs, which represent the state at a point of index 1400 (example), which can be seen in the `Conditions` box.
+This results in the following graphs, which represent the state at a point of index n, which can be seen in the `Conditions` box.
 
 <table>
   <tr>
