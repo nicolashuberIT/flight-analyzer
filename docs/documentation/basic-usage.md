@@ -1,12 +1,12 @@
-# Basic usage
+# Basic Usage
 
 [README](/README.md) > Docs > Basic Usage
 
-The main entry point of this application is the `main.ipynb` file. If you'd like to visualize data or run a specific analysis check out the `src/executors/` or `src/analysis` directories, which contain a collection of Jupyter Notebooks. Please find listed below some instructions for the Notebooks in `src/executors/`, the `main` script and some guidelines for preprocessing.
+The main entry point of this application is the `main.ipynb` file. If you'd like to visualize data or run a specific analysis check out the `src/executor/` or `src/analysis` directories, which contain a collection of Jupyter Notebooks. Please find listed below some instructions for the Notebooks in `src/executor/`, the `main` script and some guidelines for preprocessing.
 
 ## Contents
 
-- [Basic usage](#basic-usage)
+- [Basic Usage](#basic-usage)
   - [Contents](#contents)
   - [Preprocessing flight data](#preprocessing-flight-data)
   - [Running main.ipynb](#running-mainipynb)
@@ -19,7 +19,7 @@ The flight data consumed by this program is read from `.igc files`, which are wr
 
 Alternatively, you can use [IGC2KML](https://igc2kml.com/) for `.igc` to `.kml` conversion and [KML2CSV](https://products.aspose.app/gis/conversion/kml-to-csv) for `.kml` to `.csv` conversion as well as Microsoft Excel to manually clean up the raw table data. Please find listed below some instructions for manual preprocessing.
 
-After manually processing the tracklog using the linked tools you're dealing with `.csv` data of the following format: 
+After manually processing a tracklog using the linked tools you're dealing with `.csv` data of the following format: 
 
 <details>
 <summary>Show Data</summary>
@@ -52,11 +52,11 @@ This data can then be preprocessed using the `FileConvertor` tool, which is link
 
 In order to run the main script of the `flight-analyzer` application make sure to prepare all necessary files and properly preprocess them. Please find instructions on preprocessing [here](#preprocessing-flight-data).
 
-Documentation on using this notebook can be found at the top of the Jupyter Notebook, which can be found [here](/main.ipynb).
+Documentation on using this notebook can be found at the top of the `main.ipynb` file, which can be found [here](/main.ipynb).
 
 ## Run individual analysis
 
-To run a particular algorithm of the `flight-analyzer` application, e.g. to visualize data, please refer to the executor scripts that can be found in `src/executors/`. The algorithms and some examples can be found in the [Algorithms and Helpers](/docs/documentation/algorithms-and-helpers.md) documentation.
+To run a particular algorithm of the `flight-analyzer` application, e.g. to visualize data, please refer to the executor scripts that can be found in `src/executor/`. The algorithms and some examples can be found in the [Algorithms and Helpers](/docs/documentation/algorithms-and-helpers.md) documentation.
 
 Check out the [src/executor](/src/executor/) or [src/analysis](/src/analysis/) directories to find a selection of data processing tools. 
 
