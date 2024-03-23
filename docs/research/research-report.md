@@ -10,7 +10,7 @@ Happy reading!
 
 - [Research Report](#research-report)
   - [Contents](#contents)
-  - [Empiric Dataset](#empiric-dataset)
+  - [Empirical Dataset](#empirical-dataset)
   - [Testing](#testing)
   - [Algorithm Optimization](#algorithm-optimization)
     - [Overview](#overview)
@@ -31,11 +31,11 @@ Happy reading!
       - [C Model Data Processing](#c-model-data-processing)
       - [C Model Data Visualisation](#c-model-data-visualisation)
       - [C Model Report](#c-model-report)
-    - [Dynamic Pressure Modeling](#dynamic-pressure-modeling)
+    - [Stagnation Pressure Modeling](#stagnation-pressure-modeling)
     - [Quality Analysis](#quality-analysis)
   - [Summary](#summary)
 
-## Empiric Dataset
+## Empirical Dataset
 
 The empirical data set on which the analyses are based was collected by a variometer (Skytraxx 2.1) of [this](https://www.skytraxx.eu/en/skytraxx-2-1) type. The data set consists of 30 track logs of flights, which were manually selected and checked for clean data. The data set contains pure gliding flights and preferably no disturbances such as thermals or strong wind flights.
 
@@ -257,11 +257,11 @@ This optimization run isn't further documented as it resolved in exactly the sam
 Three calculation runs were carried out with different parameters to optimize the thresholds. All runs produced the same result. The optimization algorithm recommends the following thresholds for further analyses:
 
 - By score:
-  - `OPTIMIZATION_LIMIT` = 95
-  - `OPTIMIZATION_STEP` = 90
+  - `ANGLE_PAST_THRESHOLD` = 95
+  - `ANGLE_FUTURE_THRESHOLD` = 90
 - By ratio:
-  - `OPTIMIZATION_LIMIT` = 10
-  - `OPTIMIZATION_STEP` = 50
+  - `ANGLE_PAST_THRESHOLD` = 10
+  - `ANGLE_FUTURE_THRESHOLD` = 50
 
 Now the question arises as to which of the combinations works better in practice. Some tests based on the `SpeedAnalyzer` algorithm have shown that the Thresholds by score are the better combination. The combination 95 & 90 produces the best results. This high-performance threshold pair is therefore the basis for all further analyses.
 
@@ -1027,27 +1027,27 @@ Final Score:
 
 The modeling of the c-values shows a pleasing result: Compared to the original model in the paper of 10/24/2022, there has been an increase in quality of 20%+, which benefits models based on it, such as the modeling of the dynamic pressure. The difference between the simplified and the optimized c-algorithm is minimal, but the difference between the original and optimized data is very noticeable. The more accurate these models are, especially the modeling of these coefficients, the better algorithms based on them will work. For example, the simulation of the pressure situation on the wing offers great potential. Ultimately, the aim is to prevent dangerous states in flight, especially collapses, through accurate numerical prediction and these models bring this goal within reach. 
 
-### Dynamic Pressure Modeling
+### Stagnation Pressure Modeling
 
-One example of this is the simulation of the dynamic pressure at the wing. One of the decisive factors for the pressure situation inside the paraglider, which is relevant for predicting dangerous flight situations such as collapses, is the dynamic pressure. This is modeled below to demonstrate the potential of this tool. 
+One example of this is the simulation of the dynamic pressure at the wing. One of the decisive factors for the pressure situation inside the paraglider, which is relevant for predicting dangerous flight situations such as collapses, is the stagnation pressure. This is modeled below to demonstrate the potential of this tool. 
 
-Please find listed below some graphs that visualize the dynamic pressure at the wing of an Ozone Alpina 4 paraglider.
+Please find listed below some graphs that visualize the stagnation pressure at the wing of an Ozone Alpina 4 paraglider.
 
 <table>
 <tr>
-    <th>Dynamic Pressure</th>
+    <th>Stagnation Pressure</th>
     <th>Deviation</th>
 </tr>
 <tr>
     <td>
         <img src="/docs/research/images/pressure/20240224_SJf_experimentelle-modellierung-des-staudrucks_nicolas-huber.png" alt="Experimentelle Modellierung des Staudrucks">
         <br>
-        <em>Fig. 94: Experimental Model of Dynamic Pressure</em>
+        <em>Fig. 94: Experimental Model of Stagnation Pressure</em>
     </td>
     <td>
         <img src="/docs/research/images/pressure/20240224_SJf_abweichung-des-staudrucks_nicolas-huber.png" alt="Tracklog">
         <br>
-        <em>Fig. 95: Deviation of Dynamic Pressure</em>
+        <em>Fig. 95: Deviation of Stagnation Pressure</em>
     </td>
 </tr>
 </table>
@@ -1104,7 +1104,7 @@ Not only have the individual components of this model improved, but the improvem
 
 ## Summary
 
-The `flight-analyzer` application led to a general improvement in the quality of the evaluations and analyses of the paper compared to the original version of this paper. First, the experimental velocity polars could be improved and thus the basis for applied models could be strengthened. This can be seen, for example, in the quality analysis for the calculation of lift and drag forces as well as c-coefficients. In addition, the new analyses offer great potential for new models and simulations thanks to the increase in quality. One example of this is the modeling of the dynamic pressure at the wing and the application of the concept for the prediction of collapses. Most importantly, however, this system automates the entire analysis process. The relevance of this point becomes particularly clear if you want to apply the concepts of the paper to a paraglider that does not correspond to the Ozone Alpina 4. The `flight-analyzer` application changes the challenge of modelling different gliders and makes it possible to calculate simulations and models for any glider in no time at all - based on an empiric set of flight data - and, after a few adjustments to the software, to output prediction models for collapses for any glider in the future. In summary, this tool increases the quality of the analyses compared to the original, fully automates them, creates a scope for new algorithms and thus ensures accessibility for all gliders and pilots, while automating the whole process.
+The `flight-analyzer` application led to a general improvement in the quality of the evaluations and analyses of the paper compared to the original version of this paper. First, the experimental velocity polars could be improved and thus the basis for applied models could be strengthened. This can be seen, for example, in the quality analysis for the calculation of lift and drag forces as well as c-coefficients. In addition, the new analyses offer great potential for new models and simulations thanks to the increase in quality. One example of this is the modeling of the stagnation pressure at the wing and the application of the concept for the prediction of collapses. Most importantly, however, this system automates the entire analysis process. The relevance of this point becomes particularly clear if you want to apply the concepts of the paper to a paraglider that does not correspond to the Ozone Alpina 4. The `flight-analyzer` application changes the challenge of modelling different gliders and makes it possible to calculate simulations and models for any glider in no time at all - based on an empiric set of flight data - and, after a few adjustments to the software, to output prediction models for collapses for any glider in the future. In summary, this tool increases the quality of the analyses compared to the original, fully automates them, creates a scope for new algorithms and thus ensures accessibility for all gliders and pilots, while automating the whole process.
 
 Great news!
 
