@@ -35,7 +35,7 @@ Both the original and updated paper are listed below:
     <td>Nicolas Huber</td>
     <td>Albert Kern, Ronald Luijten</td>
     <td>Schweizer Jugend forscht (SJf)</td>
-    <td>coming soon</td>
+    <td><a href="https://nicolas-huber.ch/docs/20240331_SJf_fliegen-am-limit_wettbewerbsarbeit-2024_nicolas-huber.pdf" target="_blank">nicolas-huber.ch</a></td>
   </tr>
 </table>
 
