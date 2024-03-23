@@ -20,7 +20,7 @@ AI tools are a powerful and valuable addition to improve the development workflo
 
 ## License
 
-The source code of this application is licensed under the license linked [here](LICENSE.md).
+The source code of this application is licensed under the license linked [here](/LICENSE.md).
 
 In consideration of the `LICENSE.md`, the licensee, who is considered as such at the point of downloading this application, agrees to respect the terms and conditions. The licensee undertakes to show respect for Nicolas Huber's intellectual property and to use it only in accordance with his instructions.
 
