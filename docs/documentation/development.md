@@ -30,7 +30,7 @@ At this time, the `flight-analyzer` project is not open for community contributi
 
 ## Changelog
 
-- **[1.0.0]** - Not released yet.
+- **[1.0.0]** - `flight-analyzer` published as of 03/31/2024 as part of Nicolas Huber's contribution the the "Schweizer Jugend forscht 2024" initiative
 
 ## Attributions
 
